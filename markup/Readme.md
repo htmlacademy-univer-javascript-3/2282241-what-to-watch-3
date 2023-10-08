@@ -6,7 +6,7 @@
 * `sign-in.html` - страница «Sign In» (Авторизация):
    * `sign-in-message.html` - с выводом сообщения;
    * `sign-in-error.html` — с выводом ошибки;
-* `player.html` — страница «Player» (Страница просмотра фильма):
+* `player.html` — страница «PlayerPage» (Страница просмотра фильма):
    * `player-pause.html` — с остановкой видео;
 * `movie-page.html` — страница «Film» (Страница c описанием фильма):
    * `movie-page-reviews.html` — с отзывами;
