@@ -1,15 +1,18 @@
 import ButtonFilmCard from '../film-card/button-film-card.tsx';
 import '../../../style/player-style/player-style.css';
+import {FilmsProps} from '../../mocks/films.ts';
 
 type PlayerProps = {
   nameButton: string;
   xlinkHref: string;
+  id: number;
+  film: FilmsProps[];
 }
 
-export function Player(props:PlayerProps) {
+export function Player(props: PlayerProps) {
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={props.film[props.id].movie} className="player__video" poster={'img/player-poster.jpg'}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -23,7 +26,9 @@ export function Player(props:PlayerProps) {
         </div>
 
         <div className="player__controls-row">
-          <ButtonFilmCard height={'19'} width={'19'} xlinkHref={props.xlinkHref} nameButton={props.nameButton} className={'player__play'}/>
+          <ButtonFilmCard height={'19'} width={'19'} xlinkHref={props.xlinkHref} nameButton={props.nameButton}
+            className={'player__play'}
+          />
           <div className="player__name">Transpotting</div>
           <ButtonFilmCard height={'27'} width={'27'} xlinkHref={'#full-screen'} nameButton={'Full screen'}
             className={'player__full-screen'}

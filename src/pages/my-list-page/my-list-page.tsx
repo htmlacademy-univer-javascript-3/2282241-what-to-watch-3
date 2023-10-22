@@ -2,8 +2,9 @@ import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import CardFilm from '../../components/film-card/card-film.tsx';
+import {FilmsProps} from '../../mocks/films.ts';
 
-function MyListPage() {
+function MyListPage(props: FilmsProps[]) {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -16,15 +17,30 @@ function MyListPage() {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'} imgPath={'public/img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}/>
-          <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'public/img/bohemian-rhapsody.jpg'}/>
-          <CardFilm nameFilm={'Macbeth'} imgPath={'public/img/macbeth.jpg'}/>
-          <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'}/>
-          <CardFilm nameFilm={'We need to talk about Kevin'} imgPath={'img/we-need-to-talk-about-kevin.jpg'}/>
-          <CardFilm nameFilm={'What We Do in the Shadows'} imgPath={'img/what-we-do-in-the-shadows.jpg'}/>
-          <CardFilm nameFilm={'Revenant'} imgPath={'img/revenant.jpg'}/>
-          <CardFilm nameFilm={'Johnny English'} imgPath={'img/johnny-english.jpg'}/>
-          <CardFilm nameFilm={'Shutter Island'} imgPath={'img/shutter-island.jpg'}/>
+          <CardFilm nameFilm={props[0].nameMovie}
+            imgPath={props[0].posterPath} id={1}
+          />
+          <CardFilm nameFilm={props[1].nameMovie}
+            imgPath={props[1].posterPath} id={2}
+          />
+          <CardFilm nameFilm={props[2].nameMovie}
+            imgPath={props[2].posterPath} id={3}
+          />
+          <CardFilm nameFilm={props[3].nameMovie}
+            imgPath={props[3].posterPath} id={4}
+          />
+          <CardFilm nameFilm={props[4].nameMovie}
+            imgPath={props[4].posterPath} id={5}
+          />
+          <CardFilm nameFilm={props[5].nameMovie}
+            imgPath={props[5].posterPath} id={6}
+          />
+          <CardFilm nameFilm={props[6].nameMovie}
+            imgPath={props[6].posterPath} id={7}
+          />
+          <CardFilm nameFilm={props[7].nameMovie}
+            imgPath={props[7].posterPath} id={8}
+          />
         </div>
       </section>
 

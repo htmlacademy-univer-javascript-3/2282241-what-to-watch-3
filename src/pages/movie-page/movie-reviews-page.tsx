@@ -5,13 +5,15 @@ import UserBlock from '../../components/user-block/user-block.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import FilmNavList from '../../components/film-nav-list/film-nav-list.tsx';
 import Review from '../../components/review/review.tsx';
+import {ReviewMovie} from '../../mocks/reviews.ts';
 
 type MovieReviewsPageProps = {
-  nameMovie: string;
-  imgPath: string;
-  imgPathPoster: string;
-  genre: string;
-  date: number;
+    nameMovie: string;
+    imgPath: string;
+    imgPathPoster: string;
+    genre: string;
+    date: number;
+    review: ReviewMovie[];
 }
 
 function MovieReviewsPage(props: MovieReviewsPageProps) {
@@ -50,14 +52,32 @@ function MovieReviewsPage(props: MovieReviewsPageProps) {
 
               <div className="film-card__reviews film-card__row">
                 <div className="film-card__reviews-col">
-                  <Review text={'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director\'s funniest and most exquisitely designed films in years.'} author={'Kate Muir'} dateTime={'2016-12-24'} rating={'8,9'} date={'December 24, 2016'}/>
-                  <Review text={'Anderson\'s films are too precious for some, but for those of us willing to lose ourselves in them, they\'re a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.'} author={'Bill Goodykoontz'} dateTime={'2015-11-18'} rating={'8,0'} date={'November 18, 2015'}/>
-                  <Review text={'I didn\'t find it amusing, and while I can appreciate the creativity,it\'s an hour and 40 minutes I wish I could take back.'} author={'Amanda Greever'} dateTime={'2015-11-18'} rating={'8,0'} date={'November 18, 2015'}/>
+                  <Review text={props.review[0].text} author={props.review[0].name}
+                    dateTime={'2016-12-24'} rating={props.review[0].rating}
+                    date={props.review[0].data}
+                  />
+                  <Review text={props.review[1].text} author={props.review[1].name}
+                    dateTime={'2015-11-18'} rating={props.review[1].rating}
+                    date={props.review[1].data}
+                  />
+                  <Review text={props.review[2].text} author={props.review[2].name}
+                    dateTime={'2015-11-18'} rating={props.review[1].rating}
+                    date={props.review[1].data}
+                  />
                 </div>
                 <div className='film-card__reviews-col'>
-                  <Review text={'The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.'} author={'Matthew Lickona'} dateTime={'2016-12-20'} rating={'7,2'} date={'December 20, 2016'}/>
-                  <Review text={'It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.'} author={'Paula Fleri-Soler'} dateTime={'2016-12-20'} rating={'7,6'} date={'December 20, 2016'}/>
-                  <Review text={'It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.'} author={'Paula Fleri-Soler'} dateTime={'2016-12-20'} rating={'7,0'} date={'December 20, 2016'}/>
+                  <Review text={props.review[3].text} author={props.review[3].name}
+                    dateTime={'2016-12-20'} rating={props.review[3].rating}
+                    date={props.review[3].data}
+                  />
+                  <Review text={props.review[4].text} author={props.review[4].name}
+                    dateTime={'2016-12-20'} rating={props.review[4].rating}
+                    date={props.review[4].data}
+                  />
+                  <Review text={props.review[5].text} author={props.review[5].name}
+                    dateTime={'2016-12-20'} rating={props.review[5].rating}
+                    date={props.review[5].data}
+                  />
                 </div>
               </div>
             </div>
@@ -70,10 +90,12 @@ function MovieReviewsPage(props: MovieReviewsPageProps) {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'} imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}/>
-            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'}/>
-            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'}/>
-            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'}/>
+            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'}
+              imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={1}
+            />
+            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'} id={2}/>
+            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'} id={3}/>
+            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'} id={4}/>
           </div>
         </section>
 
