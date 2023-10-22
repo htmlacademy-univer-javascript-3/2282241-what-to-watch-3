@@ -4,12 +4,14 @@ import UserBlock from '../../components/user-block/user-block.tsx';
 import CatalogGenres from '../../components/catalog-genres/catalog-genres.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import ButtonFilmCard from '../../components/film-card/button-film-card.tsx';
+import {FilmsProps} from '../../mocks/films.ts';
 
 type SelectedMovie = {
   nameMoviePoster: string;
   genre: 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thriller';
   date: number;
   posterImg: string;
+  film: FilmsProps[];
 }
 
 function MainPage(props: SelectedMovie) {
@@ -72,26 +74,30 @@ function MainPage(props: SelectedMovie) {
           </ul>
 
           <div className="catalog__films-list">
-            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'} imgPath={'public/img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}/>
-            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'public/img/bohemian-rhapsody.jpg'}/>
-            <CardFilm nameFilm={'Macbeth'} imgPath={'public/img/macbeth.jpg'}/>
-            <CardFilm nameFilm={'Aviator'} imgPath={'public/img/aviator.jpg'}/>
-            <CardFilm nameFilm={'We need to talk about Kevin'} imgPath={'public/img/we-need-to-talk-about-kevin.jpg'}/>
-            <CardFilm nameFilm={'What We Do in the Shadows'} imgPath={'public/img/what-we-do-in-the-shadows.jpg'}/>
-            <CardFilm nameFilm={'Revenant'} imgPath={'public/img/revenant.jpg'}/>
-            <CardFilm nameFilm={'Johnny English'} imgPath={'public/img/johnny-english.jpg'}/>
-            <CardFilm nameFilm={'Shutter Island'} imgPath={'public/img/shutter-island.jpg'}/>
-            <CardFilm nameFilm={'Pulp Fiction'} imgPath={'public/img/pulp-fiction.jpg'}/>
-            <CardFilm nameFilm={'No Country for Old Men'} imgPath={'public/img/no-country-for-old-men.jpg'}/>
-            <CardFilm nameFilm={'Snatch'} imgPath={'public/img/snatch.jpg'}/>
-            <CardFilm nameFilm={'Moonrise Kingdom'} imgPath={'public/img/moonrise-kingdom.jpg'}/>
-            <CardFilm nameFilm={'Seven Years in Tibet'} imgPath={'public/img/seven-years-in-tibet.jpg'}/>
-            <CardFilm nameFilm={'Midnight Special'} imgPath={'public/img/midnight-special.jpg'}/>
-            <CardFilm nameFilm={'War of the Worlds'} imgPath={'public/img/war-of-the-worlds.jpg'}/>
-            <CardFilm nameFilm={'Dardjeeling Limited'} imgPath={'public/img/dardjeeling-limited.jpg'}/>
-            <CardFilm nameFilm={'Orlando'} imgPath={'public/img/orlando.jpg'}/>
-            <CardFilm nameFilm={'Mindhunter'} imgPath={'public/img/mindhunter.jpg'}/>
-            <CardFilm nameFilm={'Midnight Special'} imgPath={'public/img/midnight-special.jpg'}/>
+            <CardFilm nameFilm={props.film[0].nameMovie}
+              imgPath={props.film[0].posterPath} id={1}
+            />
+            <CardFilm nameFilm={props.film[1].nameMovie}
+              imgPath={props.film[1].posterPath} id={2}
+            />
+            <CardFilm nameFilm={props.film[2].nameMovie}
+              imgPath={props.film[2].posterPath} id={3}
+            />
+            <CardFilm nameFilm={props.film[3].nameMovie}
+              imgPath={props.film[3].posterPath} id={4}
+            />
+            <CardFilm nameFilm={props.film[4].nameMovie}
+              imgPath={props.film[4].posterPath} id={5}
+            />
+            <CardFilm nameFilm={props.film[5].nameMovie}
+              imgPath={props.film[5].posterPath} id={6}
+            />
+            <CardFilm nameFilm={props.film[6].nameMovie}
+              imgPath={props.film[6].posterPath} id={7}
+            />
+            <CardFilm nameFilm={props.film[7].nameMovie}
+              imgPath={props.film[7].posterPath} id={8}
+            />
           </div>
 
           <div className="catalog__more">

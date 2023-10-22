@@ -13,6 +13,12 @@ type MoviePageProps = {
   imgPathPoster: string;
   genre: string;
   date: number;
+  rating: string;
+  level: string;
+  count: string;
+  description: string;
+  starring: string;
+  director: string;
 }
 
 function MoviePage(props: MoviePageProps) {
@@ -48,8 +54,8 @@ function MoviePage(props: MoviePageProps) {
                 </ul>
               </nav>
 
-              <FilmRating rating={'8,9'} level={'Very good'} count={'240 ratings'}/>
-              <FilmCardText description={'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege. Gustave prides himself on providing first-class service to the hotel\'s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave\'s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.'} director={'Wes Anderson'} starring={'Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other'}/>
+              <FilmRating rating={props.rating} level={props.level} count={props.count}/>
+              <FilmCardText description={props.description} starring={props.starring} director={props.director}/>
             </div>
           </div>
         </div>
@@ -60,10 +66,12 @@ function MoviePage(props: MoviePageProps) {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'} imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}/>
-            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'}/>
-            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'}/>
-            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'}/>
+            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'}
+              imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={1}
+            />
+            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'} id={2}/>
+            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'} id={3}/>
+            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'} id={4}/>
           </div>
         </section>
 
