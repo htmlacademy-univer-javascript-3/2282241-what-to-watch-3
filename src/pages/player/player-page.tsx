@@ -1,11 +1,11 @@
-import {Player} from '../../components/player/player.tsx';
-import {PlayerId} from '../../types.ts';
+import {VideoPlayer} from '../../components/player/player.tsx';
+import {PlayerId} from '../../types/player-id-type.ts';
 import {films} from '../../mocks/films.ts';
 
 function PlayerPage(props: PlayerId) {
-  return (
-    <Player nameButton={'Play'} xlinkHref={'#play-s'} id={props.id} film={films} />
-  );
+    return (
+        <VideoPlayer id={props.id} film={films} imgPath={'img/player-poster.jpg'}/>
+    );
 }
 
 export default PlayerPage;

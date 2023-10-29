@@ -1,4 +1,4 @@
-type ReviewProps = {
+export type ReviewProps = {
   text: string;
   author: string;
   dateTime: string;
