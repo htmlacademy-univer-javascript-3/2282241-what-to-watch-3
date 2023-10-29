@@ -4,23 +4,25 @@ import UserBlock from '../../components/user-block/user-block.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import CardFilm from '../../components/film-card/card-film.tsx';
 import FilmCardTextItem from '../../components/film-card/film-card-text-item.tsx';
-import FilmNavList from '../../components/film-nav-list/film-nav-list.tsx';
+import Tab from '../../components/tabs/tab.tsx';
 
 type MoviePageDetailsProps = {
-  nameMovie: string;
-  imgPath: string;
-  imgPathPoster: string;
-  genre: string;
-  date: number;
-  director:string;
+    nameMovie: string;
+    imgPath: string;
+    imgPathPoster: string;
+    genre: string;
+    date: number;
+    director: string;
+    id: number;
 }
-function MovieDetailsPage(props: MoviePageDetailsProps) {
+
+function MovieDetailsPage({nameMovie, id, imgPath, imgPathPoster, genre, date, director}: MoviePageDetailsProps) {
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={props.imgPath} alt={props.nameMovie}/>
+            <img src={imgPath} alt={nameMovie}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -29,21 +31,25 @@ function MovieDetailsPage(props: MoviePageDetailsProps) {
             <Logo className={'logo__link'}/>
             <UserBlock imgPath={'img/avatar.jpg'}/>
           </header>
-          <FilmCardWrap nameMovie={props.nameMovie} genre={props.genre} date={props.date}/>
+          <FilmCardWrap nameMovie={nameMovie} genre={genre} date={date}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={props.imgPathPoster} alt={props.nameMovie} width="218" height="327"/>
+              <img src={imgPathPoster} alt={nameMovie} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <FilmNavList className={'film-nav__item film-nav__item--active'} name={'Overview'}/>
-                  <FilmNavList className={'film-nav__item'} name={'Details'}/>
-                  <FilmNavList className={'film-nav__item'} name={'Reviews'}/>
+                  <Tab className={'film-nav__item'} name={'Overview'} link={`/films/${id}`}/>
+                  <Tab className={'film-nav__item film-nav__item--active'} name={'Details'}
+                    link={`/films/${id}/details`}
+                  />
+                  <Tab className={'film-nav__item'} name={'Reviews'}
+                    link={`/films/${id}/review`}
+                  />
                 </ul>
               </nav>
 
@@ -51,7 +57,7 @@ function MovieDetailsPage(props: MoviePageDetailsProps) {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Director</strong>
-                    <span className="film-card__details-value">{props.director}</span>
+                    <span className="film-card__details-value">{director}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Starring</strong>
@@ -88,7 +94,9 @@ function MovieDetailsPage(props: MoviePageDetailsProps) {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'} imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={0}/>
+            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'}
+              imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={0}
+            />
             <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'} id={1}/>
             <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'} id={2}/>
             <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'} id={3}/>

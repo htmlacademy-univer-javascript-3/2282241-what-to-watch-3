@@ -1,13 +1,11 @@
 import {useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
-import {FilmsProps} from '../../mocks/films.ts';
 import video from '../../video/_Sintel_ Trailer, Durian Open Movie Project.mp4';
 
 type CardFilmProps = {
     nameFilm: string;
     imgPath: string;
     id: number;
-    film: FilmsProps[];
 }
 
 function CardFilm({nameFilm, id, imgPath}: CardFilmProps) {
