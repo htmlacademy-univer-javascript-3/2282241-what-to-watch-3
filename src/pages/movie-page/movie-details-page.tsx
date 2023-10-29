@@ -88,10 +88,10 @@ function MovieDetailsPage(props: MoviePageDetailsProps) {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'} imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}/>
-            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'}/>
-            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'}/>
-            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'}/>
+            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'} imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={0}/>
+            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'} id={1}/>
+            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'} id={2}/>
+            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'} id={3}/>
           </div>
         </section>
 

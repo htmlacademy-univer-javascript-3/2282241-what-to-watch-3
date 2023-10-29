@@ -1,25 +1,30 @@
+import {GenreProps} from '../types/genre-type.tsx';
+
 export type DetailsProps = {
-  director: string;
-  actorsList: string;
-  genre: 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thriller';
-  time: string;
-  year: number;
-  id: number;
+    director: string;
+    actorsList: string;
+    genre: 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thriller';
+    time: string;
+    year: number;
+    id: number;
 }
-export const detailsMovie: DetailsProps[] = [{
+//export const detailsMovie: DetailsProps[] | GenreProps
+//<html>TS2322: Type '{ director: string; actorsList: string; genre: string; time: string; year: number; id: number; }' is not assignable to type 'DetailsProps'.<br/>Object literal may only specify known properties, and 'genre' does not exist in type 'DetailsProps'.
+// как сделать union?
+export const detailsMovie: DetailsProps[] | GenreProps = [{
   director: ' Wes Anderson',
   actorsList: 'Bill Murray,\n' +
-    'Edward Norton,\n' +
-    'Jude Law,\n' +
-    'Willem Dafoe,\n' +
-    'Saoirse Ronan,\n' +
-    'Tony Revoloru,\n' +
-    'Tilda Swinton,\n' +
-    'Tom Wilkinson,\n' +
-    'Owen Wilkinson,\n' +
-    'Adrien Brody,\n' +
-    'Ralph Fiennes,\n' +
-    'Jeff Goldblum',
+        'Edward Norton,\n' +
+        'Jude Law,\n' +
+        'Willem Dafoe,\n' +
+        'Saoirse Ronan,\n' +
+        'Tony Revoloru,\n' +
+        'Tilda Swinton,\n' +
+        'Tom Wilkinson,\n' +
+        'Owen Wilkinson,\n' +
+        'Adrien Brody,\n' +
+        'Ralph Fiennes,\n' +
+        'Jeff Goldblum',
   genre: 'Drama',
   time: '1h 39m',
   year: 2014,
@@ -27,13 +32,13 @@ export const detailsMovie: DetailsProps[] = [{
 }, {
   director: 'Bryan Singer',
   actorsList: 'Rami Malek\n' +
-    'Lucy Boynton\n' +
-    'Gwilym Lee\n' +
-    'Ben Hardy\n' +
-    'Joe Mazzello\n' +
-    'Aidan Gillen\n' +
-    'Tom Hollander\n' +
-    'Mike Myers',
+        'Lucy Boynton\n' +
+        'Gwilym Lee\n' +
+        'Ben Hardy\n' +
+        'Joe Mazzello\n' +
+        'Aidan Gillen\n' +
+        'Tom Hollander\n' +
+        'Mike Myers',
   genre: 'Drama',
   time: '2h 30m',
   year: 2018,
@@ -41,12 +46,12 @@ export const detailsMovie: DetailsProps[] = [{
 }, {
   director: 'Iain Canning',
   actorsList: 'Michael Fassbender\n' +
-    'Marion Cotillard\n' +
-    'Paddy Considine\n' +
-    'Sean Harris\n' +
-    'Jack Reynor\n' +
-    'Elizabeth Debicki\n' +
-    'David Thewlis',
+        'Marion Cotillard\n' +
+        'Paddy Considine\n' +
+        'Sean Harris\n' +
+        'Jack Reynor\n' +
+        'Elizabeth Debicki\n' +
+        'David Thewlis',
   genre: 'Drama',
   time: '3h 14m',
   year: 2015,
@@ -54,12 +59,12 @@ export const detailsMovie: DetailsProps[] = [{
 }, {
   director: 'Michael Mann',
   actorsList: 'Leonardo DiCaprio\n' +
-    'Cate Blanchett\n' +
-    'Kate Beckinsale\n' +
-    'John C. Reilly\n' +
-    'Alec Baldwin\n' +
-    'Alan Alda\n' +
-    'Jude Law',
+        'Cate Blanchett\n' +
+        'Kate Beckinsale\n' +
+        'John C. Reilly\n' +
+        'Alec Baldwin\n' +
+        'Alan Alda\n' +
+        'Jude Law',
   genre: 'Drama',
   time: '3h 17m',
   year: 2004,
@@ -67,8 +72,8 @@ export const detailsMovie: DetailsProps[] = [{
 }, {
   director: 'Lynne Ramsay',
   actorsList: 'Tilda Swinton\n' +
-    'John C. Reilly\n' +
-    'Ezra Miller',
+        'John C. Reilly\n' +
+        'Ezra Miller',
   genre: 'Thriller',
   time: '1h 15m',
   year: 2011,
@@ -76,10 +81,10 @@ export const detailsMovie: DetailsProps[] = [{
 }, {
   director: 'Jemaine Clement and Taika Waititi',
   actorsList: 'Taika Waititi\n' +
-    'Jemaine Clement\n' +
-    'Jonathan Brugh\n' +
-    'Cori Gonzalez-Macuer\n' +
-    'Stu Rutherford',
+        'Jemaine Clement\n' +
+        'Jonathan Brugh\n' +
+        'Cori Gonzalez-Macuer\n' +
+        'Stu Rutherford',
   genre: 'Comedy',
   time: '2h 7m',
   year: 2019,
@@ -87,9 +92,9 @@ export const detailsMovie: DetailsProps[] = [{
 }, {
   director: 'Alejandro G. Iñárritu',
   actorsList: 'Leonardo DiCaprio\n' +
-    'Tom Hardy\n' +
-    'Domhnall Gleeson\n' +
-    'Will Poulter',
+        'Tom Hardy\n' +
+        'Domhnall Gleeson\n' +
+        'Will Poulter',
   genre: 'Drama',
   time: '3h 2m',
   year: 2015,
@@ -97,7 +102,7 @@ export const detailsMovie: DetailsProps[] = [{
 }, {
   director: 'Peter Howitt',
   actorsList: 'Rowan Atkinson\n' +
-    'Ben Miller',
+        'Ben Miller',
   genre: 'Comedy',
   time: '1h 39m',
   year: 2003,

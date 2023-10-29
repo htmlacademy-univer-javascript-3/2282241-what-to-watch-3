@@ -218,13 +218,13 @@ function App(props: AppProps) {
             nameMovie={props.films[7].nameMovie} date={props.films[7].year}
             imgPathPoster={props.films[7].posterPath} review={props.review}
                                                                                   />
-          </PrivateRoute>}
+                   </PrivateRoute>}
         />
         <Route path={'/films/1/addreview'}
           element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={0}
             film={props.films}
                                                                                   />
-          </PrivateRoute>}
+                   </PrivateRoute>}
         />
         <Route path={'/films/2/addreview'}
           element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={1}
@@ -238,36 +238,11 @@ function App(props: AppProps) {
                                                                                   />
                    </PrivateRoute>}
         />
-        <Route path={'/films/4/addreview'}
-          element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={3}
-            film={props.films}
-                                                                                  />
-                   </PrivateRoute>}
-        />
-        <Route path={'/films/5/addreview'}
-          element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={4}
-            film={props.films}
-                                                                                  />
-                   </PrivateRoute>}
-        />
-        <Route path={'/films/6/addreview'}
-          element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={5}
-            film={props.films}
-                                                                                  />
-                   </PrivateRoute>}
-        />
-        <Route path={'/films/7/addreview'}
-          element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={6}
-            film={props.films}
-                                                                                  />
-                   </PrivateRoute>}
-        />
-        <Route path={'/films/8/addreview'}
-          element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={7}
-            film={props.films}
-                                                                                  />
-                   </PrivateRoute>}
-        />
+        <Route path={'/films/4/addreview'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={3} film={props.films}/></PrivateRoute>}/>
+        <Route path={'/films/5/addreview'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={4} film={props.films}/></PrivateRoute>}/>
+        <Route path={'/films/6/addreview'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={5} film={props.films}/></PrivateRoute>}/>
+        <Route path={'/films/7/addreview'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={6} film={props.films}/></PrivateRoute>}/>
+        <Route path={'/films/8/addreview'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage id={7} film={props.films}/></PrivateRoute>}/>
         <Route path={'/player/:id'} element={<PlayerPage id={0}/>}/>
         <Route path={'/player/1'} element={<PlayerPage id={0}/>}/>
         <Route path={'/player/2'} element={<PlayerPage id={1}/>}/>
