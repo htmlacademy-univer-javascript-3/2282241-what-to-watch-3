@@ -5,7 +5,7 @@ import CardFilm from '../../components/film-card/card-film.tsx';
 import FilmRating from '../../components/film-rating/film-rating.tsx';
 import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
-import FilmNavList from '../../components/film-nav-list/film-nav-list.tsx';
+import Tab from '../../components/tabs/tab.tsx';
 
 type MoviePageProps = {
   nameMovie: string;
@@ -19,6 +19,7 @@ type MoviePageProps = {
   description: string;
   starring: string;
   director: string;
+  id: number;
 }
 
 function MoviePage(props: MoviePageProps) {
@@ -48,12 +49,11 @@ function MoviePage(props: MoviePageProps) {
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <FilmNavList className={'film-nav__item film-nav__item--active'} name={'Overview'}/>
-                  <FilmNavList className={'film-nav__item'} name={'Details'}/>
-                  <FilmNavList className={'film-nav__item'} name={'Reviews'}/>
+                  <Tab className={'film-nav__item film-nav__item--active'} name={'Overview'} link={`/films/${props.id}`}/>
+                  <Tab className={'film-nav__item'} name={'Details'} link={`/films/${props.id}/details`}/>
+                  <Tab className={'film-nav__item'} name={'Reviews'} link={`/films/${props.id}/review`}/>
                 </ul>
               </nav>
-
               <FilmRating rating={props.rating} level={props.level} count={props.count}/>
               <FilmCardText description={props.description} starring={props.starring} director={props.director}/>
             </div>
