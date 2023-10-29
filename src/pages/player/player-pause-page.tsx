@@ -3,9 +3,9 @@ import {films} from '../../mocks/films.ts';
 import {PlayerId} from '../../types/player-id-type.ts';
 
 function PlayerPausePage(props: PlayerId) {
-    return (
-        <VideoPlayer id={props.id} film={films}/>
-    );
+  return (
+    <VideoPlayer id={props.id} film={films}/>
+  );
 }
 
 export default PlayerPausePage;

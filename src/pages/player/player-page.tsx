@@ -3,9 +3,9 @@ import {PlayerId} from '../../types/player-id-type.ts';
 import {films} from '../../mocks/films.ts';
 
 function PlayerPage(props: PlayerId) {
-    return (
-        <VideoPlayer id={props.id} film={films} imgPath={'img/player-poster.jpg'}/>
-    );
+  return (
+    <VideoPlayer id={props.id} film={films} imgPath={'img/player-poster.jpg'}/>
+  );
 }
 
 export default PlayerPage;

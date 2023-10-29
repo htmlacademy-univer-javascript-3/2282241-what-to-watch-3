@@ -52,7 +52,7 @@ function MovieReviewsPage(props: MovieReviewsPageProps) {
 
               <div className="film-card__reviews film-card__row">
                 <div className="film-card__reviews-col">
-                  
+
                   <Review text={props.review[0].text} author={props.review[0].name}
                     dateTime={'2016-12-24'} rating={props.review[0].rating}
                     date={props.review[0].data}

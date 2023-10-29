@@ -12,16 +12,17 @@ type ButtonFilmCardProps = {
 }
 
 function ButtonFilmCard({children, height, width, xlinkHref, nameButton, className, setIsPlaying, isPlaying}: ButtonFilmCardProps) {
-    return (
-        <button className={className} type="button"
-                onClick={() => setIsPlaying(!isPlaying)}>
-            <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
-                <use xlinkHref={xlinkHref}></use>
-            </svg>
-            <span>{nameButton}</span>
-            {children}
-        </button>
-    );
+  return (
+    <button className={className} type="button"
+      onClick={() => setIsPlaying(!isPlaying)}
+    >
+      <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
+        <use xlinkHref={xlinkHref}></use>
+      </svg>
+      <span>{nameButton}</span>
+      {children}
+    </button>
+  );
 }
 
 export default ButtonFilmCard;
