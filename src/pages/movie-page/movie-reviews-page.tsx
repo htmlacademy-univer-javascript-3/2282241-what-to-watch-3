@@ -6,6 +6,7 @@ import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
 import Review from '../../components/review/review.tsx';
 import {ReviewMovie} from '../../mocks/reviews.ts';
+import {useParams} from "react-router-dom";
 
 type MovieReviewsPageProps = {
     nameMovie: string;
@@ -14,10 +15,10 @@ type MovieReviewsPageProps = {
     genre: string;
     date: number;
     review: ReviewMovie[];
-    id: number;
 }
 
-function MovieReviewsPage({nameMovie, review, id, imgPath, imgPathPoster, genre, date}: MovieReviewsPageProps) {
+function MovieReviewsPage({nameMovie, review, imgPath, imgPathPoster, genre, date}: MovieReviewsPageProps) {
+  let {id} = useParams();
   const indexesOfReview = [0, 1, 2, 3, 4, 5];
   return (
     <>
