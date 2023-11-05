@@ -3,7 +3,7 @@ import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {FilmsProps} from '../../mocks/films.ts';
 import {useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams} from 'react-router-dom';
 
 type ReviewPageMovieProps = {
     film: FilmsProps[];

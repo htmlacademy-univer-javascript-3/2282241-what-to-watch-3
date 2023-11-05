@@ -6,9 +6,9 @@ import FilmRating from '../../components/film-rating/film-rating.tsx';
 import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
-import {films} from "../../mocks/films.ts";
-import {useParams} from "react-router-dom";
-import {overviewMovie} from "../../mocks/overview.ts";
+import {films} from '../../mocks/films.ts';
+import {useParams} from 'react-router-dom';
+import {overviewMovie} from '../../mocks/overview.ts';
 
 // type MoviePageProps = {
 //   nameMovie: string;
@@ -26,9 +26,9 @@ import {overviewMovie} from "../../mocks/overview.ts";
 // }
 
 function MoviePage() {
-  let {id} = useParams();
+  const {id} = useParams();
   const nameMovie = films[Number(id)].nameMovie;
-  const imgPath =  films[Number(id)].coverMoviePath;
+  const imgPath = films[Number(id)].coverMoviePath;
   const imgPathPoster = films[Number(id)].posterPath;
   const director = overviewMovie[Number(id)].director;
   const date = films[Number(id)].year;

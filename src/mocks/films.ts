@@ -1,4 +1,4 @@
-import {Genre} from "../types/genre-type.ts";
+import {Genre} from '../types/genre-type.ts';
 
 export type FilmsProps = {
   posterPath: string;

@@ -23,22 +23,22 @@ type AppProps = {
 }
 
 function App(props: AppProps) {
-    return (
-        <BrowserRouter>
-            <ScrollToTop/>
-            <Routes>
-                <Route path={'/'} element={<MainPage nameMoviePoster={props.films[0].nameMovie} date={props.films[0].year} genre={props.films[0].genre} posterImg={props.films[0].posterPath} film={props.films}/>}/>
-                <Route path={'/login'} element={<SingIn classNameEmail={'sign-in__field'}/>}/>
-                <Route path={'/mylist'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><MyListPage {...props.films}/></PrivateRoute>}/>
-                <Route path={'/films/:id'} element={<MoviePage />}/>
-                <Route path={'/films/:id/review'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><MovieReviewsPage/></PrivateRoute>}/>
-                <Route path={'/films/:id/addreview'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage film={props.films}/></PrivateRoute>}/>
-                <Route path={'/player/:id'} element={<PlayerPage/>}/>
-                <Route path={'/films/:id/details'} element={<MovieDetailsPage/>}></Route>
-                <Route path={'*'} element={<NotFoundPage/>}/>
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <ScrollToTop/>
+      <Routes>
+        <Route path={'/'} element={<MainPage nameMoviePoster={props.films[0].nameMovie} date={props.films[0].year} genre={props.films[0].genre} posterImg={props.films[0].posterPath} film={props.films}/>}/>
+        <Route path={'/login'} element={<SingIn classNameEmail={'sign-in__field'}/>}/>
+        <Route path={'/mylist'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><MyListPage {...props.films}/></PrivateRoute>}/>
+        <Route path={'/films/:id'} element={<MoviePage />}/>
+        <Route path={'/films/:id/review'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><MovieReviewsPage/></PrivateRoute>}/>
+        <Route path={'/films/:id/addreview'} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><AddReviewPage film={props.films}/></PrivateRoute>}/>
+        <Route path={'/player/:id'} element={<PlayerPage/>}/>
+        <Route path={'/films/:id/details'} element={<MovieDetailsPage/>}></Route>
+        <Route path={'*'} element={<NotFoundPage/>}/>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

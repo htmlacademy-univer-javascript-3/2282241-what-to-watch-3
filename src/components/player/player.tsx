@@ -3,7 +3,7 @@ import '../../../style/player-style/player-style.css';
 import {FilmsProps} from '../../mocks/films.ts';
 import {useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
-import {useParams} from "react-router-dom";
+import {useParams} from 'react-router-dom';
 
 export type VideoPlayerProps = {
     film: FilmsProps[];
