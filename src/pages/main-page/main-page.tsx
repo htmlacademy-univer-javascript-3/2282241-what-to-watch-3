@@ -6,25 +6,32 @@ import Copyright from '../../components/copyright/copyright.tsx';
 import ButtonFilmCard from '../../components/film-card/button-film-card.tsx';
 import {FilmsProps} from '../../mocks/films.ts';
 import {useState} from 'react';
+import {Genre} from '../../types/genre.ts';
+import {useAppDispatch} from "../../hooks/hooks-index.ts";
+import {changeGenre} from "../../store/action.ts";
+import {receivingListFilms} from "../../store/receivingListFilms.ts";
 
 type SelectedMovie = {
     nameMoviePoster: string;
-    genre: 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thriller';
+    genre: Genre;
     date: number;
     posterImg: string;
     film: FilmsProps[];
 }
 
 function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie) {
+  const dispatch = useAppDispatch();
+  const [isSelectedGenre, _] = useState<Genre>('All genres');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const indexesCardFilm = [0, 1, 2, 3, 4, 5, 6, 7];
+  // const indexesCardFilm = [0, 1, 2, 3, 4, 5, 6, 7];
+  console.log(isSelectedGenre);
   const indexes = [0, 1, 2, 3];
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src="/public/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -70,24 +77,23 @@ function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            <CatalogGenres classNameGenres={'catalog__genres-item catalog__genres-item--active'}
-              nameGenres={'All genres'} link={'#'}
-            />
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Crime'} link={'#'}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Documentary'} link={'#'}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Dramas'} link={'#'}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Horror'} link={'#'}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Kids & Family'}
-              link={'#'}
-            />
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Romance'} link={'#'}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Sci-Fi'} link={'#'}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Thrillers'} link={'#'}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item catalog__genres-item--active'} nameGenres={'All genres'} setSelectedGenre={()=>dispatch(changeGenre('All genres'))}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Crime'} setSelectedGenre={()=>dispatch(changeGenre('Crime'))}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Documentary'} setSelectedGenre={()=>dispatch(changeGenre('Documentary'))}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Drama'} setSelectedGenre={()=>dispatch(changeGenre('Drama'))}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Horror'} setSelectedGenre={()=>dispatch(changeGenre('Horror'))}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Kids & Family'} setSelectedGenre={()=>dispatch(changeGenre('Kids & Family'))}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Romance'} setSelectedGenre={()=>dispatch(changeGenre('Romance'))}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Sci-Fi'} setSelectedGenre={()=>dispatch(changeGenre('Sci-Fi'))}/>
+            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Thriller'} setSelectedGenre={()=>dispatch(changeGenre('Thriller'))}/>
           </ul>
-
           <div className="catalog__films-list">
-            {indexesCardFilm.map((i)=>(
-              <CardFilm nameFilm={film[i].nameMovie} imgPath={film[i].posterPath} id={i + 1}></CardFilm>))}
+            {receivingListFilms(isSelectedGenre).map((film)=>(
+              <CardFilm nameFilm={film.nameMovie} imgPath={film.posterPath} id={film.id - 1}/>
+            ))}
+
+            {/*{indexesCardFilm.map((i)=>(*/}
+            {/*  <CardFilm nameFilm={film[i].nameMovie} imgPath={film[i].posterPath} id={i + 1}></CardFilm>))}*/}
             {isVisible ?
               indexes.map((i) => (
                 <CardFilm nameFilm={film[i].nameMovie} imgPath={film[i].posterPath}

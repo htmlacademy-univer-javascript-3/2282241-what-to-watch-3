@@ -1,17 +1,15 @@
-import {GenreProps} from '../types/genre-type.tsx';
+import {Genre} from '../types/genre.ts';
 
 export type DetailsProps = {
     director: string;
     actorsList: string;
-    genre: 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thriller';
+    genre: Genre;
     time: string;
     year: number;
     id: number;
 }
-//export const detailsMovie: DetailsProps[] | GenreProps
-//<html>TS2322: Type '{ director: string; actorsList: string; genre: string; time: string; year: number; id: number; }' is not assignable to type 'DetailsProps'.<br/>Object literal may only specify known properties, and 'genre' does not exist in type 'DetailsProps'.
-// как сделать union?
-export const detailsMovie: DetailsProps[] | GenreProps = [{
+
+export const detailsMovie: DetailsProps[] = [{
   director: ' Wes Anderson',
   actorsList: 'Bill Murray,\n' +
         'Edward Norton,\n' +

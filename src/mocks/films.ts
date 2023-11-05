@@ -8,7 +8,7 @@ export type FilmsProps = {
   id: number;
 }
 export const films: FilmsProps[] = [{
-  posterPath: 'public/img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
+  posterPath: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
   coverMoviePath: 'img/bg-the-grand-budapest-hotel.jpg',
   nameMovie: 'Fantastic Beasts: The Crimes of Grindelwald',
   genre: 'Drama',

@@ -6,29 +6,44 @@ import FilmRating from '../../components/film-rating/film-rating.tsx';
 import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
+import {overviewMovie} from '../../mocks/overview.ts';
+import {films} from '../../mocks/films.ts';
+import {useParams} from 'react-router-dom';
 
-type MoviePageProps = {
-  nameMovie: string;
-  imgPath: string;
-  imgPathPoster: string;
-  genre: string;
-  date: number;
-  rating: string;
-  level: string;
-  count: string;
-  description: string;
-  starring: string;
-  director: string;
-  id: number;
-}
+// type MoviePageProps = {
+//   nameMovie: string;
+//   imgPath: string;
+//   imgPathPoster: string;
+//   genre: string;
+//   date: number;
+//   rating: string;
+//   level: string;
+//   count: string;
+//   description: string;
+//   starring: string;
+//   director: string;
+//   id: number;
+// }
 
-function MoviePage(props: MoviePageProps) {
+function MoviePage() {
+  const {id} = useParams();
+  const nameMovie = films[Number(id)].nameMovie;
+  const imgPath = films[Number(id)].coverMoviePath;
+  const imgPathPoster = films[Number(id)].posterPath;
+  const director = overviewMovie[Number(id)].director;
+  const date = films[Number(id)].year;
+  const genre = films[Number(id)].genre;
+  const starring = overviewMovie[Number(id)].actorsList;
+  const level = overviewMovie[Number(id)].descriptionRating;
+  const rating = overviewMovie[Number(id)].rating;
+  const count = overviewMovie[Number(id)].countRating;
+  const description = overviewMovie[Number(id)].descriptionMovie;
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={props.imgPath} alt={props.nameMovie}/>
+            <img src={imgPath} alt={nameMovie}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -37,25 +52,25 @@ function MoviePage(props: MoviePageProps) {
             <Logo className={'logo__link'}/>
             <UserBlock imgPath={'img/avatar.jpg'}/>
           </header>
-          <FilmCardWrap nameMovie={props.nameMovie} genre={props.genre} date={props.date}/>
+          <FilmCardWrap nameMovie={nameMovie} genre={genre} date={date}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={props.imgPathPoster} alt={props.nameMovie} width="218" height="327"/>
+              <img src={imgPathPoster} alt={nameMovie} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <Tab className={'film-nav__item film-nav__item--active'} name={'Overview'} link={`/films/${props.id}`}/>
-                  <Tab className={'film-nav__item'} name={'Details'} link={`/films/${props.id}/details`}/>
-                  <Tab className={'film-nav__item'} name={'Reviews'} link={`/films/${props.id}/review`}/>
+                  <Tab className={'film-nav__item film-nav__item--active'} name={'Overview'} link={`/films/${id}`}/>
+                  <Tab className={'film-nav__item'} name={'Details'} link={`/films/${id}/details`}/>
+                  <Tab className={'film-nav__item'} name={'Reviews'} link={`/films/${id}/review`}/>
                 </ul>
               </nav>
-              <FilmRating rating={props.rating} level={props.level} count={props.count}/>
-              <FilmCardText description={props.description} starring={props.starring} director={props.director}/>
+              <FilmRating rating={rating} level={level} count={count}/>
+              <FilmCardText description={description} starring={starring} director={director}/>
             </div>
           </div>
         </div>

@@ -1,13 +1,17 @@
+import {Genre} from '../../types/genre.ts';
+
 type CatalogGenresProps = {
-  classNameGenres: string;
-  nameGenres: string;
-  link:string;
+    classNameGenres: string;
+    nameGenres: Genre;
+    setSelectedGenre: (genre: Genre) => void;
 }
-function CatalogGenres(props :CatalogGenresProps) {
-  return (
-    <li className={props.classNameGenres}>
-      <a href={props.link} className="catalog__genres-link">{props.nameGenres}</a>
-    </li>
-  );
+
+function CatalogGenres({classNameGenres, nameGenres, setSelectedGenre}: CatalogGenresProps) {
+    return (
+        <li className={classNameGenres} onClick={() => setSelectedGenre(nameGenres)}>
+            <a className="catalog__genres-link">{nameGenres}</a>
+        </li>
+    );
 }
+
 export default CatalogGenres;

@@ -11,6 +11,7 @@ type CardFilmProps = {
 function CardFilm({nameFilm, id, imgPath}: CardFilmProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const delay = 1000;
   useEffect(() => {
     const playerElement = videoRef.current;
 
@@ -19,7 +20,7 @@ function CardFilm({nameFilm, id, imgPath}: CardFilmProps) {
     }
 
     if (isPlaying) {
-      setTimeout(() => playerElement.play(), 1000);
+      setTimeout(() => playerElement.play(), delay);
       return;
     }
 

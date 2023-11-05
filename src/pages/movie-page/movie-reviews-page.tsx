@@ -5,19 +5,27 @@ import UserBlock from '../../components/user-block/user-block.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
 import Review from '../../components/review/review.tsx';
-import {ReviewMovie} from '../../mocks/reviews.ts';
+import { reviews} from '../../mocks/reviews.ts';
+import {films} from '../../mocks/films.ts';
+import {useParams} from 'react-router-dom';
 
-type MovieReviewsPageProps = {
-    nameMovie: string;
-    imgPath: string;
-    imgPathPoster: string;
-    genre: string;
-    date: number;
-    review: ReviewMovie[];
-    id: number;
-}
+// type MovieReviewsPageProps = {
+//     nameMovie: string;
+//     imgPath: string;
+//     imgPathPoster: string;
+//     genre: string;
+//     date: number;
+//     review: ReviewMovie[];
+//     id: number;
+// }
 
-function MovieReviewsPage({nameMovie, review, id, imgPath, imgPathPoster, genre, date}: MovieReviewsPageProps) {
+function MovieReviewsPage() {
+  const {id} = useParams();
+  const nameMovie = films[Number(id)].nameMovie;
+  const imgPath = films[Number(id)].coverMoviePath;
+  const imgPathPoster = films[Number(id)].posterPath;
+  const date = films[Number(id)].year;
+  const genre = films[Number(id)].genre;
   const indexesOfReview = [0, 1, 2, 3, 4, 5];
   return (
     <>
@@ -59,7 +67,7 @@ function MovieReviewsPage({nameMovie, review, id, imgPath, imgPathPoster, genre,
               <div className="film-card__reviews film-card__row">
                 <div className="film-card__reviews-col">
                   {indexesOfReview.map((i)=>(
-                    <Review text={review[i].text} author={review[i].name} dateTime={'2016-12-24'} rating={review[i].rating} date={review[i].data}/>
+                    <Review text={reviews[i].text} author={reviews[i].name} dateTime={'2016-12-24'} rating={reviews[i].rating} date={reviews[i].data} key={null}/>
                   ))}
                 </div>
               </div>
