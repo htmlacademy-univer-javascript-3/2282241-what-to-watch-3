@@ -26,7 +26,7 @@ import {useParams} from 'react-router-dom';
 // }
 
 function MoviePage() {
-  const {id} = useParams();
+  const {id} = useParams<string>();
   const nameMovie = films[Number(id)].nameMovie;
   const imgPath = films[Number(id)].coverMoviePath;
   const imgPathPoster = films[Number(id)].posterPath;

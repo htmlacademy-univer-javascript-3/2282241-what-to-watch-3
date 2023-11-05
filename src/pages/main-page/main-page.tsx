@@ -1,15 +1,13 @@
 import CardFilm from '../../components/film-card/card-film.tsx';
 import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
-import CatalogGenres from '../../components/catalog-genres/catalog-genres.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import ButtonFilmCard from '../../components/film-card/button-film-card.tsx';
 import {FilmsProps} from '../../mocks/films.ts';
 import {useState} from 'react';
 import {Genre} from '../../types/genre.ts';
-import {useAppDispatch} from "../../hooks/hooks-index.ts";
-import {changeGenre} from "../../store/action.ts";
-import {receivingListFilms} from "../../store/receivingListFilms.ts";
+import {receivingListFilms} from '../../store/receivingListFilms.ts';
+import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
 
 type SelectedMovie = {
     nameMoviePoster: string;
@@ -20,12 +18,10 @@ type SelectedMovie = {
 }
 
 function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie) {
-  const dispatch = useAppDispatch();
   const [isSelectedGenre, _] = useState<Genre>('All genres');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   // const indexesCardFilm = [0, 1, 2, 3, 4, 5, 6, 7];
-  console.log(isSelectedGenre);
   const indexes = [0, 1, 2, 3];
   return (
     <>
@@ -75,19 +71,9 @@ function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            <CatalogGenres classNameGenres={'catalog__genres-item catalog__genres-item--active'} nameGenres={'All genres'} setSelectedGenre={()=>dispatch(changeGenre('All genres'))}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Crime'} setSelectedGenre={()=>dispatch(changeGenre('Crime'))}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Documentary'} setSelectedGenre={()=>dispatch(changeGenre('Documentary'))}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Drama'} setSelectedGenre={()=>dispatch(changeGenre('Drama'))}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Horror'} setSelectedGenre={()=>dispatch(changeGenre('Horror'))}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Kids & Family'} setSelectedGenre={()=>dispatch(changeGenre('Kids & Family'))}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Romance'} setSelectedGenre={()=>dispatch(changeGenre('Romance'))}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Sci-Fi'} setSelectedGenre={()=>dispatch(changeGenre('Sci-Fi'))}/>
-            <CatalogGenres classNameGenres={'catalog__genres-item'} nameGenres={'Thriller'} setSelectedGenre={()=>dispatch(changeGenre('Thriller'))}/>
-          </ul>
+          <ListGenres/>
           <div className="catalog__films-list">
+            {/*{dispatch(takeFilms())}*/}
             {receivingListFilms(isSelectedGenre).map((film)=>(
               <CardFilm nameFilm={film.nameMovie} imgPath={film.posterPath} id={film.id - 1}/>
             ))}
@@ -97,7 +83,7 @@ function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie
             {isVisible ?
               indexes.map((i) => (
                 <CardFilm nameFilm={film[i].nameMovie} imgPath={film[i].posterPath}
-                  id={i + 1}
+                  id={i + 1} key={i}
                 />
               ))
               : null}

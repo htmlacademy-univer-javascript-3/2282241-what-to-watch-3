@@ -7,11 +7,11 @@ type CatalogGenresProps = {
 }
 
 function CatalogGenres({classNameGenres, nameGenres, setSelectedGenre}: CatalogGenresProps) {
-    return (
-        <li className={classNameGenres} onClick={() => setSelectedGenre(nameGenres)}>
-            <a className="catalog__genres-link">{nameGenres}</a>
-        </li>
-    );
+  return (
+    <li className={classNameGenres} onClick={() => setSelectedGenre(nameGenres)}>
+      <a className="catalog__genres-link">{nameGenres}</a>
+    </li>
+  );
 }
 
 export default CatalogGenres;
