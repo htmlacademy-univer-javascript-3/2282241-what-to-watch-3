@@ -10,34 +10,34 @@ import {films} from "../../mocks/films.ts";
 import {useParams} from "react-router-dom";
 import {overviewMovie} from "../../mocks/overview.ts";
 
-type MoviePageProps = {
-  nameMovie: string;
-  imgPath: string;
-  imgPathPoster: string;
-  genre: string;
-  date: number;
-  rating: string;
-  level: string;
-  count: string;
-  description: string;
-  starring: string;
-  director: string;
-  // id: number;
-}
+// type MoviePageProps = {
+//   nameMovie: string;
+//   imgPath: string;
+//   imgPathPoster: string;
+//   genre: string;
+//   date: number;
+//   rating: string;
+//   level: string;
+//   count: string;
+//   description: string;
+//   starring: string;
+//   director: string;
+//   // id: number;
+// }
 
-function MoviePage({nameMovie, imgPath, imgPathPoster, director, date, genre, starring, level, rating, count, description}: MoviePageProps) {
+function MoviePage() {
   let {id} = useParams();
-  nameMovie = films[Number(id)].nameMovie;
-  imgPath =  films[Number(id)].coverMoviePath;
-  imgPathPoster = films[Number(id)].posterPath;
-  director = overviewMovie[Number(id)].director;
-  date = films[Number(id)].year;
-  genre = films[Number(id)].genre;
-  starring = overviewMovie[Number(id)].actorsList;
-  level = overviewMovie[Number(id)].descriptionRating;
-  rating = overviewMovie[Number(id)].rating;
-  count = overviewMovie[Number(id)].countRating;
-  description = overviewMovie[Number(id)].descriptionMovie;
+  const nameMovie = films[Number(id)].nameMovie;
+  const imgPath =  films[Number(id)].coverMoviePath;
+  const imgPathPoster = films[Number(id)].posterPath;
+  const director = overviewMovie[Number(id)].director;
+  const date = films[Number(id)].year;
+  const genre = films[Number(id)].genre;
+  const starring = overviewMovie[Number(id)].actorsList;
+  const level = overviewMovie[Number(id)].descriptionRating;
+  const rating = overviewMovie[Number(id)].rating;
+  const count = overviewMovie[Number(id)].countRating;
+  const description = overviewMovie[Number(id)].descriptionMovie;
   return (
     <>
       <section className="film-card film-card--full">

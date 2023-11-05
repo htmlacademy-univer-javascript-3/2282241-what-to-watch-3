@@ -3,14 +3,15 @@ import '../../../style/player-style/player-style.css';
 import {FilmsProps} from '../../mocks/films.ts';
 import {useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
+import {useParams} from "react-router-dom";
 
 export type VideoPlayerProps = {
-    id: number;
     film: FilmsProps[];
     imgPath:string;
 }
 
-export function VideoPlayer({id, film, imgPath}: VideoPlayerProps) {
+export function VideoPlayer({ film, imgPath}: VideoPlayerProps) {
+  const {id} = useParams();
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
@@ -29,7 +30,7 @@ export function VideoPlayer({id, film, imgPath}: VideoPlayerProps) {
   }, [isPlaying]);
   return (
     <div className="player">
-      <video src={film[id].movie} className="player__video" poster={imgPath} ref={videoRef} muted={false}></video>
+      <video src={film[Number(id)].movie} className="player__video" poster={imgPath} ref={videoRef} muted={false}></video>
       <button type="button" className="player__exit">Exit</button>
       <div className="player__controls">
         <div className="player__controls-row">
