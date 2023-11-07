@@ -1,14 +1,16 @@
+import {Genre} from '../types/genre.ts';
+
 export type FilmsProps = {
   posterPath: string;
   coverMoviePath: string;
   nameMovie: string;
-  genre: 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thriller';
+  genre: Genre;
   year: number;
   movie: string;
   id: number;
 }
 export const films: FilmsProps[] = [{
-  posterPath: 'public/img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
+  posterPath: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
   coverMoviePath: 'img/bg-the-grand-budapest-hotel.jpg',
   nameMovie: 'Fantastic Beasts: The Crimes of Grindelwald',
   genre: 'Drama',

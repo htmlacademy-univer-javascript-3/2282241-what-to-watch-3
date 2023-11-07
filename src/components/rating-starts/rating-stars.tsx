@@ -1,10 +1,10 @@
 type NumberRatingProps = {
-    numberRating: string;
-    setDataReview: Function;
-    dataReview: {
-        rating: number;
-        text: string;
-    };
+  numberRating: string;
+  setDataReview: ({}) => void;
+  dataReview: {
+    rating: number;
+    text: string;
+  };
 }
 
 function RatingStars(props: NumberRatingProps) {

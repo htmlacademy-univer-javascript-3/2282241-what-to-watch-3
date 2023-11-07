@@ -5,6 +5,8 @@ import {films} from './mocks/films.ts';
 import {detailsMovie} from './mocks/details.ts';
 import {overviewMovie} from './mocks/overview.ts';
 import {reviews} from './mocks/reviews.ts';
+import {Provider} from 'react-redux';
+import {store} from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +14,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App films={films} details={detailsMovie} overview={overviewMovie} review={reviews}/>
+    <Provider store={store}>
+      <App films={films} details={detailsMovie} overview={overviewMovie} review={reviews}/>
+    </Provider>
   </React.StrictMode>
 );

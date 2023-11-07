@@ -5,18 +5,18 @@ import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import CardFilm from '../../components/film-card/card-film.tsx';
 import FilmCardTextItem from '../../components/film-card/film-card-text-item.tsx';
 import Tab from '../../components/tabs/tab.tsx';
+import {useParams} from 'react-router-dom';
+import {films} from '../../mocks/films.ts';
+import {overviewMovie} from '../../mocks/overview.ts';
 
-type MoviePageDetailsProps = {
-    nameMovie: string;
-    imgPath: string;
-    imgPathPoster: string;
-    genre: string;
-    date: number;
-    director: string;
-    id: number;
-}
-
-function MovieDetailsPage({nameMovie, id, imgPath, imgPathPoster, genre, date, director}: MoviePageDetailsProps) {
+function MovieDetailsPage() {
+  const {id} = useParams();
+  const nameMovie = films[Number(id)].nameMovie;
+  const imgPath = films[Number(id)].coverMoviePath;
+  const imgPathPoster = films[Number(id)].posterPath;
+  const date = films[Number(id)].year;
+  const genre = films[Number(id)].genre;
+  const director = overviewMovie[Number(id)].director;
   return (
     <>
       <section className="film-card film-card--full">
@@ -43,12 +43,12 @@ function MovieDetailsPage({nameMovie, id, imgPath, imgPathPoster, genre, date, d
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <Tab className={'film-nav__item'} name={'Overview'} link={`/films/${id}`}/>
+                  <Tab className={'film-nav__item'} name={'Overview'} link={`/films/${String(id)}`}/>
                   <Tab className={'film-nav__item film-nav__item--active'} name={'Details'}
-                    link={`/films/${id}/details`}
+                    link={`/films/${String(id)}/details`}
                   />
                   <Tab className={'film-nav__item'} name={'Reviews'}
-                    link={`/films/${id}/review`}
+                    link={`/films/${String(id)}/review`}
                   />
                 </ul>
               </nav>

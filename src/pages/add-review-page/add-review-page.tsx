@@ -3,17 +3,14 @@ import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {FilmsProps} from '../../mocks/films.ts';
 import {useState} from 'react';
+import {useParams} from 'react-router-dom';
 
 type ReviewPageMovieProps = {
-    id: number;
     film: FilmsProps[];
 }
 
-function AddReviewPage(props: ReviewPageMovieProps) {
-  // const arrRating = [];
-  // for (let i = 1; i < 11; i++) {
-  //     arrRating.push(<RatingStars numberRating={i.toString()}/>);
-  // }
+function AddReviewPage(films: ReviewPageMovieProps) {
+  const {id} = useParams();
   const [dataReview, setDataReview] = useState({
     rating: 0,
     text: '',
@@ -22,7 +19,7 @@ function AddReviewPage(props: ReviewPageMovieProps) {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={props.film[props.id].coverMoviePath} alt={props.film[props.id].nameMovie}/>
+          <img src={films.film[Number(id)].coverMoviePath} alt={films.film[Number(id)].nameMovie}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -35,7 +32,7 @@ function AddReviewPage(props: ReviewPageMovieProps) {
               <li className="breadcrumbs__item">
                 <a href="film-page.html"
                   className="breadcrumbs__link"
-                >{props.film[props.id].nameMovie}
+                >{films.film[Number(id)].nameMovie}
                 </a>
               </li>
               <li className="breadcrumbs__item">
@@ -48,7 +45,7 @@ function AddReviewPage(props: ReviewPageMovieProps) {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={props.film[props.id].posterPath} alt={`${props.film[props.id].nameMovie} poster`}
+          <img src={films.film[Number(id)].posterPath} alt={`${films.film[Number(id)].nameMovie} poster`}
             width="218" height="327"
           />
         </div>

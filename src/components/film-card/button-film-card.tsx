@@ -7,14 +7,14 @@ type ButtonFilmCardProps = {
     xlinkHref: string;
     nameButton: string;
     className: string;
-    setIsPlaying: Function;
-    isPlaying: boolean;
+    setIsPlaying?: (b:boolean)=>void;
+    isPlaying?: boolean;
 }
 
 function ButtonFilmCard({children, height, width, xlinkHref, nameButton, className, setIsPlaying, isPlaying}: ButtonFilmCardProps) {
   return (
     <button className={className} type="button"
-      onClick={() => setIsPlaying(!isPlaying)}
+      onClick={() => setIsPlaying ? setIsPlaying(!isPlaying) : undefined}
     >
       <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
         <use xlinkHref={xlinkHref}></use>
