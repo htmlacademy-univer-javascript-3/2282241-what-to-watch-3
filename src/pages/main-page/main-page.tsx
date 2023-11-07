@@ -3,11 +3,11 @@ import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import ButtonFilmCard from '../../components/film-card/button-film-card.tsx';
-import {FilmsProps} from '../../mocks/films.ts';
+import {films, FilmsProps} from '../../mocks/films.ts';
 import {useState} from 'react';
 import {Genre} from '../../types/genre.ts';
-import {receivingListFilms} from '../../store/receivingListFilms.ts';
 import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
+import {useAppSelector} from '../../hooks/hooks-index.ts';
 
 type SelectedMovie = {
     nameMoviePoster: string;
@@ -18,10 +18,9 @@ type SelectedMovie = {
 }
 
 function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie) {
-  const [isSelectedGenre, _] = useState<Genre>('All genres');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  // const indexesCardFilm = [0, 1, 2, 3, 4, 5, 6, 7];
+  const activeGenre = useAppSelector((state) => state.genre);
   const indexes = [0, 1, 2, 3];
   return (
     <>
@@ -73,13 +72,15 @@ function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ListGenres/>
           <div className="catalog__films-list">
-            {/*{dispatch(takeFilms())}*/}
-            {receivingListFilms(isSelectedGenre).map((film)=>(
-              <CardFilm nameFilm={film.nameMovie} imgPath={film.posterPath} id={film.id - 1}/>
+            {films.filter((movie)=>{
+              if (activeGenre === 'All genres') {
+                return true;
+              }
+              return movie.genre === activeGenre;
+            }).map((movie)=>(
+              <CardFilm nameFilm={movie.nameMovie} imgPath={movie.posterPath} id={movie.id} key={movie.id}/>
             ))}
 
-            {/*{indexesCardFilm.map((i)=>(*/}
-            {/*  <CardFilm nameFilm={film[i].nameMovie} imgPath={film[i].posterPath} id={i + 1}></CardFilm>))}*/}
             {isVisible ?
               indexes.map((i) => (
                 <CardFilm nameFilm={film[i].nameMovie} imgPath={film[i].posterPath}

@@ -1,8 +1,10 @@
+import {Genre} from '../types/genre.ts';
+
 export type FilmsProps = {
   posterPath: string;
   coverMoviePath: string;
   nameMovie: string;
-  genre: 'Comedy' | 'Crime' | 'Documentary' | 'Drama' | 'Horror' | 'Kids & Family' | 'Romance' | 'Sci-Fi' | 'Thriller';
+  genre: Genre;
   year: number;
   movie: string;
   id: number;

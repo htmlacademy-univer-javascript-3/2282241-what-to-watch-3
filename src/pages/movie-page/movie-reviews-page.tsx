@@ -54,12 +54,12 @@ function MovieReviewsPage() {
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <Tab className={'film-nav__item'} name={'Overview'} link={`/films/${id}`}/>
+                  <Tab className={'film-nav__item'} name={'Overview'} link={`/films/${String(id)}`}/>
                   <Tab className={'film-nav__item'} name={'Details'}
-                    link={`/films/${id}/details`}
+                    link={`/films/${String(id)}/details`}
                   />
                   <Tab className={'film-nav__item film-nav__item--active'} name={'Reviews'}
-                    link={`/films/${id}/review`}
+                    link={`/films/${String(id)}/review`}
                   />
                 </ul>
               </nav>

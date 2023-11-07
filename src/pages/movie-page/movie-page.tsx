@@ -64,9 +64,9 @@ function MoviePage() {
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <Tab className={'film-nav__item film-nav__item--active'} name={'Overview'} link={`/films/${id}`}/>
-                  <Tab className={'film-nav__item'} name={'Details'} link={`/films/${id}/details`}/>
-                  <Tab className={'film-nav__item'} name={'Reviews'} link={`/films/${id}/review`}/>
+                  <Tab className={'film-nav__item film-nav__item--active'} name={'Overview'} link={`/films/${String(id)}`}/>
+                  <Tab className={'film-nav__item'} name={'Details'} link={`/films/${String(id)}/details`}/>
+                  <Tab className={'film-nav__item'} name={'Reviews'} link={`/films/${String(id)}/review`}/>
                 </ul>
               </nav>
               <FilmRating rating={rating} level={level} count={count}/>
