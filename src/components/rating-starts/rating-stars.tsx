@@ -1,20 +1,22 @@
+import {Dispatch, SetStateAction} from "react";
+
 type NumberRatingProps = {
-  numberRating: string;
-  setDataReview: ({}) => void;
   dataReview: {
     rating: number;
     text: string;
   };
+  numberRating: string;
+  setDataReview: Dispatch<SetStateAction<{ rating: number; text: string; }>>;
 }
 
-function RatingStars(props: NumberRatingProps) {
+function RatingStars({numberRating, setDataReview, dataReview}: NumberRatingProps) {
   return (
     <>
-      <input className="rating__input" id={`star-${props.numberRating}`} type="radio" name="rating"
-        value={props.numberRating}
-        onClick={() => props.setDataReview({...props.dataReview, rating: props.numberRating})}
+      <input className="rating__input" id={`star-${numberRating}`} type="radio" name="rating"
+        value={numberRating}
+        onClick={() => setDataReview({...dataReview, rating: Number(numberRating)})}
       />
-      <label className="rating__label" htmlFor={`star-${props.numberRating}`}>Rating {props.numberRating}</label>`
+      <label className="rating__label" htmlFor={`star-${numberRating}`}>Rating {numberRating}</label>`
     </>
   );
 }

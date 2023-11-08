@@ -4,10 +4,12 @@ import UserBlock from '../../components/user-block/user-block.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import ButtonFilmCard from '../../components/film-card/button-film-card.tsx';
 import {films, FilmsProps} from '../../mocks/films.ts';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Genre} from '../../types/genre.ts';
 import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
-import {useAppSelector} from '../../hooks/hooks-index.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
+import {ShowMore} from "../../components/show-more/show-more.tsx";
+import {hideMovies, showMoreFilms} from "../../store/action.ts";
 
 type SelectedMovie = {
     nameMoviePoster: string;
@@ -17,11 +19,17 @@ type SelectedMovie = {
     film: FilmsProps[];
 }
 
-function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie) {
+function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  // const [isVisible, _] = useState(false);
   const activeGenre = useAppSelector((state) => state.genre);
-  const indexes = [0, 1, 2, 3];
+  const showFilms = useAppSelector((state)=>(state.countFilms))
+  const listFilms = useAppSelector((state)=>(state.listFilms));
+  const dispatch = useAppDispatch();
+  useEffect(() => () => {
+    dispatch(hideMovies());
+  }, [dispatch]);
+  // const indexes = [0, 1, 2, 3];
   return (
     <>
       <section className="film-card">
@@ -77,24 +85,12 @@ function MainPage({nameMoviePoster, film, posterImg, date, genre}: SelectedMovie
                 return true;
               }
               return movie.genre === activeGenre;
-            }).map((movie)=>(
+            }).slice(0, showFilms).map((movie)=>(
               <CardFilm nameFilm={movie.nameMovie} imgPath={movie.posterPath} id={movie.id} key={movie.id}/>
             ))}
-
-            {isVisible ?
-              indexes.map((i) => (
-                <CardFilm nameFilm={film[i].nameMovie} imgPath={film[i].posterPath}
-                  id={i + 1} key={i}
-                />
-              ))
-              : null}
           </div>
-
-          <div className="catalog__more">
-            <button className='catalog__button' type="button" onClick={() => setIsVisible(!isVisible)}>
-                            Show more
-            </button>
-          </div>
+          {showFilms >= listFilms.length ? null :
+          <ShowMore onClickHandler={()=>{dispatch(showMoreFilms())}}/>}
         </section>
 
         <footer className="page-footer">
