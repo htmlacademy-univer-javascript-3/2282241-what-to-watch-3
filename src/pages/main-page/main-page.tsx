@@ -3,27 +3,26 @@ import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import ButtonFilmCard from '../../components/film-card/button-film-card.tsx';
-import {films, FilmsProps} from '../../mocks/films.ts';
+import {films} from '../../mocks/films.ts';
 import {useEffect, useState} from 'react';
 import {Genre} from '../../types/genre.ts';
 import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
-import {ShowMore} from "../../components/show-more/show-more.tsx";
-import {hideMovies, showMoreFilms} from "../../store/action.ts";
+import {ShowMore} from '../../components/show-more/show-more.tsx';
+import {hideMovies, showMoreFilms} from '../../store/action.ts';
 
 type SelectedMovie = {
     nameMoviePoster: string;
     genre: Genre;
     date: number;
     posterImg: string;
-    film: FilmsProps[];
 }
 
 function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
   const [isPlaying, setIsPlaying] = useState(false);
   // const [isVisible, _] = useState(false);
   const activeGenre = useAppSelector((state) => state.genre);
-  const showFilms = useAppSelector((state)=>(state.countFilms))
+  const showFilms = useAppSelector((state)=>(state.countFilms));
   const listFilms = useAppSelector((state)=>(state.listFilms));
   const dispatch = useAppDispatch();
   useEffect(() => () => {
@@ -90,7 +89,10 @@ function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
             ))}
           </div>
           {showFilms >= listFilms.length ? null :
-          <ShowMore onClickHandler={()=>{dispatch(showMoreFilms())}}/>}
+            <ShowMore onClickHandler={()=>{
+              dispatch(showMoreFilms());
+            }}
+            />}
         </section>
 
         <footer className="page-footer">

@@ -23,6 +23,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(hideMovies, (state)=>{
       state.countFilms = InitialNumberFilms;
-    })
+    });
 });
 export {reducer};

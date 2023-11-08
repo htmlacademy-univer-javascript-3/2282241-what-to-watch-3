@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, SetStateAction} from 'react';
 
 type NumberRatingProps = {
   dataReview: {
@@ -6,7 +6,7 @@ type NumberRatingProps = {
     text: string;
   };
   numberRating: string;
-  setDataReview: Dispatch<SetStateAction<{ rating: number; text: string; }>>;
+  setDataReview: Dispatch<SetStateAction<{ rating: number; text: string }>>;
 }
 
 function RatingStars({numberRating, setDataReview, dataReview}: NumberRatingProps) {

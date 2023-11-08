@@ -1,5 +1,5 @@
 import ButtonFilmCard from './button-film-card.tsx';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 
 type FilmCardWrapProps = {
   nameMovie: string;
@@ -22,7 +22,7 @@ function FilmCardWrap({nameMovie, date, genre}: FilmCardWrapProps) {
           <ButtonFilmCard height={'20'} width={'19'} xlinkHref={'#add'} nameButton={'My list'} className={'btn btn--list film-card__button'}>
             <span className="film-card__count">9</span>
           </ButtonFilmCard>
-          <Link to={'/films/:id/addreview'}  className="btn film-card__button">Add review</Link>
+          <Link to={'/films/:id/addreview'} className="btn film-card__button">Add review</Link>
         </div>
       </div>
     </div>
