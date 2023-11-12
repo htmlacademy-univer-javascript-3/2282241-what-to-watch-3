@@ -6,17 +6,19 @@ import CardFilm from '../../components/film-card/card-film.tsx';
 import FilmCardTextItem from '../../components/film-card/film-card-text-item.tsx';
 import Tab from '../../components/tabs/tab.tsx';
 import {useParams} from 'react-router-dom';
-import {films} from '../../mocks/films.ts';
-import {overviewMovie} from '../../mocks/overview.ts';
+import {useAppSelector} from "../../hooks/hooks-index.ts";
+// import {films} from '../../mocks/films.ts';
+// import {overviewMovie} from '../../mocks/overview.ts';
 
 function MovieDetailsPage() {
+  const listFilms = useAppSelector((state) => (state.listFilms));
   const {id} = useParams();
-  const nameMovie = films[Number(id)].nameMovie;
-  const imgPath = films[Number(id)].coverMoviePath;
-  const imgPathPoster = films[Number(id)].posterPath;
-  const date = films[Number(id)].year;
-  const genre = films[Number(id)].genre;
-  const director = overviewMovie[Number(id)].director;
+  const nameMovie = listFilms[Number(id)].name;
+  const imgPath = listFilms[Number(id)].backgroundImage;
+  const imgPathPoster = listFilms[Number(id)].posterImage;
+  const date = listFilms[Number(id)].released;
+  const genre = listFilms[Number(id)].genre;
+  const director = listFilms[Number(id)].director;
   return (
     <>
       <section className="film-card film-card--full">

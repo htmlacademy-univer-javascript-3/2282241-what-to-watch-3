@@ -1,10 +1,15 @@
 import {VideoPlayer} from '../../components/player/player.tsx';
-import {films} from '../../mocks/films.ts';
+import {FilmsProps} from "../../types/films.ts";
+// import {films} from '../../mocks/films.ts';
 
-function PlayerPage() {
-  return (
-    <VideoPlayer film={films} imgPath={'img/player-poster.jpg'}/>
-  );
+type PlayerProps = {
+    listFilms: FilmsProps[];
+}
+
+function PlayerPage({listFilms}: PlayerProps) {
+    return (
+        <VideoPlayer film={listFilms} imgPath={'img/player-poster.jpg'}/>
+    );
 }
 
 export default PlayerPage;

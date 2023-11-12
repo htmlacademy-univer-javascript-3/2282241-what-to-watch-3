@@ -6,9 +6,10 @@ import FilmRating from '../../components/film-rating/film-rating.tsx';
 import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
-import {overviewMovie} from '../../mocks/overview.ts';
-import {films} from '../../mocks/films.ts';
+// import {overviewMovie} from '../../mocks/overview.ts';
+// import {films} from '../../mocks/films.ts';
 import {useParams} from 'react-router-dom';
+import {useAppSelector} from "../../hooks/hooks-index.ts";
 
 // type MoviePageProps = {
 //   nameMovie: string;
@@ -26,18 +27,19 @@ import {useParams} from 'react-router-dom';
 // }
 
 function MoviePage() {
+  const listFilms = useAppSelector((state) => (state.listFilms));
   const {id} = useParams<string>();
-  const nameMovie = films[Number(id)].nameMovie;
-  const imgPath = films[Number(id)].coverMoviePath;
-  const imgPathPoster = films[Number(id)].posterPath;
-  const director = overviewMovie[Number(id)].director;
-  const date = films[Number(id)].year;
-  const genre = films[Number(id)].genre;
-  const starring = overviewMovie[Number(id)].actorsList;
-  const level = overviewMovie[Number(id)].descriptionRating;
-  const rating = overviewMovie[Number(id)].rating;
-  const count = overviewMovie[Number(id)].countRating;
-  const description = overviewMovie[Number(id)].descriptionMovie;
+  const nameMovie = listFilms[Number(id)].name;
+  const imgPath = listFilms[Number(id)].backgroundImage;
+  const imgPathPoster = listFilms[Number(id)].posterImage;
+  const director = listFilms[Number(id)].director;
+  const date = listFilms[Number(id)].released;
+  const genre = listFilms[Number(id)].genre;
+  const starring = listFilms[Number(id)].starring;
+  const level = listFilms[Number(id)].descriptionRating;
+  const rating = listFilms[Number(id)].rating;
+  const count = listFilms[Number(id)].scoresCount;
+  const description = listFilms[Number(id)].description;
   return (
     <>
       <section className="film-card film-card--full">
