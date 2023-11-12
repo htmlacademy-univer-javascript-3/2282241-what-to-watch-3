@@ -2,7 +2,7 @@ import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import CardFilm from '../../components/film-card/card-film.tsx';
-import {FilmsProps} from "../../types/films.ts";
+import {FilmsProps} from '../../types/films.ts';
 
 function MyListPage(films: FilmsProps[]) {
   return (

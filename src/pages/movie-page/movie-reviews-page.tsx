@@ -8,7 +8,7 @@ import Review from '../../components/review/review.tsx';
 import { reviews} from '../../mocks/reviews.ts';
 // import {films} from '../../mocks/films.ts';
 import {useParams} from 'react-router-dom';
-import {useAppSelector} from "../../hooks/hooks-index.ts";
+import {useAppSelector} from '../../hooks/hooks-index.ts';
 
 function MovieReviewsPage() {
   const listFilms = useAppSelector((state) => (state.listFilms));

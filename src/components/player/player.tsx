@@ -1,9 +1,10 @@
 import ButtonFilmCard from '../film-card/button-film-card.tsx';
 import '../../../style/player-style/player-style.css';
-import {FilmsProps} from '../../mocks/films.ts';
+// import {FilmsProps} from '../../mocks/films.ts';
 import {useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
 import {useParams} from 'react-router-dom';
+import {FilmsProps} from '../../types/films.ts';
 
 export type VideoPlayerProps = {
     film: FilmsProps[];

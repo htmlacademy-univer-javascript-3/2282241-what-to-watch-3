@@ -7,7 +7,7 @@ import App from './components/app';
 // import {reviews} from './mocks/reviews.ts';
 import {Provider} from 'react-redux';
 import {store} from './store';
-import {fetchFilmsAction} from "./store/api-actions.ts";
+import {fetchFilmsAction} from './store/api-actions.ts';
 
 store.dispatch(fetchFilmsAction());
 
@@ -16,9 +16,9 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <App/>
-        </Provider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </React.StrictMode>
 );

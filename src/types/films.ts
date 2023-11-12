@@ -1,4 +1,4 @@
-import {Genre} from "./genre.ts";
+import {Genre} from './genre.ts';
 
 export type FilmsProps = {
     posterImage: string;
@@ -15,9 +15,9 @@ export type FilmsProps = {
     scoresCount: number;
     director: string;
     starring: [];
-    videoLink:string
+    videoLink:string;
     // "id": "aba664c3-bdf3-4fb3-b8f3-42e007864bbf",
-    backgroundColor: string,
-    runTime: 99,
-    isFavorite: false
+    backgroundColor: string;
+    runTime: 99;
+    isFavorite: false;
 }

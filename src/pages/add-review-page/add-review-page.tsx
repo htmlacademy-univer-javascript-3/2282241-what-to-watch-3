@@ -3,7 +3,7 @@ import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {FilmsProps} from "../../types/films.ts";
+import {FilmsProps} from '../../types/films.ts';
 
 type ReviewPageMovieProps = {
     film: FilmsProps[];
@@ -46,7 +46,7 @@ function AddReviewPage(films: ReviewPageMovieProps) {
 
         <div className="film-card__poster film-card__poster--small">
           <img src={films.film[Number(id)].posterImage} alt={`${films.film[Number(id)].name} poster`}
-               width="218" height="327"
+            width="218" height="327"
           />
         </div>
       </div>

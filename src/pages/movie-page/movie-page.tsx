@@ -9,7 +9,7 @@ import Tab from '../../components/tabs/tab.tsx';
 // import {overviewMovie} from '../../mocks/overview.ts';
 // import {films} from '../../mocks/films.ts';
 import {useParams} from 'react-router-dom';
-import {useAppSelector} from "../../hooks/hooks-index.ts";
+import {useAppSelector} from '../../hooks/hooks-index.ts';
 
 // type MoviePageProps = {
 //   nameMovie: string;
