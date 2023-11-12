@@ -1,13 +1,20 @@
-import {films} from '../mocks/films.ts';
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, hideMovies, showMoreFilms, takeFilms} from './action.ts';
+import {changeGenre, hideMovies, loadFilms, setFilmsDataLoadingStatus, showMoreFilms, takeFilms} from './action.ts';
+import {FilmsProps} from '../types/films.ts';
+import {Genre} from '../types/genre.ts';
 
 export const InitialNumberFilms = 8;
-
-const initialState = {
+type InitialStateProps = {
+    genre: Genre;
+    listFilms: FilmsProps[];
+    countFilms: number;
+    isFilmsDataLoading: boolean;
+}
+const initialState: InitialStateProps = {
   genre: 'All genres',
-  listFilms: films,
-  countFilms: InitialNumberFilms
+  listFilms: [],
+  countFilms: InitialNumberFilms,
+  isFilmsDataLoading: false
 };
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -15,14 +22,21 @@ const reducer = createReducer(initialState, (builder) => {
       state.countFilms = InitialNumberFilms;
       state.genre = action.payload;
     })
-    .addCase(takeFilms, (state,action) => {
+    .addCase(takeFilms, (state, action) => {
       state.listFilms = action.payload;
     })
-    .addCase(showMoreFilms, (state)=>{
+    .addCase(showMoreFilms, (state) => {
       state.countFilms = state.countFilms + 4;
     })
-    .addCase(hideMovies, (state)=>{
+    .addCase(hideMovies, (state) => {
       state.countFilms = InitialNumberFilms;
+    })
+    .addCase(loadFilms, (state, action) => {
+      state.listFilms = action.payload;
+    })
+    .addCase(setFilmsDataLoadingStatus, (state, action) => {
+      state.isFilmsDataLoading = action.payload;
     });
+
 });
 export {reducer};

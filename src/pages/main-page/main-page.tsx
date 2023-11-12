@@ -3,7 +3,6 @@ import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import ButtonFilmCard from '../../components/film-card/button-film-card.tsx';
-import {films} from '../../mocks/films.ts';
 import {useEffect, useState} from 'react';
 import {Genre} from '../../types/genre.ts';
 import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
@@ -20,15 +19,13 @@ type SelectedMovie = {
 
 function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
   const [isPlaying, setIsPlaying] = useState(false);
-  // const [isVisible, _] = useState(false);
   const activeGenre = useAppSelector((state) => state.genre);
-  const showFilms = useAppSelector((state)=>(state.countFilms));
-  const listFilms = useAppSelector((state)=>(state.listFilms));
+  const showFilms = useAppSelector((state) => (state.countFilms));
+  const listFilms = useAppSelector((state) => (state.listFilms));
   const dispatch = useAppDispatch();
   useEffect(() => () => {
     dispatch(hideMovies());
   }, [dispatch]);
-  // const indexes = [0, 1, 2, 3];
   return (
     <>
       <section className="film-card">
@@ -79,17 +76,20 @@ function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ListGenres/>
           <div className="catalog__films-list">
-            {films.filter((movie)=>{
+            {listFilms.filter((movie) => {
               if (activeGenre === 'All genres') {
                 return true;
               }
               return movie.genre === activeGenre;
-            }).slice(0, showFilms).map((movie)=>(
-              <CardFilm nameFilm={movie.nameMovie} imgPath={movie.posterPath} id={movie.id} key={movie.id}/>
+            }).slice(0, showFilms).map((movie) => (
+              <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
+                //videoPath={movie.videoLink}
+                key={movie.id}
+              />
             ))}
           </div>
           {showFilms >= listFilms.length ? null :
-            <ShowMore onClickHandler={()=>{
+            <ShowMore onClickHandler={() => {
               dispatch(showMoreFilms());
             }}
             />}

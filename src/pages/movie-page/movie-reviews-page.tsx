@@ -6,26 +6,18 @@ import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
 import Review from '../../components/review/review.tsx';
 import { reviews} from '../../mocks/reviews.ts';
-import {films} from '../../mocks/films.ts';
+// import {films} from '../../mocks/films.ts';
 import {useParams} from 'react-router-dom';
-
-// type MovieReviewsPageProps = {
-//     nameMovie: string;
-//     imgPath: string;
-//     imgPathPoster: string;
-//     genre: string;
-//     date: number;
-//     review: ReviewMovie[];
-//     id: number;
-// }
+import {useAppSelector} from '../../hooks/hooks-index.ts';
 
 function MovieReviewsPage() {
+  const listFilms = useAppSelector((state) => (state.listFilms));
   const {id} = useParams<string>();
-  const nameMovie = films[Number(id)].nameMovie;
-  const imgPath = films[Number(id)].coverMoviePath;
-  const imgPathPoster = films[Number(id)].posterPath;
-  const date = films[Number(id)].year;
-  const genre = films[Number(id)].genre;
+  const nameMovie = listFilms[Number(id)].name;
+  const imgPath = listFilms[Number(id)].backgroundImage;
+  const imgPathPoster = listFilms[Number(id)].posterImage;
+  const date = listFilms[Number(id)].released;
+  const genre = listFilms[Number(id)].genre;
   const indexesOfReview = [0, 1, 2, 3, 4, 5];
   return (
     <>

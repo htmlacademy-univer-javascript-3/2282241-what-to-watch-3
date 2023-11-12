@@ -6,9 +6,10 @@ type CardFilmProps = {
     nameFilm: string;
     imgPath: string;
     id: number;
+    // videoPath: string;
 }
 
-function CardFilm({nameFilm, id, imgPath}: CardFilmProps) {
+function CardFilm({ nameFilm, id, imgPath}: CardFilmProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const delay = 1000;

@@ -1,8 +1,8 @@
 export type ReviewMovie = {
-  text: string;
-  rating: string;
-  name: string;
-  data: string;
+    text: string;
+    rating: string;
+    name: string;
+    data: string;
 }
 
 export const reviews: ReviewMovie[] = [{
@@ -46,4 +46,3 @@ export const reviews: ReviewMovie[] = [{
   name: 'Matthew Lickona',
   data: 'December 20, 2016',
 },];
-
