@@ -10,7 +10,7 @@ import {
 } from './action.ts';
 import {FilmsProps} from '../types/films.ts';
 import {Genre} from '../types/genre.ts';
-import {AuthorizationStatus} from "../components/private-route/private-route.tsx";
+import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
 
 export const InitialNumberFilms = 8;
 type InitialStateProps = {

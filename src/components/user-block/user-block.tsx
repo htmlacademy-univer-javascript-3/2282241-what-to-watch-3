@@ -1,6 +1,6 @@
-import {Link} from "react-router-dom";
-import {logoutAction} from "../../store/api-actions.ts";
-import {useAppDispatch} from "../../hooks/hooks-index.ts";
+import {Link} from 'react-router-dom';
+import {logoutAction} from '../../store/api-actions.ts';
+import {useAppDispatch} from '../../hooks/hooks-index.ts';
 
 type UserBlockProps = {
   imgPath: string;
@@ -9,8 +9,8 @@ type UserBlockProps = {
 function UserBlock({imgPath}: UserBlockProps) {
   const dispatch = useAppDispatch();
   const onClick = ()=>{
-    dispatch(logoutAction())
-  }
+    dispatch(logoutAction());
+  };
   return (
     <ul className="user-block">
       <li className="user-block__item">

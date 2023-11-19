@@ -4,10 +4,10 @@ import {AxiosInstance} from 'axios';
 import {FilmsProps} from '../types/films.ts';
 import {loadFilms, requireAuthorization, setFilmsDataLoadingStatus} from './action.ts';
 import {APIRoute} from '../const/const.ts';
-import {AuthorizationStatus} from "../components/private-route/private-route.tsx";
-import {AuthData} from "../types/auth-data.ts";
-import {UserData} from "../types/user-data.ts";
-import {dropToken, saveToken} from "../services/token.ts";
+import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
+import {AuthData} from '../types/auth-data.ts';
+import {UserData} from '../types/user-data.ts';
+import {dropToken, saveToken} from '../services/token.ts';
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
     dispatch: AppDispatch;

@@ -1,7 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 import {Genre} from '../types/genre.ts';
 import {FilmsProps} from '../types/films.ts';
-import {AuthorizationStatus} from "../components/private-route/private-route.tsx";
+import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
 
 export const changeGenre = createAction<Genre>('genre/change');
 export const takeFilms = createAction<FilmsProps[]>('genre/films');

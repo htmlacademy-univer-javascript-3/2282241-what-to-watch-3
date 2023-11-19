@@ -2,8 +2,8 @@ import Logo from '../logo/logo.tsx';
 import FieldForm from '../field-form/field-form.tsx';
 import Copyright from '../copyright/copyright.tsx';
 import {ReactNode, useRef} from 'react';
-import {useAppDispatch} from "../../hooks/hooks-index.ts";
-import {loginAction} from "../../store/api-actions.ts";
+import {useAppDispatch} from '../../hooks/hooks-index.ts';
+import {loginAction} from '../../store/api-actions.ts';
 
 type SingInProps = {
   classNameEmail: string;

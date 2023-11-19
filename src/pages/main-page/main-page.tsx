@@ -9,8 +9,8 @@ import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
 import {ShowMore} from '../../components/show-more/show-more.tsx';
 import {hideMovies, showMoreFilms} from '../../store/action.ts';
-import {AuthorizationStatus} from "../../components/private-route/private-route.tsx";
-import {UnauthorizedUser} from "../../components/unauthorized-user/unauthorized-user.tsx";
+import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
+import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 
 type SelectedMovie = {
   nameMoviePoster: string;
@@ -40,7 +40,7 @@ function MainPage({nameMoviePoster, posterImg, date, genre, authorizationStatus}
 
         <header className="page-header film-card__head">
           <Logo className={'logo__link'}/>
-          {authorizationStatus === AuthorizationStatus.Auth? <UserBlock imgPath={'img/avatar.jpg'}/> :
+          {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
             <UnauthorizedUser/>}
         </header>
 
@@ -59,8 +59,8 @@ function MainPage({nameMoviePoster, posterImg, date, genre, authorizationStatus}
 
               <div className="film-card__buttons">
                 <ButtonFilmCard height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
-                                className={'btn btn--play film-card__button'}
-                                setIsPlaying={setIsPlaying} isPlaying={isPlaying}
+                  className={'btn btn--play film-card__button'}
+                  setIsPlaying={setIsPlaying} isPlaying={isPlaying}
                 />
                 <button className='btn btn--list film-card__button' type='button'>
                   <svg viewBox='0 0 19 20' width='19' height='20'>
@@ -88,7 +88,7 @@ function MainPage({nameMoviePoster, posterImg, date, genre, authorizationStatus}
             }).slice(0, showFilms).map((movie) => (
               <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
                 //videoPath={movie.videoLink}
-                        key={movie.id}
+                key={movie.id}
               />
             ))}
           </div>
