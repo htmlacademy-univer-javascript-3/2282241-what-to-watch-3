@@ -9,15 +9,18 @@ import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
 import {ShowMore} from '../../components/show-more/show-more.tsx';
 import {hideMovies, showMoreFilms} from '../../store/action.ts';
+import {AuthorizationStatus} from "../../components/private-route/private-route.tsx";
+import {UnauthorizedUser} from "../../components/unauthorized-user/unauthorized-user.tsx";
 
 type SelectedMovie = {
-    nameMoviePoster: string;
-    genre: Genre;
-    date: number;
-    posterImg: string;
+  nameMoviePoster: string;
+  genre: Genre;
+  date: number;
+  posterImg: string;
+  authorizationStatus: string;
 }
 
-function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
+function MainPage({nameMoviePoster, posterImg, date, genre, authorizationStatus}: SelectedMovie) {
   const [isPlaying, setIsPlaying] = useState(false);
   const activeGenre = useAppSelector((state) => state.genre);
   const showFilms = useAppSelector((state) => (state.countFilms));
@@ -37,7 +40,8 @@ function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
 
         <header className="page-header film-card__head">
           <Logo className={'logo__link'}/>
-          <UserBlock imgPath={'img/avatar.jpg'}/>
+          {authorizationStatus === AuthorizationStatus.Auth? <UserBlock imgPath={'img/avatar.jpg'}/> :
+            <UnauthorizedUser/>}
         </header>
 
         <div className="film-card__wrap">
@@ -55,8 +59,8 @@ function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
 
               <div className="film-card__buttons">
                 <ButtonFilmCard height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
-                  className={'btn btn--play film-card__button'}
-                  setIsPlaying={setIsPlaying} isPlaying={isPlaying}
+                                className={'btn btn--play film-card__button'}
+                                setIsPlaying={setIsPlaying} isPlaying={isPlaying}
                 />
                 <button className='btn btn--list film-card__button' type='button'>
                   <svg viewBox='0 0 19 20' width='19' height='20'>
@@ -84,7 +88,7 @@ function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
             }).slice(0, showFilms).map((movie) => (
               <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
                 //videoPath={movie.videoLink}
-                key={movie.id}
+                        key={movie.id}
               />
             ))}
           </div>
