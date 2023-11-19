@@ -11,7 +11,7 @@ import ScrollToTop from '../scroll-to-top/scroll-to-top.ts';
 import AddReviewPage from '../../pages/add-review-page/add-review-page.tsx';
 import MovieDetailsPage from '../../pages/movie-page/movie-details-page.tsx';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
-import LoadingScreen from '../../pages/loading-page/spinner.tsx';
+import {Spinner} from '../../pages/loading-page/spinner.tsx';
 
 function App() {
   const listFilms = useAppSelector((state) => (state.listFilms));
@@ -19,7 +19,7 @@ function App() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   if (isFilmsDataLoading) {
     return (
-      <LoadingScreen/>
+      <Spinner/>
     );
   }
   return (

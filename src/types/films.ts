@@ -8,7 +8,7 @@ export type FilmsProps = {
     genre: Genre;
     released: number;
     movie: string;
-    id: number;
+    id: string;
     description: string;
     rating: number;
     descriptionRating: 'Bad' | 'Normal' | 'Good' | 'Very good' | 'Awesome';

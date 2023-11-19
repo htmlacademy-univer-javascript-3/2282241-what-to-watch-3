@@ -1,7 +1,7 @@
 type FilmRatingProps = {
-  rating: string;
-  level: string;
-  count: string;
+  rating: number;
+  level: number;
+  count: number;
 }
 
 function FilmRating(props: FilmRatingProps) {

@@ -6,46 +6,31 @@ import FilmRating from '../../components/film-rating/film-rating.tsx';
 import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
-// import {overviewMovie} from '../../mocks/overview.ts';
-// import {films} from '../../mocks/films.ts';
-import {useParams} from 'react-router-dom';
-import {useAppSelector} from '../../hooks/hooks-index.ts';
-
-// type MoviePageProps = {
-//   nameMovie: string;
-//   imgPath: string;
-//   imgPathPoster: string;
-//   genre: string;
-//   date: number;
-//   rating: string;
-//   level: string;
-//   count: string;
-//   description: string;
-//   starring: string;
-//   director: string;
-//   id: number;
-// }
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
+import {Spinner} from "../loading-page/spinner.tsx";
+import {useParams} from "react-router-dom";
+import {useEffect} from "react";
+import {fetchFilmAction} from "../../store/api-actions.ts";
 
 function MoviePage() {
-  const listFilms = useAppSelector((state) => (state.listFilms));
-  const {id} = useParams<string>();
-  const nameMovie = listFilms[Number(id)].name;
-  const imgPath = listFilms[Number(id)].backgroundImage;
-  const imgPathPoster = listFilms[Number(id)].posterImage;
-  const director = listFilms[Number(id)].director;
-  const date = listFilms[Number(id)].released;
-  const genre = listFilms[Number(id)].genre;
-  const starring = listFilms[Number(id)].starring;
-  const level = listFilms[Number(id)].descriptionRating;
-  const rating = listFilms[Number(id)].rating;
-  const count = listFilms[Number(id)].scoresCount;
-  const description = listFilms[Number(id)].description;
+  const film = useAppSelector((state) => state.film);
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+  console.log(film); //null
+  if (film === null) {
+    return <Spinner />;
+  }
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilmAction(id));
+    }
+  }, [id]);
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={imgPath} alt={nameMovie}/>
+            <img src={film.backgroundImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -54,25 +39,25 @@ function MoviePage() {
             <Logo className={'logo__link'}/>
             <UserBlock imgPath={'img/avatar.jpg'}/>
           </header>
-          <FilmCardWrap nameMovie={nameMovie} genre={genre} date={date}/>
+          <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={imgPathPoster} alt={nameMovie} width="218" height="327"/>
+              <img src={film.posterImage} alt={film.name} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
-                  <Tab className={'film-nav__item film-nav__item--active'} name={'Overview'} link={`/films/${String(id)}`}/>
-                  <Tab className={'film-nav__item'} name={'Details'} link={`/films/${String(id)}/details`}/>
-                  <Tab className={'film-nav__item'} name={'Reviews'} link={`/films/${String(id)}/review`}/>
+                  <Tab className={'film-nav__item film-nav__item--active'} name={'Overview'} link={`/films/${film.id}`}/>
+                  <Tab className={'film-nav__item'} name={'Details'} link={`/films/${film.id}/details`}/>
+                  <Tab className={'film-nav__item'} name={'Reviews'} link={`/films/${film.id}/review`}/>
                 </ul>
               </nav>
-              <FilmRating rating={rating} level={level} count={count}/>
-              <FilmCardText description={description} starring={starring} director={director}/>
+              <FilmRating rating={film.rating} level={film.rating} count={film.scoresCount}/>
+              <FilmCardText description={film.description} starring={film.starring} director={film.director}/>
             </div>
           </div>
         </div>
