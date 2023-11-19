@@ -7,16 +7,16 @@ import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
-import {Spinner} from "../loading-page/spinner.tsx";
-import {useParams} from "react-router-dom";
-import {useEffect} from "react";
-import {fetchFilmAction} from "../../store/api-actions.ts";
+import {Spinner} from '../loading-page/spinner.tsx';
+import {useParams} from 'react-router-dom';
+import {useEffect} from 'react';
+import {fetchFilmAction} from '../../store/api-actions.ts';
 
 function MoviePage() {
   const film = useAppSelector((state) => state.film);
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  console.log(film); //null
+  //console.log(film); //null
   if (film === null) {
     return <Spinner />;
   }

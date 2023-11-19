@@ -4,7 +4,7 @@ import Copyright from '../copyright/copyright.tsx';
 import {FormEvent, ReactNode, useRef} from 'react';
 import {useAppDispatch} from '../../hooks/hooks-index.ts';
 import {loginAction} from '../../store/api-actions.ts';
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 
 type SingInProps = {
   classNameEmail: string;

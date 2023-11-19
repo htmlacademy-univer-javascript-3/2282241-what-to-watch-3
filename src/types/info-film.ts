@@ -1,4 +1,4 @@
-import {Genre} from "./genre.ts";
+import {Genre} from './genre.ts';
 
 export type InfoFilm = {
     id: string;
