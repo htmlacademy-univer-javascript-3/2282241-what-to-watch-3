@@ -1,7 +1,16 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {changeGenre, hideMovies, loadFilms, setFilmsDataLoadingStatus, showMoreFilms, takeFilms} from './action.ts';
+import {
+  changeGenre,
+  hideMovies,
+  loadFilms,
+  requireAuthorization,
+  setFilmsDataLoadingStatus,
+  showMoreFilms,
+  takeFilms
+} from './action.ts';
 import {FilmsProps} from '../types/films.ts';
 import {Genre} from '../types/genre.ts';
+import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
 
 export const InitialNumberFilms = 8;
 type InitialStateProps = {
@@ -9,12 +18,14 @@ type InitialStateProps = {
     listFilms: FilmsProps[];
     countFilms: number;
     isFilmsDataLoading: boolean;
+  authorizationStatus: string;
 }
 const initialState: InitialStateProps = {
   genre: 'All genres',
   listFilms: [],
   countFilms: InitialNumberFilms,
-  isFilmsDataLoading: false
+  isFilmsDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -36,7 +47,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmsDataLoadingStatus, (state, action) => {
       state.isFilmsDataLoading = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
-
 });
 export {reducer};

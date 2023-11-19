@@ -6,7 +6,6 @@ import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
 import Review from '../../components/review/review.tsx';
 import { reviews} from '../../mocks/reviews.ts';
-// import {films} from '../../mocks/films.ts';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
 

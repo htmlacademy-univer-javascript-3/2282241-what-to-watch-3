@@ -9,15 +9,18 @@ import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
 import {ShowMore} from '../../components/show-more/show-more.tsx';
 import {hideMovies, showMoreFilms} from '../../store/action.ts';
+import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
+import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 
 type SelectedMovie = {
-    nameMoviePoster: string;
-    genre: Genre;
-    date: number;
-    posterImg: string;
+  nameMoviePoster: string;
+  genre: Genre;
+  date: number;
+  posterImg: string;
+  authorizationStatus: string;
 }
 
-function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
+function MainPage({nameMoviePoster, posterImg, date, genre, authorizationStatus}: SelectedMovie) {
   const [isPlaying, setIsPlaying] = useState(false);
   const activeGenre = useAppSelector((state) => state.genre);
   const showFilms = useAppSelector((state) => (state.countFilms));
@@ -37,7 +40,8 @@ function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
 
         <header className="page-header film-card__head">
           <Logo className={'logo__link'}/>
-          <UserBlock imgPath={'img/avatar.jpg'}/>
+          {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
+            <UnauthorizedUser/>}
         </header>
 
         <div className="film-card__wrap">

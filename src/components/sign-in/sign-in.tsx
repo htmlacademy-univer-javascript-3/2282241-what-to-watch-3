@@ -1,14 +1,31 @@
 import Logo from '../logo/logo.tsx';
 import FieldForm from '../field-form/field-form.tsx';
 import Copyright from '../copyright/copyright.tsx';
-import {ReactNode} from 'react';
+import {ReactNode, useRef} from 'react';
+import {useAppDispatch} from '../../hooks/hooks-index.ts';
+import {loginAction} from '../../store/api-actions.ts';
 
 type SingInProps = {
   classNameEmail: string;
   children?: ReactNode;
 }
 
-export function SingIn(props: SingInProps) {
+export function SignIn(props: SingInProps) {
+  const dispatch = useAppDispatch();
+  const emailUser = useRef<HTMLInputElement>(null);
+  const passwordUser = useRef<HTMLInputElement>(null);
+  const onSubmitForm = () => {
+
+    if(emailUser.current && passwordUser.current) {
+      dispatch(
+        loginAction({
+          login: emailUser.current.value,
+          password: passwordUser.current.value
+        })
+      );
+    }
+  };
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -16,7 +33,7 @@ export function SingIn(props: SingInProps) {
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form">
+        <form action="#" className="sign-in__form" onSubmit={onSubmitForm}>
           {props.children}
           <div className="sign-in__fields">
             <FieldForm placeholder={'Email address'} nameField={'email'} className={props.classNameEmail}/>

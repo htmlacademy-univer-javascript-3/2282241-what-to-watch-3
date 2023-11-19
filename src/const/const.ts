@@ -1,6 +1,8 @@
-import {useAppSelector} from '../hooks/hooks-index.ts';
-
 export enum APIRoute {
     Films = '/films',
 }
-export const listFilms = useAppSelector((state) => (state.listFilms));
+export enum APIRoute {
+  Questions = '/questions',
+  Login = '/login',
+  Logout = '/logout',
+}

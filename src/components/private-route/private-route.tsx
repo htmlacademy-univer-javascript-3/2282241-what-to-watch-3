@@ -6,7 +6,7 @@ export enum AuthorizationStatus{
   Unknown = 'UNKNOWN'
 }
 type PrivateRouteProps={
-  authorizationStatus: AuthorizationStatus;
+  authorizationStatus: string;
   children: JSX.Element;
 }
 function PrivateRoute(props: PrivateRouteProps){
