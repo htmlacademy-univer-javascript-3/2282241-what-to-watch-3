@@ -74,6 +74,8 @@ export const fetchFilmAction = createAsyncThunk<void, string, {
     dispatch(setFilmsDataLoadingStatus(true));
     const {data} = await api.get<InfoFilm>(`/films/${id}`);
     dispatch(setFilmsDataLoadingStatus(false));
+    // console.log('1'); вызывается
     dispatch(getMovie(data));
+    // console.log('1'); здесь тоже вызывается
   }
 );

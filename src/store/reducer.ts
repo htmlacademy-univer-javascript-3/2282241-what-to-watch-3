@@ -56,6 +56,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getMovie, (state, action) => {
       state.film = action.payload;
+      // console.log('1'); вызывается
     });
 });
 export {reducer};

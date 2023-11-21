@@ -26,7 +26,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop/>
       <Routes>
-        <Route path={'/'} element={<MainPage nameMoviePoster={listFilms[0].name} date={listFilms[0].released} genre={listFilms[0].genre} posterImg={listFilms[0].previewImage} authorizationStatus={authorizationStatus}/>}/>
+        <Route path={'/'} element={<MainPage nameMoviePoster={listFilms[0].name} date={listFilms[0].released} genre={listFilms[0].genre} posterImg={listFilms[0].previewImage}/>}/>
         <Route path={'/login'} element={<SignIn classNameEmail={'sign-in__field'}/>}/>
         <Route path={'/mylist'} element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListPage {...listFilms}/></PrivateRoute>}/>
         <Route path={'/films/:id'} element={<MoviePage/>}/>

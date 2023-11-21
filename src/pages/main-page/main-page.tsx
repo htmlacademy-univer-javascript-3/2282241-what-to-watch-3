@@ -17,10 +17,10 @@ type SelectedMovie = {
   genre: Genre;
   date: number;
   posterImg: string;
-  authorizationStatus: string;
 }
 
-function MainPage({nameMoviePoster, posterImg, date, genre, authorizationStatus}: SelectedMovie) {
+function MainPage({nameMoviePoster, posterImg, date, genre}: SelectedMovie) {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const [isPlaying, setIsPlaying] = useState(false);
   const activeGenre = useAppSelector((state) => state.genre);
   const showFilms = useAppSelector((state) => (state.countFilms));
