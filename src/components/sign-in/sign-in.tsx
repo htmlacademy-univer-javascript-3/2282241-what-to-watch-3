@@ -38,8 +38,8 @@ export function SignIn(props: SingInProps) {
         <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
           {props.children}
           <div className="sign-in__fields">
-            <FieldForm placeholder={'Email address'} nameField={'email'} className={props.classNameEmail} ref={loginRef}/>
-            <FieldForm placeholder={'Password'} nameField={'password'} className={'sign-in__field'} ref={passwordRef}/>
+            <FieldForm placeholder={'Email address'} nameField={'email'} className={props.classNameEmail} innerRef={loginRef}/>
+            <FieldForm placeholder={'Password'} nameField={'password'} className={'sign-in__field'} innerRef={passwordRef}/>
           </div>
           <div className="sign-in__submit">
             <button className="sign-in__btn" type="submit" onClick={() => navigate('/')}>Sign in</button>
