@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.ts';
 import {AxiosInstance} from 'axios';
-import {FilmsProps} from '../types/films.ts';
+import {listFilmsProps} from '../types/films.ts';
 import {getMovie, loadFilms, requireAuthorization, setFilmsDataLoadingStatus} from './action.ts';
 import {APIRoute} from '../const/const.ts';
 import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
@@ -18,7 +18,7 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   'data/fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setFilmsDataLoadingStatus(true));
-    const {data} = await api.get<FilmsProps[]>(APIRoute.Films);
+    const {data} = await api.get<listFilmsProps[]>(APIRoute.Films);
     dispatch(setFilmsDataLoadingStatus(false));
     dispatch(loadFilms(data));
   },
@@ -71,11 +71,7 @@ export const fetchFilmAction = createAsyncThunk<void, string, {
 }>(
   'data/fetchFilm',
   async (id, {dispatch, extra: api}) => {
-    dispatch(setFilmsDataLoadingStatus(true));
     const {data} = await api.get<InfoFilm>(`/films/${id}`);
-    dispatch(setFilmsDataLoadingStatus(false));
-    // console.log('1'); вызывается
     dispatch(getMovie(data));
-    // console.log('1'); здесь тоже вызывается
   }
 );
