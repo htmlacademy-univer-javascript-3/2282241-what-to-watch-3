@@ -8,7 +8,7 @@ import {
   showMoreFilms,
   takeFilms
 } from './action.ts';
-import {FilmsProps} from '../types/films.ts';
+import {listFilmsProps} from '../types/films.ts';
 import {Genre} from '../types/genre.ts';
 import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
 import {InfoFilm} from '../types/info-film.ts';
@@ -16,7 +16,7 @@ import {InfoFilm} from '../types/info-film.ts';
 export const InitialNumberFilms = 8;
 type InitialStateProps = {
     genre: Genre;
-    listFilms: FilmsProps[];
+    listFilms: listFilmsProps[];
     countFilms: number;
     isFilmsDataLoading: boolean;
     authorizationStatus: string;

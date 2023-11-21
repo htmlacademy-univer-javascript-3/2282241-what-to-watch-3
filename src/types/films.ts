@@ -15,9 +15,16 @@ export type FilmsProps = {
     scoresCount: number;
     director: string;
     starring: [];
-    videoLink:string;
+    videoLink: string;
     // "id": "aba664c3-bdf3-4fb3-b8f3-42e007864bbf",
     backgroundColor: string;
     runTime: 99;
     isFavorite: false;
+}
+export type listFilmsProps = {
+    genre: Genre;
+    id: string;
+    name: string;
+    previewImage: string;
+    previewVideoLink: string;
 }

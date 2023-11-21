@@ -15,6 +15,7 @@ import {fetchFilmAction} from '../../store/api-actions.ts';
 function MoviePage() {
   const film = useAppSelector((state) => state.film);
   const listFilms = useAppSelector((state) => state.listFilms);
+  //console.log(listFilms[0].previewImage);
   const {id} = useParams();
   const dispatch = useAppDispatch();
   // console.log(film); // 2 раза null, затем выдает данные
@@ -77,12 +78,10 @@ function MoviePage() {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'}
-              imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={listFilms[0].id}
-            />
-            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'} id={listFilms[1].id}/>
-            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'} id={listFilms[3].id}/>
-            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'} id={listFilms[4].id}/>
+            <CardFilm nameFilm={listFilms[0].name} imgPath={listFilms[0].previewImage} id={listFilms[0].id}/>
+            <CardFilm nameFilm={listFilms[1].name} imgPath={listFilms[1].previewImage} id={listFilms[1].id}/>
+            <CardFilm nameFilm={listFilms[2].name} imgPath={listFilms[2].previewImage} id={listFilms[3].id}/>
+            <CardFilm nameFilm={listFilms[3].name} imgPath={listFilms[3].previewImage} id={listFilms[4].id}/>
           </div>
         </section>
 
