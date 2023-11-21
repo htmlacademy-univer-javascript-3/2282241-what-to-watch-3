@@ -17,7 +17,7 @@ function MoviePage() {
   const listFilms = useAppSelector((state) => state.listFilms);
   const {id} = useParams();
   const dispatch = useAppDispatch();
-  // console.log(film); //null
+  // console.log(film); // 2 раза null, затем выдает данные
   useEffect(() => {
     if (id) {
       dispatch(fetchFilmAction(id));
