@@ -21,7 +21,7 @@ function CardFilm({ nameFilm, id, imgPath}: CardFilmProps) {
     }
 
     if (isPlaying) {
-      setTimeout( () => playerElement.play(), delay);
+      setTimeout(() => playerElement.play(), delay);
       return;
     }
 
