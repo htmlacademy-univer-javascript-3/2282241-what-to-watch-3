@@ -1,13 +1,12 @@
 import ButtonFilmCard from '../film-card/button-film-card.tsx';
 import '../../../style/player-style/player-style.css';
-// import {FilmsProps} from '../../mocks/films.ts';
 import {useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
 import {useParams} from 'react-router-dom';
-import {FilmsProps} from '../../types/films.ts';
+import { MoviesProps} from '../../types/films.ts';
 
 export type VideoPlayerProps = {
-    film: FilmsProps[];
+    film: MoviesProps[];
     imgPath:string;
 }
 
@@ -23,7 +22,7 @@ export function VideoPlayer({film, imgPath}: VideoPlayerProps) {
     }
 
     if (isPlaying) {
-      playerElement.play();
+      playerElement.play().then((r) => console.log(r));
       return;
     }
 
@@ -31,7 +30,7 @@ export function VideoPlayer({film, imgPath}: VideoPlayerProps) {
   }, [isPlaying]);
   return (
     <div className="player">
-      <video src={film[Number(id)].movie} className="player__video" poster={imgPath} ref={videoRef} muted={false}></video>
+      <video src={film[Number(id)].previewVideoLink} className="player__video" poster={imgPath} ref={videoRef} muted={false}></video>
       <button type="button" className="player__exit">Exit</button>
       <div className="player__controls">
         <div className="player__controls-row">

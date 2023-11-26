@@ -6,3 +6,4 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
 }
+export const COUNT_SIMILAR_MOVIES = 4;

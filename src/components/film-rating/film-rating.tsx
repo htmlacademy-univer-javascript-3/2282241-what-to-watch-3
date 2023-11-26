@@ -4,13 +4,13 @@ type FilmRatingProps = {
   count: number;
 }
 
-function FilmRating(props: FilmRatingProps) {
+function FilmRating({rating, count, level}: FilmRatingProps) {
   return (
     <div className="film-rating">
-      <div className="film-rating__score">{props.rating}</div>
+      <div className="film-rating__score">{rating}</div>
       <p className="film-rating__meta">
-        <span className="film-rating__level">{props.level}</span>
-        <span className="film-rating__count">{props.count}</span>
+        <span className="film-rating__level">{level}</span>
+        <span className="film-rating__count">{count}</span>
       </p>
     </div>
   );

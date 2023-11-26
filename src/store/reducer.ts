@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
-  changeGenre, getMovie,
+  changeGenre, getComments, getMovie, getPromoFilm, getRelatedMovies,
   hideMovies,
   loadFilms,
   requireAuthorization,
@@ -8,27 +8,34 @@ import {
   showMoreFilms,
   takeFilms
 } from './action.ts';
-import {listFilmsProps} from '../types/films.ts';
+import {MoviesProps} from '../types/films.ts';
 import {Genre} from '../types/genre.ts';
 import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
 import {InfoFilm} from '../types/info-film.ts';
+import {CommentsProps} from '../types/comments.ts';
 
 export const InitialNumberFilms = 8;
 type InitialStateProps = {
     genre: Genre;
-    listFilms: listFilmsProps[];
+    listFilms: MoviesProps[];
+    promoFilm: InfoFilm | null;
     countFilms: number;
     isFilmsDataLoading: boolean;
     authorizationStatus: string;
     film: InfoFilm | null;
+    relatedMovies: MoviesProps[];
+    comments: CommentsProps[];
 }
 const initialState: InitialStateProps = {
   genre: 'All genres',
   listFilms: [],
+  promoFilm:null,
   countFilms: InitialNumberFilms,
   isFilmsDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   film: null,
+  relatedMovies: [],
+  comments: [],
 };
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -56,7 +63,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getMovie, (state, action) => {
       state.film = action.payload;
-      // console.log('1'); вызывается
+    })
+    .addCase(getRelatedMovies, (state, action) => {
+      state.relatedMovies = action.payload;
+    })
+    .addCase(getComments, (state, action)=>{
+      state.comments = action.payload;
+    })
+    .addCase(getPromoFilm, (state, action)=>{
+      state.promoFilm = action.payload;
     });
 });
 export {reducer};

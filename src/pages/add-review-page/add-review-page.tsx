@@ -1,89 +1,101 @@
 import RatingStars from '../../components/rating-starts/rating-stars.tsx';
 import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
-import {useState} from 'react';
-import {useParams} from 'react-router-dom';
-import {FilmsProps} from '../../types/films.ts';
+import {ChangeEventHandler, useState} from 'react';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
+import {Link, useParams} from 'react-router-dom';
+import NotFoundPage from "../not-found-page/not-found-page.tsx";
+import {AuthorizationStatus} from "../../components/private-route/private-route.tsx";
+import {UnauthorizedUser} from "../../components/unauthorized-user/unauthorized-user.tsx";
+import {addReviewAction} from "../../store/api-actions.ts";
 
-type ReviewPageMovieProps = {
-    film: FilmsProps[];
-}
 
-function AddReviewPage(films: ReviewPageMovieProps) {
-  const {id} = useParams();
-  const [dataReview, setDataReview] = useState({
-    rating: 0,
-    text: '',
-  });
-  return (
-    <section className="film-card film-card--full">
-      <div className="film-card__header">
-        <div className="film-card__bg">
-          <img src={films.film[Number(id)].backgroundImage} alt={films.film[Number(id)].name}/>
-        </div>
+function AddReviewPage() {
+    const {id} = useParams<string>();
+    const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+    const film = useAppSelector((state) => state.film);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState('');
+    const dispatch = useAppDispatch();
 
-        <h1 className="visually-hidden">WTW</h1>
+    const handleRatingChange: ChangeEventHandler<HTMLInputElement> = (evt) => {
+        setRating(parseInt(evt.target.value, 10));
+    };
 
-        <header className="page-header">
-          <Logo className={'logo__link'}/>
+    const handleCommentChange: ChangeEventHandler<HTMLTextAreaElement> = (evt) => {
+        setComment(evt.target.value);
+    };
 
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <a href="film-page.html"
-                  className="breadcrumbs__link"
-                >{films.film[Number(id)].name}
-                </a>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
+    const handleSubmit = () => {
+        if (film?.id) {
+            dispatch(addReviewAction({comment, rating}));
+        }
+    };
 
-          <UserBlock imgPath={'img/avatar.jpg'}/>
-        </header>
+    if (!film || !id) {
+        return <NotFoundPage/>;
+    }
+    return (
+        <section className="film-card film-card--full">
+            <div className="film-card__header">
+                <div className="film-card__bg">
+                    <img src={film!.backgroundImage} alt={film!.name}/>
+                </div>
 
-        <div className="film-card__poster film-card__poster--small">
-          <img src={films.film[Number(id)].posterImage} alt={`${films.film[Number(id)].name} poster`}
-            width="218" height="327"
-          />
-        </div>
-      </div>
+                <h1 className="visually-hidden">WTW</h1>
 
-      <div className="add-review">
-        <form action="#" className="add-review__form">
-          <div className="rating">
-            <div className="rating__stars">
-              <RatingStars numberRating={'1'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'2'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'3'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'4'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'5'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'6'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'7'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'8'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'9'} dataReview={dataReview} setDataReview={setDataReview}/>
-              <RatingStars numberRating={'10'} dataReview={dataReview} setDataReview={setDataReview}/>
+                <header className="page-header">
+                    <Logo className={'logo__link'}/>
+                    <nav className="breadcrumbs">
+                        <ul className="breadcrumbs__list">
+                            <li className="breadcrumbs__item">
+                                <Link to={`/films/${film!.id}`} className="breadcrumbs__link">{film!.name}</Link>
+                            </li>
+                            <li className="breadcrumbs__item">
+                                <Link to={`/films/${film!.id}/review`} className="breadcrumbs__link">Add review</Link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
+                        <UnauthorizedUser/>}
+                </header>
+
+                <div className="film-card__poster film-card__poster--small">
+                    <img src={film!.posterImage} alt={`${film!.name} poster`}
+                         width="218" height="327"
+                    />
+                </div>
             </div>
-          </div>
-          <div className="add-review__text">
+
+            <div className="add-review">
+                <form action="#" className="add-review__form">
+                    <div className="rating">
+                        <div className="rating__stars">
+                            <RatingStars numberRating={'1'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'2'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'3'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'4'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'5'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'6'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'7'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'8'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'9'} setRating={handleRatingChange}/>
+                            <RatingStars numberRating={'10'} setRating={handleRatingChange}/>
+                        </div>
+                    </div>
+                    <div className="add-review__text">
             <textarea className="add-review__textarea" name="review-text" id="review-text"
-              placeholder="Review text" onChange={(event) => {
-                setDataReview({...dataReview, text: event.target.innerText});
-              }}
-            >
+                      placeholder="Review text" minLength={50} maxLength={400} onChange={handleCommentChange}>
             </textarea>
-            <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
+                        <div className="add-review__submit">
+                            <button className="add-review__btn" type="submit" onClick={handleSubmit}>Post</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-          </div>
-        </form>
-      </div>
-
-    </section>
-  );
+        </section>
+    );
 }
 
 export default AddReviewPage;

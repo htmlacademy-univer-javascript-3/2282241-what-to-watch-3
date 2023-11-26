@@ -1,31 +1,34 @@
 import Copyright from '../../components/copyright/copyright.tsx';
 import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
-import CardFilm from '../../components/film-card/card-film.tsx';
 import FilmRating from '../../components/film-rating/film-rating.tsx';
 import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import Tab from '../../components/tabs/tab.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
-import {Spinner} from '../loading-page/spinner.tsx';
 import {useParams} from 'react-router-dom';
 import {useEffect} from 'react';
-import {fetchFilmAction} from '../../store/api-actions.ts';
+import {fetchCommentsMovie, fetchFilmAction, fetchRelatedMovies} from '../../store/api-actions.ts';
+import {MoreLikeThis} from '../../components/show-more/more-like-this.tsx';
+import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
+import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
+import NotFoundPage from "../not-found-page/not-found-page.tsx";
 
 function MoviePage() {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const film = useAppSelector((state) => state.film);
-  const listFilms = useAppSelector((state) => state.listFilms);
-  //console.log(listFilms[0].previewImage);
   const {id} = useParams();
   const dispatch = useAppDispatch();
-  // console.log(film); // 2 раза null, затем выдает данные
   useEffect(() => {
     if (id) {
       dispatch(fetchFilmAction(id));
+      dispatch(fetchRelatedMovies(id));
+      dispatch(fetchCommentsMovie(id));
     }
   }, [id]);
-  if (film === null) {
-    return <Spinner/>;
+
+  if (!film || !id) {
+    return <NotFoundPage/>;
   }
   return (
     <>
@@ -39,7 +42,8 @@ function MoviePage() {
 
           <header className="page-header film-card__head">
             <Logo className={'logo__link'}/>
-            <UserBlock imgPath={'img/avatar.jpg'}/>
+            {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
+              <UnauthorizedUser/>}
           </header>
           <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released}/>
         </div>
@@ -59,9 +63,9 @@ function MoviePage() {
                   <Tab className={'film-nav__item'} name={'Details'}
                     link={`/films/${film.id}/details`}
                   />
-                  <Tab className={'film-nav__item'} name={'Reviews'}
-                    link={`/films/${film.id}/review`}
-                  />
+                      <Tab className={'film-nav__item'} name={'Reviews'}
+                           link={`/films/${film.id}/review`}
+                      />
                 </ul>
               </nav>
               <FilmRating rating={film.rating} level={film.rating} count={film.scoresCount}/>
@@ -74,17 +78,7 @@ function MoviePage() {
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            <CardFilm nameFilm={listFilms[0].name} imgPath={listFilms[0].previewImage} id={listFilms[0].id}/>
-            <CardFilm nameFilm={listFilms[1].name} imgPath={listFilms[1].previewImage} id={listFilms[1].id}/>
-            <CardFilm nameFilm={listFilms[2].name} imgPath={listFilms[2].previewImage} id={listFilms[3].id}/>
-            <CardFilm nameFilm={listFilms[3].name} imgPath={listFilms[3].previewImage} id={listFilms[4].id}/>
-          </div>
-        </section>
-
+        <MoreLikeThis/>
         <footer className="page-footer">
           <Logo className={'logo__link logo__link--light'}/>
           <Copyright/>

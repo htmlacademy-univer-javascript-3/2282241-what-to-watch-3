@@ -1,14 +1,14 @@
-import {forwardRef, MutableRefObject} from 'react';
+import { MutableRefObject} from 'react';
 
 type FieldFormProps = {
   placeholder: string;
   nameField: string;
   className: string;
-  innerRef: MutableRefObject<HTMLInputElement | null>;
+  ref: MutableRefObject<HTMLInputElement | null>;
 }
-const FieldForm = forwardRef(({placeholder, nameField, className, innerRef}: FieldFormProps) => (
+const FieldForm = (({placeholder, nameField, className, ref}: FieldFormProps) => (
   <div className={className}>
-    <input className="sign-in__input" type={nameField} placeholder={placeholder} name={`user-${nameField}`} id={`user-${nameField}`} ref={innerRef}/>
+    <input ref={ref} className="sign-in__input" type={nameField} placeholder={placeholder} name={`user-${nameField}`} id={`user-${nameField}`}/>
     <label className="sign-in__label visually-hidden" htmlFor={`user-${nameField}`}>{placeholder}</label>
   </div>
 ));

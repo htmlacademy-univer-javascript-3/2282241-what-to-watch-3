@@ -21,7 +21,7 @@ export type FilmsProps = {
     runTime: 99;
     isFavorite: false;
 }
-export type listFilmsProps = {
+export type MoviesProps = {
     genre: Genre;
     id: string;
     name: string;

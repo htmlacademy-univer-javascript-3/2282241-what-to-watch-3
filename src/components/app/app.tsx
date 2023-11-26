@@ -26,12 +26,12 @@ function App() {
     <BrowserRouter>
       <ScrollToTop/>
       <Routes>
-        <Route path={'/'} element={<MainPage nameMoviePoster={listFilms[0].name} date={listFilms[0].released} genre={listFilms[0].genre} posterImg={listFilms[0].previewImage}/>}/>
-        <Route path={'/login'} element={<SignIn classNameEmail={'sign-in__field'}/>}/>
+        <Route path={'/'} element={<MainPage/>}/>
+        <Route path={'/login'} element={<SignIn/>}/>
         <Route path={'/mylist'} element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListPage {...listFilms}/></PrivateRoute>}/>
         <Route path={'/films/:id'} element={<MoviePage/>}/>
         <Route path={'/films/:id/review'} element={<PrivateRoute authorizationStatus={authorizationStatus}><MovieReviewsPage/></PrivateRoute>}/>
-        <Route path={'/films/:id/addreview'} element={<PrivateRoute authorizationStatus={authorizationStatus}><AddReviewPage film={listFilms}/></PrivateRoute>}/>
+        <Route path={'/films/:id/addreview'} element={<PrivateRoute authorizationStatus={authorizationStatus}><AddReviewPage/></PrivateRoute>}/>
         <Route path={'/player/:id'} element={<PlayerPage listFilms={listFilms}/>}/>
         <Route path={'/films/:id/details'} element={<MovieDetailsPage/>}></Route>
         <Route path={'*'} element={<NotFoundPage/>}/>
