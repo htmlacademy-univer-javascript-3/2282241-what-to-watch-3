@@ -1,24 +1,23 @@
 export type ReviewProps = {
   text: string;
   author: string;
-  dateTime: string;
-  rating: string;
+  rating: number;
   date: string;
 }
 
-function Review(props:ReviewProps) {
+function Review({text, author, date, rating}:ReviewProps) {
   return (
     <div className="review">
       <blockquote className="review__quote">
-        <p className="review__text">{props.text}</p>
+        <p className="review__text">{text}</p>
 
         <footer className="review__details">
-          <cite className="review__author">{props.author}</cite>
-          <time className="review__date" dateTime={props.dateTime}>{props.date}</time>
+          <cite className="review__author">{author}</cite>
+          <time className="review__date" dateTime={date}>{date}</time>
         </footer>
       </blockquote>
 
-      <div className="review__rating">{props.rating}</div>
+      <div className="review__rating">{rating}</div>
     </div>
   );
 }

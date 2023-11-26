@@ -5,7 +5,7 @@ import video from '../../video/_Sintel_ Trailer, Durian Open Movie Project.mp4';
 type CardFilmProps = {
     nameFilm: string;
     imgPath: string;
-    id: number;
+    id: string;
     // videoPath: string;
 }
 
@@ -27,7 +27,7 @@ function CardFilm({ nameFilm, id, imgPath}: CardFilmProps) {
 
     playerElement.pause();
   }, [isPlaying]);
-  const [_, setActiveCardId] = useState(0);
+  const [, setActiveCardId] = useState('');
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => setActiveCardId(id)}>
       <div className="small-film-card__image" onMouseLeave={() => setIsPlaying(!isPlaying)}

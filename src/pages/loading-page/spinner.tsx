@@ -1,7 +1,5 @@
-function LoadingScreen(): JSX.Element {
+export function Spinner(): JSX.Element {
   return (
     <p>Loading ...</p>
   );
 }
-
-export default LoadingScreen;

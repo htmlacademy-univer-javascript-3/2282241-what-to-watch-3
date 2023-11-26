@@ -1,9 +1,8 @@
 import {VideoPlayer} from '../../components/player/player.tsx';
-import {FilmsProps} from '../../types/films.ts';
-// import {films} from '../../mocks/films.ts';
+import { MoviesProps} from '../../types/films.ts';
 
 type PlayerProps = {
-    listFilms: FilmsProps[];
+    listFilms: MoviesProps[];
 }
 
 function PlayerPage({listFilms}: PlayerProps) {

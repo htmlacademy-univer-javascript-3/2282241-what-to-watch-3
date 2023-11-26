@@ -1,45 +1,46 @@
 import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
-import UserBlock from '../../components/user-block/user-block.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
-import CardFilm from '../../components/film-card/card-film.tsx';
 import FilmCardTextItem from '../../components/film-card/film-card-text-item.tsx';
 import Tab from '../../components/tabs/tab.tsx';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
-// import {films} from '../../mocks/films.ts';
-// import {overviewMovie} from '../../mocks/overview.ts';
+import {MoreLikeThis} from '../../components/show-more/more-like-this.tsx';
+import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
+import UserBlock from '../../components/user-block/user-block.tsx';
+import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
+import NotFoundPage from '../not-found-page/not-found-page.tsx';
+
 
 function MovieDetailsPage() {
-  const listFilms = useAppSelector((state) => (state.listFilms));
   const {id} = useParams();
-  const nameMovie = listFilms[Number(id)].name;
-  const imgPath = listFilms[Number(id)].backgroundImage;
-  const imgPathPoster = listFilms[Number(id)].posterImage;
-  const date = listFilms[Number(id)].released;
-  const genre = listFilms[Number(id)].genre;
-  const director = listFilms[Number(id)].director;
+  const film = useAppSelector((state) => state.film);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  if (!film || !id) {
+    return <NotFoundPage/>;
+  }
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={imgPath} alt={nameMovie}/>
+            <img src={film?.backgroundImage} alt={film?.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
             <Logo className={'logo__link'}/>
-            <UserBlock imgPath={'img/avatar.jpg'}/>
+            {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
+              <UnauthorizedUser/>}
           </header>
-          <FilmCardWrap nameMovie={nameMovie} genre={genre} date={date}/>
+          <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={imgPathPoster} alt={nameMovie} width="218" height="327"/>
+              <img src={film?.posterImage} alt={film?.name} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
@@ -59,31 +60,20 @@ function MovieDetailsPage() {
                 <div className="film-card__text-col">
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Director</strong>
-                    <span className="film-card__details-value">{director}</span>
+                    <span className="film-card__details-value">{film?.director}</span>
                   </p>
                   <p className="film-card__details-item">
                     <strong className="film-card__details-name">Starring</strong>
                     <span className="film-card__details-value">
-                    Bill Murray, <br/>
-                    Edward Norton, <br/>
-                    Jude Law, <br/>
-                    Willem Dafoe, <br/>
-                    Saoirse Ronan, <br/>
-                    Tony Revoloru, <br/>
-                    Tilda Swinton, <br/>
-                    Tom Wilkinson, <br/>
-                    Owen Wilkinson, <br/>
-                    Adrien Brody, <br/>
-                      Ralph Fiennes, <br/>
-                    Jeff Goldblum
+                      {film?.starring}
                     </span>
                   </p>
                 </div>
 
                 <div className="film-card__text-col">
-                  <FilmCardTextItem name={'Run Time'} value={'1h 39m'}/>
-                  <FilmCardTextItem name={'Genre'} value={'Comedy'}/>
-                  <FilmCardTextItem name={'Released'} value={2014}/>
+                  <FilmCardTextItem name={'Run Time'} value={film.runTime}/>
+                  <FilmCardTextItem name={'Genre'} value={film.genre}/>
+                  <FilmCardTextItem name={'Released'} value={film.released}/>
                 </div>
               </div>
             </div>
@@ -92,19 +82,7 @@ function MovieDetailsPage() {
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'}
-              imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={0}
-            />
-            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'} id={1}/>
-            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'} id={2}/>
-            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'} id={3}/>
-          </div>
-        </section>
-
+        <MoreLikeThis/>
         <footer className="page-footer">
           <Logo className={'logo__link logo__link--light'}/>
           <Copyright/>

@@ -1,7 +1,7 @@
 type FilmCardTextProps = {
   description: string;
   director: string;
-  starring: string;
+  starring: string[];
 }
 
 function FilmCardText({description, director, starring}: FilmCardTextProps) {

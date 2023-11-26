@@ -1,16 +1,16 @@
+import { MutableRefObject} from 'react';
+
 type FieldFormProps = {
   placeholder: string;
   nameField: string;
   className: string;
+  ref: MutableRefObject<HTMLInputElement | null>;
 }
-
-function FieldForm(props: FieldFormProps) {
-  return (
-    <div className={props.className}>
-      <input className="sign-in__input" type={props.nameField} placeholder={props.placeholder} name={`user-${props.nameField}`} id={`user-${props.nameField}`}/>
-      <label className="sign-in__label visually-hidden" htmlFor={`user-${props.nameField}`}>{props.placeholder}</label>
-    </div>
-  );
-}
+const FieldForm = (({placeholder, nameField, className, ref}: FieldFormProps) => (
+  <div className={className}>
+    <input ref={ref} className="sign-in__input" type={nameField} placeholder={placeholder} name={`user-${nameField}`} id={`user-${nameField}`}/>
+    <label className="sign-in__label visually-hidden" htmlFor={`user-${nameField}`}>{placeholder}</label>
+  </div>
+));
 
 export default FieldForm;
