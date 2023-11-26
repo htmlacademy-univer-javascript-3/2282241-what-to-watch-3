@@ -9,7 +9,7 @@ import {MoreLikeThis} from '../../components/show-more/more-like-this.tsx';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
-import NotFoundPage from "../not-found-page/not-found-page.tsx";
+import NotFoundPage from '../not-found-page/not-found-page.tsx';
 
 
 function MovieDetailsPage() {
@@ -34,7 +34,7 @@ function MovieDetailsPage() {
             {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
               <UnauthorizedUser/>}
           </header>
-          <FilmCardWrap nameMovie={film!.name} genre={film!.genre} date={film!.released}/>
+          <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
@@ -71,9 +71,9 @@ function MovieDetailsPage() {
                 </div>
 
                 <div className="film-card__text-col">
-                  <FilmCardTextItem name={'Run Time'} value={film!.runTime}/>
-                  <FilmCardTextItem name={'Genre'} value={film!.genre}/>
-                  <FilmCardTextItem name={'Released'} value={film!.released}/>
+                  <FilmCardTextItem name={'Run Time'} value={film.runTime}/>
+                  <FilmCardTextItem name={'Genre'} value={film.genre}/>
+                  <FilmCardTextItem name={'Released'} value={film.released}/>
                 </div>
               </div>
             </div>

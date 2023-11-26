@@ -12,7 +12,7 @@ import {fetchCommentsMovie, fetchFilmAction, fetchRelatedMovies} from '../../sto
 import {MoreLikeThis} from '../../components/show-more/more-like-this.tsx';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
-import NotFoundPage from "../not-found-page/not-found-page.tsx";
+import NotFoundPage from '../not-found-page/not-found-page.tsx';
 
 function MoviePage() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -63,9 +63,9 @@ function MoviePage() {
                   <Tab className={'film-nav__item'} name={'Details'}
                     link={`/films/${film.id}/details`}
                   />
-                      <Tab className={'film-nav__item'} name={'Reviews'}
-                           link={`/films/${film.id}/review`}
-                      />
+                  <Tab className={'film-nav__item'} name={'Reviews'}
+                    link={`/films/${film.id}/review`}
+                  />
                 </ul>
               </nav>
               <FilmRating rating={film.rating} level={film.rating} count={film.scoresCount}/>

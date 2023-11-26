@@ -11,7 +11,7 @@ import UserBlock from '../../components/user-block/user-block.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 import {useEffect} from 'react';
 import {fetchCommentsMovie} from '../../store/api-actions.ts';
-import NotFoundPage from "../not-found-page/not-found-page.tsx";
+import NotFoundPage from '../not-found-page/not-found-page.tsx';
 
 
 function MovieReviewsPage() {
@@ -44,7 +44,7 @@ function MovieReviewsPage() {
               <UnauthorizedUser/>}
           </header>
 
-          <FilmCardWrap nameMovie={film!.name} genre={film!.genre} date={film!.released}/>
+          <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
