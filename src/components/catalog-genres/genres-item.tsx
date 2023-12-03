@@ -1,8 +1,9 @@
 import {Genre} from '../../types/genre.ts';
 import cn from 'classnames';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
-import {changeGenre} from '../../store/action.ts';
 import {Link} from 'react-router-dom';
+import {getGenre} from '../../store/genre-process/genre-selectors.ts';
+import {changeGenre} from '../../store/genre-process/genre-process.ts';
 
 type CatalogGenresProps = {
     nameGenres: Genre;
@@ -10,7 +11,7 @@ type CatalogGenresProps = {
 
 function GenresItem({ nameGenres}: CatalogGenresProps) {
   const dispatch = useAppDispatch();
-  const activeGenre = useAppSelector((state) => state.genre);
+  const activeGenre = useAppSelector(getGenre);
   const changeGenreHandler = () => {
     dispatch(changeGenre(nameGenres));
   };

@@ -2,6 +2,7 @@ import ButtonFilmCard from './button-film-card.tsx';
 import {Link} from 'react-router-dom';
 import {AuthorizationStatus} from '../private-route/private-route.tsx';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 
 type FilmCardWrapProps = {
     nameMovie: string | null;
@@ -10,7 +11,7 @@ type FilmCardWrapProps = {
 }
 
 function FilmCardWrap({nameMovie, date, genre}: FilmCardWrapProps) {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   return (
     <div className="film-card__wrap">
       <div className="film-card__desc">
