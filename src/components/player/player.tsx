@@ -22,7 +22,7 @@ export function VideoPlayer({film, imgPath}: VideoPlayerProps) {
     }
 
     if (isPlaying) {
-      playerElement.play().then((r) => console.log(r));
+      playerElement.play();
       return;
     }
 

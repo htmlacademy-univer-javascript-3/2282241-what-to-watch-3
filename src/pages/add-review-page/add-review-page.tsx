@@ -8,12 +8,14 @@ import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 import {addReviewAction} from '../../store/api-actions.ts';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getFilm} from '../../store/film-process/film-selectors.ts';
 
 
 function AddReviewPage() {
   const {id} = useParams<string>();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const film = useAppSelector((state) => state.film);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const film = useAppSelector(getFilm);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const dispatch = useAppDispatch();
@@ -27,8 +29,8 @@ function AddReviewPage() {
   };
 
   const handleSubmit = () => {
-    if (film?.id) {
-      dispatch(addReviewAction({comment, rating}));
+    if (film!.id) {
+      dispatch(addReviewAction({comment, rating, id: toString()}));
     }
   };
 

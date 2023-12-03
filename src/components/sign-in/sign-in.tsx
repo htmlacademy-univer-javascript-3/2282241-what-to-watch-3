@@ -13,6 +13,8 @@ type SingInProps = {
 export function SignIn({ children}: SingInProps) {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const patternLogin = '/^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$/';
+  // const patternPassword = '/(?=.*[a-zA-Z])(?=.*\d)/'; не могу залогиниться
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ export function SignIn({ children}: SingInProps) {
         login: loginRef.current.value,
         password: passwordRef.current.value
       }));
-      navigate('/');
+      navigate('/'); // после того, как я добавила валидацию, мы будем переходить на главную страницу только после успешно введенных данных
     }
   };
   return (
@@ -40,7 +42,7 @@ export function SignIn({ children}: SingInProps) {
           <div className="sign-in__fields">
             <div className="sign-in__fields">
               <div className="sign-in__field">
-                <input ref={loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+                <input ref={loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" pattern={patternLogin}/>
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
@@ -49,7 +51,7 @@ export function SignIn({ children}: SingInProps) {
               </div>
             </div>
             {/*<FieldForm placeholder={'Email address'} nameField={'email'} className={"sign-in__field"} ref={loginRef}/>*/}
-            {/*<FieldForm placeholder={'Password'} nameField={'password'} className={'sign-in__field'} ref={passwordRef}/>*/}
+            {/*<FieldForm placeholder={'Password'} nameField={'password'} className={'sign-in__field'} ref={passwordRef} />*/}
           </div>
           <div className="sign-in__submit">
             <button className="sign-in__btn" type="submit">Sign in</button>

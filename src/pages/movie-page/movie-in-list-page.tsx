@@ -65,7 +65,7 @@ function MovieInListPage({nameMovie, genre, date, imgPath, imgPathPoster, id}: M
 
           <div className="catalog__films-list">
             <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'}
-              imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={0}
+              imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={0} videoPath={''}
             />
             <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'} id={1}/>
             <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'} id={2}/>

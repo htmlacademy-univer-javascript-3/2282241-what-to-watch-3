@@ -5,6 +5,7 @@ type FieldFormProps = {
   nameField: string;
   className: string;
   ref: MutableRefObject<HTMLInputElement | null>;
+  //pattern: string;
 }
 const FieldForm = (({placeholder, nameField, className, ref}: FieldFormProps) => (
   <div className={className}>

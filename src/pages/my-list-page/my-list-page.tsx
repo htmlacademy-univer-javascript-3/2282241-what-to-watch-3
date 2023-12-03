@@ -6,9 +6,10 @@ import {MoviesProps} from '../../types/films.ts';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 
 function MyListPage(films: MoviesProps[]) {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
