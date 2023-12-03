@@ -1,15 +1,14 @@
 import {useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
-import video from '../../video/_Sintel_ Trailer, Durian Open Movie Project.mp4';
 
 type CardFilmProps = {
     nameFilm: string;
     imgPath: string;
     id: string;
-    // videoPath: string;
+    videoPath: string;
 }
 
-function CardFilm({ nameFilm, id, imgPath}: CardFilmProps) {
+function CardFilm({ nameFilm, id, imgPath, videoPath}: CardFilmProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const delay = 1000;
@@ -34,7 +33,7 @@ function CardFilm({ nameFilm, id, imgPath}: CardFilmProps) {
         onMouseEnter={() => setIsPlaying(!isPlaying)}
       >
         {isPlaying ?
-          <video src={video} className="player__video" poster={imgPath} ref={videoRef} muted
+          <video src={videoPath} className="player__video" poster={imgPath} ref={videoRef} muted
             width="280" height="175"
           >
           </video> :

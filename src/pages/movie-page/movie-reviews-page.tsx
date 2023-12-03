@@ -12,14 +12,16 @@ import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-
 import {useEffect} from 'react';
 import {fetchCommentsMovie} from '../../store/api-actions.ts';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getComments, getFilm} from '../../store/film-process/film-selectors.ts';
 
 
 function MovieReviewsPage() {
   const {id} = useParams<string>();
-  const film = useAppSelector((state) => state.film);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const film = useAppSelector(getFilm);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
-  const comments = useAppSelector((state) => state.comments);
+  const comments = useAppSelector(getComments);
   useEffect(() => {
     if (id) {
       dispatch(fetchCommentsMovie(id));

@@ -12,11 +12,13 @@ import AddReviewPage from '../../pages/add-review-page/add-review-page.tsx';
 import MovieDetailsPage from '../../pages/movie-page/movie-details-page.tsx';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
 import {Spinner} from '../../pages/loading-page/spinner.tsx';
+import {filmsDataLoading, getFilms} from '../../store/film-process/film-selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 
 function App() {
-  const listFilms = useAppSelector((state) => (state.listFilms));
-  const isFilmsDataLoading = useAppSelector((state) => (state.isFilmsDataLoading));
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const listFilms = useAppSelector(getFilms);
+  const isFilmsDataLoading = useAppSelector(filmsDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   if (isFilmsDataLoading) {
     return (
       <Spinner/>

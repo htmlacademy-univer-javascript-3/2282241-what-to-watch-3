@@ -6,18 +6,21 @@ import {useEffect, useState} from 'react';
 import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
 import {ShowMore} from '../../components/show-more/show-more.tsx';
-import {hideMovies, showMoreFilms} from '../../store/action.ts';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
+import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getFilms, getPromoFilm, getShowFilms} from '../../store/film-process/film-selectors.ts';
+import {getGenre} from '../../store/genre-process/genre-selectors.ts';
+import {hideMovies, showMoreFilms} from '../../store/film-process/film-process.ts';
 
 function MainPage() {
-  const promoFilm = useAppSelector((state) => state.promoFilm);
+  const promoFilm = useAppSelector(getPromoFilm);
   const [isPlaying, setIsPlaying] = useState(false);
-  const activeGenre = useAppSelector((state) => state.genre);
-  const showFilms = useAppSelector((state) => (state.countFilms));
-  const listFilms = useAppSelector((state) => (state.listFilms));
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const activeGenre = useAppSelector(getGenre);
+  const showFilms = useAppSelector(getShowFilms);
+  const listFilms = useAppSelector(getFilms);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
   useEffect(() => () => {
     dispatch(hideMovies());
@@ -79,7 +82,7 @@ function MainPage() {
               }
               return movie.genre === activeGenre;
             }).slice(0, showFilms).map((movie) => (
-              <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
+              <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id} videoPath={movie.previewVideoLink}
                 //videoPath={movie.videoLink}
                 key={movie.id}
               />
