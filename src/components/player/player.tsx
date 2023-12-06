@@ -1,19 +1,20 @@
-import ButtonFilmCard from '../film-card/button-film-card.tsx';
+import {ButtonFilmCard} from '../film-card/button-film-card.tsx';
 import '../../../style/player-style/player-style.css';
-import {useEffect, useRef, useState} from 'react';
+import {ChangeEvent, useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
-import {useParams} from 'react-router-dom';
-import { MoviesProps} from '../../types/films.ts';
+import {useAppSelector} from '../../hooks/hooks-index.ts';
+import {getFilm} from '../../store/film-process/film-selectors.ts';
+import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
+import {useNavigate} from 'react-router-dom';
 
-export type VideoPlayerProps = {
-    film: MoviesProps[];
-    imgPath:string;
-}
-
-export function VideoPlayer({film, imgPath}: VideoPlayerProps) {
-  const {id} = useParams();
+export function VideoPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const film = useAppSelector(getFilm);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const playerElement = videoRef.current;
 
@@ -28,28 +29,47 @@ export function VideoPlayer({film, imgPath}: VideoPlayerProps) {
 
     playerElement.pause();
   }, [isPlaying]);
+  if (!film) {
+    return <NotFoundPage/>;
+  }
+  const handleDurationChange = (evt: ChangeEvent<HTMLVideoElement>) => {
+    const currentDuration = Math.round(evt.currentTarget.duration);
+    setDuration(currentDuration);
+  };
+  const handleTimeUpdate = (evt: ChangeEvent<HTMLVideoElement>) => {
+    const time = Math.round(evt.currentTarget.currentTime);
+    setCurrentTime(time);
+  };
+  const timeLeft = (duration - currentTime);
   return (
     <div className="player">
-      <video src={film[Number(id)].previewVideoLink} className="player__video" poster={imgPath} ref={videoRef} muted={false}></video>
-      <button type="button" className="player__exit">Exit</button>
+      <video src={film?.videoLink} className="player__video" poster={film?.posterImage} ref={videoRef}
+        muted={false} onDurationChange={handleDurationChange} onTimeUpdate={handleTimeUpdate}
+      >
+      </video>
+      <button type="button" className="player__exit" onClick={() => navigate('/')}>Exit</button>
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
+            <progress className="player__progress" value={videoRef.current?.currentTime}
+              max={videoRef.current?.duration}
+            >
+            </progress>
             <div className="player__toggler">Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{timeLeft}</div>
         </div>
 
         <div className="player__controls-row">
           <ButtonFilmCard height={'19'} width={'19'} xlinkHref={cn({'#play-s': !isPlaying},
             {'#pause': isPlaying})} nameButton={cn({'Play': !isPlaying}, {'Pause': isPlaying})}
-          className={'player__play'} setIsPlaying={setIsPlaying} isPlaying={isPlaying}
+          className={'player__play'}
+          onClick={() => setIsPlaying ? setIsPlaying(!isPlaying) : undefined}
           />
           <div className="player__name">Transpotting</div>
           <ButtonFilmCard height={'27'} width={'27'} xlinkHref={'#full-screen'} nameButton={'Full screen'}
-            className={'player__full-screen'} setIsPlaying={setIsPlaying}
-            isPlaying={isPlaying}
+            className={'player__full-screen'}
+            onClick={() => videoRef.current?.requestFullscreen()}
           />
         </div>
       </div>
