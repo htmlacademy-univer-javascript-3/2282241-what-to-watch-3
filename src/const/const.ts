@@ -27,7 +27,7 @@ export const functionalityButtonList = (authorizationStatus: AuthorizationStatus
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   if (authorizationStatus === AuthorizationStatus.Auth) {
-    dispatch(postFavoriteFilms({filmId, status: isInList ? 0 : 1}));
+    dispatch(postFavoriteFilms({filmId, status: !isInList ? 0 : 1}));
     return () => setInList ? setInList(!isInList) : undefined;
   }
   return () => navigate('/login');

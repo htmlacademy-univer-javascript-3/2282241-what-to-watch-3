@@ -6,6 +6,7 @@ import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 import {useState} from 'react';
 import cn from 'classnames';
 import {functionalityButtonList} from '../../const/const.ts';
+import {getFavoriteFilms} from '../../store/film-process/film-selectors.ts';
 
 type FilmCardWrapProps = {
     nameMovie: string | null;
@@ -17,6 +18,7 @@ type FilmCardWrapProps = {
 function FilmCardWrap({nameMovie, date, genre, id}: FilmCardWrapProps) {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [isInList, setInList] = useState(false);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
   return (
     <div className="film-card__wrap">
       <div className="film-card__desc">
@@ -36,7 +38,7 @@ function FilmCardWrap({nameMovie, date, genre, id}: FilmCardWrapProps) {
           onClick={functionalityButtonList(authorizationStatus, setInList, isInList, id)}
           className={'btn btn--list film-card__button'}
           >
-            <span className="film-card__count">9</span>
+            <span className="film-card__count">{favoriteFilms.length}</span>
           </ButtonAddMyList>
           {authorizationStatus === AuthorizationStatus.Auth ?
             <Link to={'/films/:id/addreview'} className="btn film-card__button">Add review</Link> : null}

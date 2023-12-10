@@ -132,7 +132,6 @@ export const addReviewAction = createAsyncThunk<CommentsProps[], NewReview, {
 );
 export const fetchFavoriteFilms = createAsyncThunk<FilmsProps[], undefined, {
     dispatch: AppDispatch;
-    state: State;
     extra: AxiosInstance;
 }>(
   'data/fetchFavoriteFilms',
@@ -150,10 +149,9 @@ export const postFavoriteFilms = createAsyncThunk<FilmsProps, {
     status: number;
 }, {
     dispatch: AppDispatch;
-    state: State;
     extra: AxiosInstance;
 }>(
-  'data/fetchFavoriteFilms',
+  'data/postFavoriteFilms',
   async ({filmId, status}, {extra: api}) => {
     try {
       const {data} = await api.post<FilmsProps>(`favorite/${filmId}/${status}`);

@@ -18,7 +18,7 @@ function MyListPage() {
         {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
           <UnauthorizedUser/>}
 
-        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span>
+        <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favoriteFilms.length}</span>
         </h1>
       </header>
 
@@ -27,9 +27,7 @@ function MyListPage() {
 
         <div className="catalog__films-list">
           {favoriteFilms.map((x) =>
-            (<CardFilm nameFilm={x.name} imgPath={x.previewImage} id={x.id}
-              videoPath={x.previewVideoLink}
-            />))}
+            (<CardFilm nameFilm={x.name} imgPath={x.previewImage} id={x.id} videoPath={x.previewVideoLink} key={x.id}/>))}
         </div>
       </section>
 

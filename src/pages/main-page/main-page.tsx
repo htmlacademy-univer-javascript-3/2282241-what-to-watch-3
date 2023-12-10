@@ -24,7 +24,6 @@ function MainPage() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [isInList, setInList] = useState(false);
   const favoriteFilms = useAppSelector(getFavoriteFilms);
-  console.log(favoriteFilms);// []
   const dispatch = useAppDispatch();
   useEffect(() => () => {
     dispatch(hideMovies());
@@ -89,7 +88,6 @@ function MainPage() {
             }).slice(0, showFilms).map((movie) => (
               <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
                 videoPath={movie.previewVideoLink}
-                //videoPath={movie.videoLink}
                 key={movie.id}
               />
             ))}
