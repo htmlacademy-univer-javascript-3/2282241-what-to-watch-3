@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions.ts';
 import {useAppDispatch} from '../../hooks/hooks-index.ts';
 
@@ -8,6 +8,7 @@ type UserBlockProps = {
 
 function UserBlock({imgPath}: UserBlockProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const onClick = ()=>{
     dispatch(logoutAction());
   };
@@ -15,7 +16,7 @@ function UserBlock({imgPath}: UserBlockProps) {
     <ul className="user-block">
       <li className="user-block__item">
         <div className="user-block__avatar">
-          <img src={imgPath} alt="User avatar" width="63" height="63"/>
+          <img src={imgPath} alt="User avatar" width="63" height="63" onClick={()=>navigate('/mylist')}/>
         </div>
       </li>
       <li className="user-block__item">

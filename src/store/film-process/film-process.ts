@@ -5,11 +5,11 @@ import {MoviesProps} from '../../types/films.ts';
 import {InfoFilm} from '../../types/info-film.ts';
 import {CommentsProps} from '../../types/comments.ts';
 import {
-  fetchCommentsMovie,
+  fetchCommentsMovie, fetchFavoriteFilms,
   fetchFilmAction,
   fetchFilmsAction,
   fetchPromoFilmAction,
-  fetchRelatedMovies
+  fetchRelatedMovies, postFavoriteFilms
 } from '../api-actions.ts';
 
 
@@ -24,9 +24,11 @@ type InitialStateProps = {
     isChoosedFilmLoading: boolean;
     isPromoFilmLoading: boolean;
     isFilmCommentsLoading: boolean;
+    isFavoriteFilm: boolean;
     film: InfoFilm | null;
     relatedMovies: MoviesProps[];
     comments: CommentsProps[];
+    favoriteFilms: MoviesProps[];
 }
 const initialState: InitialStateProps = {
   genre: 'All genres',
@@ -38,9 +40,11 @@ const initialState: InitialStateProps = {
   isChoosedFilmLoading: false,
   isPromoFilmLoading: false,
   isFilmCommentsLoading: false,
+  isFavoriteFilm: false,
   film: null,
   relatedMovies: [],
   comments: [],
+  favoriteFilms: [],
 };
 export const FilmProcess = createSlice({
   name: NameSpace.Film,
@@ -89,6 +93,21 @@ export const FilmProcess = createSlice({
       .addCase(fetchCommentsMovie.fulfilled, (state, action) => {
         state.comments = action.payload;
         state.isFilmCommentsLoading = false;
+      })
+      .addCase(fetchFavoriteFilms.pending, (state) => {
+        state.isFavoriteFilm = true;
+      })
+      .addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
+        state.favoriteFilms = action.payload;
+        state.isFavoriteFilm = false;
+      })
+      .addCase(postFavoriteFilms.fulfilled, (state, action) => {
+        const film = action.payload;
+        if (film.isFavorite){
+          state.favoriteFilms = state.favoriteFilms.concat(film);
+        } else{
+          state.favoriteFilms = state.favoriteFilms.filter((item) => item.id !== film.id);
+        }
       });
   }
 });

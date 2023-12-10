@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.ts';
 import {AxiosInstance} from 'axios';
-import {MoviesProps} from '../types/films.ts';
+import {FilmsProps, MoviesProps} from '../types/films.ts';
 import {APIRoute} from '../const/const.ts';
 import {AuthData} from '../types/auth-data.js';
 import {UserData} from '../types/user-data.js';
@@ -21,7 +21,7 @@ export const fetchFilmsAction = createAsyncThunk<MoviesProps[], undefined, {
       const {data} = await api.get<MoviesProps[]>(APIRoute.Films);
       return data;
     } catch (error) {
-        // не совсем понимаю, как сделать нормальную обработку ошибок
+      // не совсем понимаю, как сделать нормальную обработку ошибок
       throw error;
     }
   },
@@ -124,6 +124,37 @@ export const addReviewAction = createAsyncThunk<CommentsProps[], NewReview, {
   async ({comment, rating, id}, {extra: api}) => {
     try {
       const {data} = await api.post<CommentsProps[]>(`comments/${id}`, {comment, rating});
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  },
+);
+export const fetchFavoriteFilms = createAsyncThunk<FilmsProps[], undefined, {
+    dispatch: AppDispatch;
+    extra: AxiosInstance;
+}>(
+  'data/fetchFavoriteFilms',
+  async (_arg, {extra: api}) => {
+    try {
+      const {data} = await api.get<FilmsProps[]>('favorite');
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  },
+);
+export const postFavoriteFilms = createAsyncThunk<FilmsProps, {
+    filmId: string | undefined;
+    status: number;
+}, {
+    dispatch: AppDispatch;
+    extra: AxiosInstance;
+}>(
+  'data/postFavoriteFilms',
+  async ({filmId, status}, {extra: api}) => {
+    try {
+      const {data} = await api.post<FilmsProps>(`favorite/${filmId}/${status}`);
       return data;
     } catch (error) {
       throw error;

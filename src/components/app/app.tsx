@@ -12,11 +12,10 @@ import AddReviewPage from '../../pages/add-review-page/add-review-page.tsx';
 import MovieDetailsPage from '../../pages/movie-page/movie-details-page.tsx';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
 import {Spinner} from '../../pages/loading-page/spinner.tsx';
-import {filmsDataLoading, getFilms} from '../../store/film-process/film-selectors.ts';
+import {filmsDataLoading} from '../../store/film-process/film-selectors.ts';
 import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
 
 function App() {
-  const listFilms = useAppSelector(getFilms);
   const isFilmsDataLoading = useAppSelector(filmsDataLoading);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   if (isFilmsDataLoading) {
@@ -30,11 +29,11 @@ function App() {
       <Routes>
         <Route path={'/'} element={<MainPage/>}/>
         <Route path={'/login'} element={<SignIn/>}/>
-        <Route path={'/mylist'} element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListPage {...listFilms}/></PrivateRoute>}/>
+        <Route path={'/mylist'} element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListPage/></PrivateRoute>}/>
         <Route path={'/films/:id'} element={<MoviePage/>}/>
         <Route path={'/films/:id/review'} element={<PrivateRoute authorizationStatus={authorizationStatus}><MovieReviewsPage/></PrivateRoute>}/>
         <Route path={'/films/:id/addreview'} element={<PrivateRoute authorizationStatus={authorizationStatus}><AddReviewPage/></PrivateRoute>}/>
-        <Route path={'/player/:id'} element={<PlayerPage listFilms={listFilms}/>}/>
+        <Route path={'/player/:id'} element={<PlayerPage/>}/>
         <Route path={'/films/:id/details'} element={<MovieDetailsPage/>}></Route>
         <Route path={'*'} element={<NotFoundPage/>}/>
       </Routes>

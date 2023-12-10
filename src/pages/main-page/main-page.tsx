@@ -1,7 +1,7 @@
 import CardFilm from '../../components/film-card/card-film.tsx';
 import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
-import ButtonFilmCard from '../../components/film-card/button-film-card.tsx';
+import {ButtonAddMyList, ButtonPlay} from '../../components/film-card/button-film-card.tsx';
 import {useEffect, useState} from 'react';
 import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
@@ -10,17 +10,20 @@ import {AuthorizationStatus} from '../../components/private-route/private-route.
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
-import {getFilms, getPromoFilm, getShowFilms} from '../../store/film-process/film-selectors.ts';
+import {getFavoriteFilms, getFilms, getPromoFilm, getShowFilms} from '../../store/film-process/film-selectors.ts';
 import {getGenre} from '../../store/genre-process/genre-selectors.ts';
 import {hideMovies, showMoreFilms} from '../../store/film-process/film-process.ts';
+import cn from 'classnames';
+import {functionalityButtonList} from '../../const/const.ts';
 
 function MainPage() {
   const promoFilm = useAppSelector(getPromoFilm);
-  const [isPlaying, setIsPlaying] = useState(false);
   const activeGenre = useAppSelector(getGenre);
   const showFilms = useAppSelector(getShowFilms);
   const listFilms = useAppSelector(getFilms);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const [isInList, setInList] = useState(false);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
   const dispatch = useAppDispatch();
   useEffect(() => () => {
     dispatch(hideMovies());
@@ -54,17 +57,18 @@ function MainPage() {
               </p>
 
               <div className="film-card__buttons">
-                <ButtonFilmCard height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
+                <ButtonPlay height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
                   className={'btn btn--play film-card__button'}
-                  setIsPlaying={setIsPlaying} isPlaying={isPlaying}
+                  path={`/player/${promoFilm?.id}`}
                 />
-                <button className='btn btn--list film-card__button' type='button'>
-                  <svg viewBox='0 0 19 20' width='19' height='20'>
-                    <use xlinkHref='#add'></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className='film-card__count'>9</span>
-                </button>
+
+                <ButtonAddMyList height={'20'} width={'19'} xlinkHref={cn({'#add': !isInList},
+                  {'#in-list': isInList})} nameButton={'My list'}
+                onClick={functionalityButtonList(authorizationStatus, setInList, isInList, promoFilm?.id)}
+                className={'btn btn--list film-card__button'}
+                >
+                  <span className="film-card__count">{favoriteFilms.length}</span>
+                </ButtonAddMyList>
               </div>
             </div>
           </div>
@@ -82,8 +86,8 @@ function MainPage() {
               }
               return movie.genre === activeGenre;
             }).slice(0, showFilms).map((movie) => (
-              <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id} videoPath={movie.previewVideoLink}
-                //videoPath={movie.videoLink}
+              <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
+                videoPath={movie.previewVideoLink}
                 key={movie.id}
               />
             ))}

@@ -8,3 +8,4 @@ export const getFilm = (state: State) => state[NameSpace.Film].film;
 export const getComments = (state: State) => state[NameSpace.Film].comments;
 export const getRelatedMovies = (state: State) => state[NameSpace.Film].relatedMovies;
 export const filmsDataLoading = (state: State) => state[NameSpace.Film].isFilmsDataLoading;
+export const getFavoriteFilms = (state: State)=>state[NameSpace.Film].favoriteFilms;

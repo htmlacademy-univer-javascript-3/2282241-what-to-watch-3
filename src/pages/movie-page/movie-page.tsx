@@ -47,7 +47,7 @@ function MoviePage() {
             {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
               <UnauthorizedUser/>}
           </header>
-          <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released}/>
+          <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released} id={film.id}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
