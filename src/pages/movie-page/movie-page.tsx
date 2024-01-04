@@ -8,17 +8,19 @@ import Tab from '../../components/tabs/tab.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
 import {useParams} from 'react-router-dom';
 import {useEffect} from 'react';
-import {fetchCommentsMovie, fetchFilmAction, fetchRelatedMovies} from '../../store/api-actions.ts';
+import {checkAuthAction, fetchCommentsMovie, fetchFilmAction, fetchRelatedMovies} from '../../store/api-actions.ts';
 import {MoreLikeThis} from '../../components/show-more/more-like-this.tsx';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
-import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
-import {getFilm} from '../../store/film-process/film-selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
+import {filmsDataLoading, getFilm} from '../../store/film-process/film-selectors.ts';
+import {Spinner} from '../loading-page/spinner.tsx';
 
 function MoviePage() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const film = useAppSelector(getFilm);
+  const isChoosedFilmLoading = useAppSelector(filmsDataLoading);
   const {id} = useParams();
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -26,9 +28,14 @@ function MoviePage() {
       dispatch(fetchFilmAction(id));
       dispatch(fetchRelatedMovies(id));
       dispatch(fetchCommentsMovie(id));
+      dispatch(checkAuthAction());
     }
-  }, [id]);
-
+  }, [id, dispatch]);
+  if (isChoosedFilmLoading) {
+    return (
+      <Spinner />
+    );
+  }
   if (!film || !id) {
     return <NotFoundPage/>;
   }
@@ -44,7 +51,7 @@ function MoviePage() {
 
           <header className="page-header film-card__head">
             <Logo className={'logo__link'}/>
-            {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
+            {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock/> :
               <UnauthorizedUser/>}
           </header>
           <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released} id={film.id}/>

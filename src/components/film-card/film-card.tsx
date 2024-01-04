@@ -8,7 +8,7 @@ type CardFilmProps = {
     videoPath: string;
 }
 
-function CardFilm({ nameFilm, id, imgPath, videoPath}: CardFilmProps) {
+function FilmCard({ nameFilm, id, imgPath, videoPath}: CardFilmProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const delay = 1000;
@@ -46,4 +46,4 @@ function CardFilm({ nameFilm, id, imgPath, videoPath}: CardFilmProps) {
   );
 }
 
-export default CardFilm;
+export default FilmCard;

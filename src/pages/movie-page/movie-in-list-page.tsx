@@ -1,11 +1,14 @@
 import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
-import CardFilm from '../../components/film-card/card-film.tsx';
+import FilmCard from '../../components/film-card/film-card.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import FilmRating from '../../components/film-rating/film-rating.tsx';
 import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import Tab from '../../components/tabs/tab.tsx';
+import {useAppSelector} from '../../hooks/hooks-index.ts';
+import {getFavoriteFilms} from '../../store/film-process/film-selectors.ts';
+import {useMemo} from 'react';
 
 type MovieInListPageProps = {
     nameMovie: string;
@@ -17,6 +20,7 @@ type MovieInListPageProps = {
 }
 
 function MovieInListPage({nameMovie, genre, date, imgPath, imgPathPoster, id}: MovieInListPageProps) {
+  const myFilms = useAppSelector(getFavoriteFilms);
   return (
     <>
       <section className="film-card film-card--full">
@@ -29,9 +33,9 @@ function MovieInListPage({nameMovie, genre, date, imgPath, imgPathPoster, id}: M
 
           <header className="page-header film-card__head">
             <Logo className={'logo__link'}/>
-            <UserBlock imgPath={'img/avatar.jpg'}/>
+            <UserBlock/>
           </header>
-          <FilmCardWrap nameMovie={nameMovie} genre={genre} date={date}/>
+          <FilmCardWrap nameMovie={nameMovie} genre={genre} date={date} id={nameMovie}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">
@@ -48,11 +52,11 @@ function MovieInListPage({nameMovie, genre, date, imgPath, imgPathPoster, id}: M
                   <Tab className={'film-nav__item'} name={'Reviews'} link={`/films/${id}/review`}/>
                 </ul>
               </nav>
-              <FilmRating rating={'8,9'} level={'Very good'} count={'240 ratings'}/>
+              <FilmRating rating={8.9} level={8.9} count={240}/>
               <FilmCardText
                 description={'<p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.</p><p>Gustave prides himself on providing first-class service to the hotel\'s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave\'s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>'}
                 director={'Wes Anderson'}
-                starring={'Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other'}
+                starring={['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe and other']}
               />
             </div>
           </div>
@@ -64,12 +68,16 @@ function MovieInListPage({nameMovie, genre, date, imgPath, imgPathPoster, id}: M
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <CardFilm nameFilm={'Fantastic Beasts: The Crimes of Grindelwald'}
-              imgPath={'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'} id={0} videoPath={''}
-            />
-            <CardFilm nameFilm={'Bohemian Rhapsody'} imgPath={'img/bohemian-rhapsody.jpg'} id={1}/>
-            <CardFilm nameFilm={'Macbeth'} imgPath={'img/macbeth.jpg'} id={2}/>
-            <CardFilm nameFilm={'Aviator'} imgPath={'img/aviator.jpg'} id={3}/>
+            {useMemo(() => (myFilms.map((film) =>(
+              <FilmCard
+                key={film.id}
+                id={film.id}
+                nameFilm={film.name}
+                imgPath={film.previewImage}
+                videoPath={film.previewVideoLink}
+              />
+            )
+            )), [myFilms])}
           </div>
         </section>
 

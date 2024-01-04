@@ -1,4 +1,4 @@
-import {ButtonFilmCard} from '../film-card/button-film-card.tsx';
+import {FilmCardButton} from '../film-card/film-card-button.tsx';
 import '../../../style/player-style/player-style.css';
 import {ChangeEvent, useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
@@ -61,13 +61,13 @@ export function VideoPlayer() {
         </div>
 
         <div className="player__controls-row">
-          <ButtonFilmCard height={'19'} width={'19'} xlinkHref={cn({'#play-s': !isPlaying},
+          <FilmCardButton height={'19'} width={'19'} xlinkHref={cn({'#play-s': !isPlaying},
             {'#pause': isPlaying})} nameButton={cn({'Play': !isPlaying}, {'Pause': isPlaying})}
           className={'player__play'}
           onClick={() => setIsPlaying ? setIsPlaying(!isPlaying) : undefined}
           />
           <div className="player__name">Transpotting</div>
-          <ButtonFilmCard height={'27'} width={'27'} xlinkHref={'#full-screen'} nameButton={'Full screen'}
+          <FilmCardButton height={'27'} width={'27'} xlinkHref={'#full-screen'} nameButton={'Full screen'}
             className={'player__full-screen'}
             onClick={() => videoRef.current?.requestFullscreen()}
           />

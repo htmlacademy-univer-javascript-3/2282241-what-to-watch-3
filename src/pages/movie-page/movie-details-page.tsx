@@ -10,7 +10,7 @@ import {AuthorizationStatus} from '../../components/private-route/private-route.
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
-import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
 import {getFilm} from '../../store/film-process/film-selectors.ts';
 
 
@@ -33,10 +33,10 @@ function MovieDetailsPage() {
 
           <header className="page-header film-card__head">
             <Logo className={'logo__link'}/>
-            {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
+            {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock /> :
               <UnauthorizedUser/>}
           </header>
-          <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released}/>
+          <FilmCardWrap nameMovie={film.name} genre={film.genre} date={film.released} id={film.id}/>
         </div>
 
         <div className="film-card__wrap film-card__translate-top">

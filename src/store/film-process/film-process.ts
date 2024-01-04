@@ -30,7 +30,7 @@ type InitialStateProps = {
     comments: CommentsProps[];
     favoriteFilms: MoviesProps[];
 }
-const initialState: InitialStateProps = {
+export const initialState: InitialStateProps = {
   genre: 'All genres',
   listFilms: [],
   promoFilm: null,

@@ -1,7 +1,6 @@
-import CardFilm from '../../components/film-card/card-film.tsx';
+import FilmCard from '../../components/film-card/film-card.tsx';
 import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
-import {ButtonAddMyList, ButtonPlay} from '../../components/film-card/button-film-card.tsx';
 import {useEffect, useState} from 'react';
 import {ListGenres} from '../../components/catalog-genres/list-genres.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
@@ -9,12 +8,14 @@ import {ShowMore} from '../../components/show-more/show-more.tsx';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
-import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
 import {getFavoriteFilms, getFilms, getPromoFilm, getShowFilms} from '../../store/film-process/film-selectors.ts';
 import {getGenre} from '../../store/genre-process/genre-selectors.ts';
 import {hideMovies, showMoreFilms} from '../../store/film-process/film-process.ts';
 import cn from 'classnames';
 import {functionalityButtonList} from '../../const/const.ts';
+import { ButtonAddMyList } from '../../components/film-card/film-card-button-add.tsx';
+import {ButtonPlay} from '../../components/film-card/film-card-button-play.tsx';
 
 function MainPage() {
   const promoFilm = useAppSelector(getPromoFilm);
@@ -39,7 +40,7 @@ function MainPage() {
 
         <header className="page-header film-card__head">
           <Logo className={'logo__link'}/>
-          {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
+          {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock/> :
             <UnauthorizedUser/>}
         </header>
 
@@ -86,7 +87,7 @@ function MainPage() {
               }
               return movie.genre === activeGenre;
             }).slice(0, showFilms).map((movie) => (
-              <CardFilm nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
+              <FilmCard nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
                 videoPath={movie.previewVideoLink}
                 key={movie.id}
               />
