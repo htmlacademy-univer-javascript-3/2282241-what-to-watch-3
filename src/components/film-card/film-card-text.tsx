@@ -6,7 +6,7 @@ type FilmCardTextProps = {
 
 function FilmCardText({description, director, starring}: FilmCardTextProps) {
   return (
-    <div className="film-card__text">
+    <div className="film-card__text" data-testid='film-card__text'>
       {description}
       <p className="film-card__director"><strong>Director: {director}</strong></p>
       <p className="film-card__starring"><strong>Starring: {starring}</strong></p>

@@ -12,10 +12,10 @@ export type FilmsProps = {
     rating: number;
     scoresCount: number;
     director: string;
-    starring: [];
+    starring: string[];
     videoLink: string;
     backgroundColor: string;
-    runTime: 99;
+    runTime: number;
     isFavorite: boolean;
     previewVideoLink: string;
 }

@@ -1,12 +1,13 @@
-import {ButtonAddMyList, ButtonPlay} from './button-film-card.tsx';
 import {Link} from 'react-router-dom';
 import {AuthorizationStatus} from '../private-route/private-route.tsx';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
-import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
 import {useState} from 'react';
 import cn from 'classnames';
 import {functionalityButtonList} from '../../const/const.ts';
 import {getFavoriteFilms} from '../../store/film-process/film-selectors.ts';
+import { ButtonAddMyList } from './film-card-button-add.tsx';
+import {ButtonPlay} from "./film-card-button-play.tsx";
 
 type FilmCardWrapProps = {
     nameMovie: string | null;
@@ -20,7 +21,7 @@ function FilmCardWrap({nameMovie, date, genre, id}: FilmCardWrapProps) {
   const [isInList, setInList] = useState(false);
   const favoriteFilms = useAppSelector(getFavoriteFilms);
   return (
-    <div className="film-card__wrap">
+    <div className="film-card__wrap" data-testid='film-card__wrap'>
       <div className="film-card__desc">
         <h2 className="film-card__title">{nameMovie}</h2>
         <p className="film-card__meta">

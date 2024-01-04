@@ -1,5 +1,5 @@
 import MainPage from '../../pages/main-page/main-page.tsx';
-import {BrowserRouter, Route, Routes,} from 'react-router-dom';
+import { Route, Routes,} from 'react-router-dom';
 import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
 import {SignIn} from '../sign-in/sign-in.tsx';
 import MyListPage from '../../pages/my-list-page/my-list-page.tsx';
@@ -7,13 +7,13 @@ import MoviePage from '../../pages/movie-page/movie-page.tsx';
 import MovieReviewsPage from '../../pages/movie-page/movie-reviews-page.tsx';
 import PlayerPage from '../../pages/player/player-page.tsx';
 import PrivateRoute from '../private-route/private-route.tsx';
-import ScrollToTop from '../scroll-to-top/scroll-to-top.ts';
+// import ScrollToTop from '../scroll-to-top/scroll-to-top.ts';
 import AddReviewPage from '../../pages/add-review-page/add-review-page.tsx';
 import MovieDetailsPage from '../../pages/movie-page/movie-details-page.tsx';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
 import {Spinner} from '../../pages/loading-page/spinner.tsx';
 import {filmsDataLoading} from '../../store/film-process/film-selectors.ts';
-import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
 
 function App() {
   const isFilmsDataLoading = useAppSelector(filmsDataLoading);
@@ -24,8 +24,8 @@ function App() {
     );
   }
   return (
-    <BrowserRouter>
-      <ScrollToTop/>
+    // <>
+    //   <ScrollToTop/>
       <Routes>
         <Route path={'/'} element={<MainPage/>}/>
         <Route path={'/login'} element={<SignIn/>}/>
@@ -37,7 +37,7 @@ function App() {
         <Route path={'/films/:id/details'} element={<MovieDetailsPage/>}></Route>
         <Route path={'*'} element={<NotFoundPage/>}/>
       </Routes>
-    </BrowserRouter>
+    // </>
   );
 }
 

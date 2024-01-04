@@ -8,7 +8,7 @@ import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
 import {addReviewAction} from '../../store/api-actions.ts';
-import {getAuthorizationStatus} from '../../store/user-process/selectors.ts';
+import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
 import {getFilm} from '../../store/film-process/film-selectors.ts';
 
 
@@ -59,7 +59,7 @@ function AddReviewPage() {
             </ul>
           </nav>
 
-          {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock imgPath={'img/avatar.jpg'}/> :
+          {authorizationStatus === AuthorizationStatus.Auth ? <UserBlock/> :
             <UnauthorizedUser/>}
         </header>
 

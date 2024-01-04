@@ -7,7 +7,7 @@ export type ReviewProps = {
 
 function Review({text, author, date, rating}:ReviewProps) {
   return (
-    <div className="review">
+    <div className="review" data-testid="review">
       <blockquote className="review__quote">
         <p className="review__text">{text}</p>
 
