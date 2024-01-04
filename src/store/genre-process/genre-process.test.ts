@@ -1,6 +1,6 @@
-import {describe, expect} from "vitest";
-import {changeGenre, genreProcess} from "./genre-process.ts";
-import { initialState} from "../film-process/film-process.ts";
+import {describe, expect} from 'vitest';
+import {changeGenre, genreProcess} from './genre-process.ts';
+import { initialState} from '../film-process/film-process.ts';
 
 describe('GenreProcess Slice', () => {
   it('without additional parameters should return initial state', () => {
@@ -13,4 +13,4 @@ describe('GenreProcess Slice', () => {
     expect(genreProcess.reducer(initialState, changeGenre('Comedy')))
       .toEqual({...initialState, genre: 'Comedy'});
   });
-})
+});

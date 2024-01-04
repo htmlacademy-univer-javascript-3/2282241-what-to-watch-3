@@ -6,9 +6,9 @@ import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
 import FilmRating from '../../components/film-rating/film-rating.tsx';
 import FilmCardText from '../../components/film-card/film-card-text.tsx';
 import Tab from '../../components/tabs/tab.tsx';
-import {useAppSelector} from "../../hooks/hooks-index.ts";
-import {getFavoriteFilms} from "../../store/film-process/film-selectors.ts";
-import {useMemo} from "react";
+import {useAppSelector} from '../../hooks/hooks-index.ts';
+import {getFavoriteFilms} from '../../store/film-process/film-selectors.ts';
+import {useMemo} from 'react';
 
 type MovieInListPageProps = {
     nameMovie: string;
@@ -69,14 +69,14 @@ function MovieInListPage({nameMovie, genre, date, imgPath, imgPathPoster, id}: M
 
           <div className="catalog__films-list">
             {useMemo(() => (myFilms.map((film) =>(
-                <FilmCard
-                  key={film.id}
-                  id={film.id}
-                  nameFilm={film.name}
-                  imgPath={film.previewImage}
-                  videoPath={film.previewVideoLink}
-                />
-              )
+              <FilmCard
+                key={film.id}
+                id={film.id}
+                nameFilm={film.name}
+                imgPath={film.previewImage}
+                videoPath={film.previewVideoLink}
+              />
+            )
             )), [myFilms])}
           </div>
         </section>

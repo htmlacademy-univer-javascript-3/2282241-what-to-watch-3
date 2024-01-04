@@ -1,7 +1,7 @@
-import {describe} from "vitest";
-import {userProcess} from "./user-process.ts";
-import {AuthorizationStatus} from "../../components/private-route/private-route.tsx";
-import {checkAuthAction, loginAction, logoutAction} from "../api-actions.ts";
+import {describe} from 'vitest';
+import {userProcess} from './user-process.ts';
+import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
+import {checkAuthAction, loginAction, logoutAction} from '../api-actions.ts';
 
 describe('UserProcess Slice', () => {
   it('should return initial state with empty action', () => {
@@ -66,4 +66,4 @@ describe('UserProcess Slice', () => {
 
     expect(result).toEqual(expectedState);
   });
-})
+});

@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
-import {withHistory} from "../../../utils/mock-component.tsx";
-import RatingStars from "./rating-stars.tsx";
+import {withHistory} from '../../../utils/mock-component.tsx';
+import RatingStars from './rating-stars.tsx';
 
 describe('Component: RatingStars', () => {
   it('should render correctly', () => {

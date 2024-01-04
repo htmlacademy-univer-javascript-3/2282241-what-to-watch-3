@@ -13,7 +13,8 @@ type ButtonFilmCardProps = {
 export function FilmCardButton({children, height, width, xlinkHref, nameButton, className, onClick}: ButtonFilmCardProps) {
   return (
     <button className={className} type="button"
-      onClick={onClick}>
+      onClick={onClick}
+    >
       <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height}>
         <use xlinkHref={xlinkHref}></use>
       </svg>

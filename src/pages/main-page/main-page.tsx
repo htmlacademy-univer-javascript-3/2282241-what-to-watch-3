@@ -15,7 +15,7 @@ import {hideMovies, showMoreFilms} from '../../store/film-process/film-process.t
 import cn from 'classnames';
 import {functionalityButtonList} from '../../const/const.ts';
 import { ButtonAddMyList } from '../../components/film-card/film-card-button-add.tsx';
-import {ButtonPlay} from "../../components/film-card/film-card-button-play.tsx";
+import {ButtonPlay} from '../../components/film-card/film-card-button-play.tsx';
 
 function MainPage() {
   const promoFilm = useAppSelector(getPromoFilm);
@@ -88,8 +88,8 @@ function MainPage() {
               return movie.genre === activeGenre;
             }).slice(0, showFilms).map((movie) => (
               <FilmCard nameFilm={movie.name} imgPath={movie.previewImage} id={movie.id}
-                        videoPath={movie.previewVideoLink}
-                        key={movie.id}
+                videoPath={movie.previewVideoLink}
+                key={movie.id}
               />
             ))}
           </div>

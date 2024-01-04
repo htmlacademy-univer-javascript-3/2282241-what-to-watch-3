@@ -7,11 +7,11 @@ import {State} from '../types/state';
 import {checkAuthAction, fetchFilmsAction, loginAction, logoutAction} from './api-actions';
 import {AuthData} from '../types/auth-data';
 import * as tokenStorage from '../services/token';
-import {APIRoute, NameSpace} from "../const/const.ts";
-import {Genre} from "../types/genre.ts";
-import {AppThunkDispatch, extractActionsTypes, makeFakeFilms} from "../../utils/mock.ts";
-import {InitialNumberFilms} from "./film-process/film-process.ts";
-import {AuthorizationStatus} from "../components/private-route/private-route.tsx";
+import {APIRoute, NameSpace} from '../const/const.ts';
+import {Genre} from '../types/genre.ts';
+import {AppThunkDispatch, extractActionsTypes, makeFakeFilms} from '../../utils/mock.ts';
+import {InitialNumberFilms} from './film-process/film-process.ts';
+import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
 
 describe('Async actions', () => {
   const axios = createAPI();

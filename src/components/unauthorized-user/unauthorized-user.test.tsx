@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import {withHistory} from "../../../utils/mock-component.tsx";
-import {UnauthorizedUser} from "./unauthorized-user.tsx";
-import {expect} from "vitest";
+import {withHistory} from '../../../utils/mock-component.tsx';
+import {UnauthorizedUser} from './unauthorized-user.tsx';
+import {expect} from 'vitest';
 
 describe('Component: UnauthorizedUser', () => {
   it('should render correctly', () => {

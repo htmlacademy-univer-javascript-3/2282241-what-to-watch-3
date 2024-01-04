@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import {withHistory} from "../../../utils/mock-component.tsx";
-import Tab from "./tab.tsx";
+import {withHistory} from '../../../utils/mock-component.tsx';
+import Tab from './tab.tsx';
 
 describe('Component: Tab', () => {
   it('should render correctly', () => {

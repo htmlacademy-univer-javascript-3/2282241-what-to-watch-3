@@ -1,7 +1,7 @@
 import {datatype, lorem, name} from 'faker';
 import { render, screen } from '@testing-library/react';
-import {withHistory} from "../../../utils/mock-component.tsx";
-import Review from "./review.tsx";
+import {withHistory} from '../../../utils/mock-component.tsx';
+import Review from './review.tsx';
 
 describe('Component: Review', () => {
   it('should render correctly', () => {

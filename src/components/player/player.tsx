@@ -63,13 +63,13 @@ export function VideoPlayer() {
         <div className="player__controls-row">
           <FilmCardButton height={'19'} width={'19'} xlinkHref={cn({'#play-s': !isPlaying},
             {'#pause': isPlaying})} nameButton={cn({'Play': !isPlaying}, {'Pause': isPlaying})}
-                          className={'player__play'}
-                          onClick={() => setIsPlaying ? setIsPlaying(!isPlaying) : undefined}
+          className={'player__play'}
+          onClick={() => setIsPlaying ? setIsPlaying(!isPlaying) : undefined}
           />
           <div className="player__name">Transpotting</div>
           <FilmCardButton height={'27'} width={'27'} xlinkHref={'#full-screen'} nameButton={'Full screen'}
-                          className={'player__full-screen'}
-                          onClick={() => videoRef.current?.requestFullscreen()}
+            className={'player__full-screen'}
+            onClick={() => videoRef.current?.requestFullscreen()}
           />
         </div>
       </div>

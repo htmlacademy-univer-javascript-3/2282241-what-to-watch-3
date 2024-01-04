@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
-import {withHistory} from "../../../utils/mock-component.tsx";
-import {ShowMore} from "./show-more.tsx";
+import {withHistory} from '../../../utils/mock-component.tsx';
+import {ShowMore} from './show-more.tsx';
 
 describe('Component: Show More', () => {
   it('should render correctly', () => {

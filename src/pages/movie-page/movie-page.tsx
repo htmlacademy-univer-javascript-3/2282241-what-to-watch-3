@@ -15,7 +15,7 @@ import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
 import {filmsDataLoading, getFilm} from '../../store/film-process/film-selectors.ts';
-import {Spinner} from "../loading-page/spinner.tsx";
+import {Spinner} from '../loading-page/spinner.tsx';
 
 function MoviePage() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);

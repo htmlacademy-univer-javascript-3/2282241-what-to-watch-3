@@ -7,7 +7,7 @@ import cn from 'classnames';
 import {functionalityButtonList} from '../../const/const.ts';
 import {getFavoriteFilms} from '../../store/film-process/film-selectors.ts';
 import { ButtonAddMyList } from './film-card-button-add.tsx';
-import {ButtonPlay} from "./film-card-button-play.tsx";
+import {ButtonPlay} from './film-card-button-play.tsx';
 
 type FilmCardWrapProps = {
     nameMovie: string | null;

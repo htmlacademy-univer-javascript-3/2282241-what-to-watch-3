@@ -1,10 +1,10 @@
 import { MemoryHistory, createMemoryHistory } from 'history';
-import {withHistory, withStore} from "../../../utils/mock-component.tsx";
-import App from "./app.tsx";
-import {render, screen} from "@testing-library/react";
-import { makeFakeStore} from "../../../utils/mock.ts";
-import {AuthorizationStatus} from "../private-route/private-route.tsx";
-import {NameSpace} from "../../const/const.ts";
+import {withHistory, withStore} from '../../../utils/mock-component.tsx';
+import App from './app.tsx';
+import {render, screen} from '@testing-library/react';
+import { makeFakeStore} from '../../../utils/mock.ts';
+import {AuthorizationStatus} from '../private-route/private-route.tsx';
+import {NameSpace} from '../../const/const.ts';
 
 describe('Application Routing', () => {
   let mockHistory: MemoryHistory;
@@ -38,10 +38,10 @@ describe('Application Routing', () => {
   it('should render "MyListPage" when user navigate to "/mylist"', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
-        [NameSpace.User]: {
-          authorizationStatus: AuthorizationStatus.Auth,
-        }
-      })
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      }
+    })
     );
     mockHistory.push('/mylist');
 
@@ -53,12 +53,12 @@ describe('Application Routing', () => {
   it('should render "MoviePage" when user navigate to "/films/:id"', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
-        [NameSpace.User]: {
-          authorizationStatus: AuthorizationStatus.Auth,
-        }
-      })
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      }
+    })
     );
-    mockHistory.push(`/films/${makeFakeStore().FILM.film?.id}`);
+    mockHistory.push(`/films/${makeFakeStore().FILM.film!.id}`);
 
     render(withStoreComponent);
 
@@ -72,12 +72,12 @@ describe('Application Routing', () => {
   it('should render "MovieReviewsPage" when user navigate to "/films/:id/review"', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
-        [NameSpace.User]: {
-          authorizationStatus: AuthorizationStatus.Auth,
-        }
-      })
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      }
+    })
     );
-    mockHistory.push(`/films/${makeFakeStore().FILM.film?.id}/review`);
+    mockHistory.push(`/films/${makeFakeStore().FILM.film!.id}/review`);
 
     render(withStoreComponent);
 
@@ -91,12 +91,12 @@ describe('Application Routing', () => {
   it('should render "AddReviewPage" when user navigate to "/films/:id/addreview"', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
-        [NameSpace.User]: {
-          authorizationStatus: AuthorizationStatus.Auth,
-        }
-      })
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      }
+    })
     );
-    mockHistory.push(`/films/${makeFakeStore().FILM.film?.id}/addreview`);
+    mockHistory.push(`/films/${makeFakeStore().FILM.film!.id}/addreview`);
 
     render(withStoreComponent);
 
@@ -107,12 +107,12 @@ describe('Application Routing', () => {
   it('should render "PlayerPage" when user navigate to "/player/:id"', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
-        [NameSpace.User]: {
-          authorizationStatus: AuthorizationStatus.Auth,
-        }
-      })
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      }
+    })
     );
-    mockHistory.push(`/player/${makeFakeStore().FILM.film?.id}`);
+    mockHistory.push(`/player/${makeFakeStore().FILM.film!.id}`);
 
     render(withStoreComponent);
 
@@ -123,12 +123,12 @@ describe('Application Routing', () => {
   it('should render "MovieDetailsPage" when user navigate to "/films/:id/details"', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
-        [NameSpace.User]: {
-          authorizationStatus: AuthorizationStatus.Auth,
-        }
-      })
+      [NameSpace.User]: {
+        authorizationStatus: AuthorizationStatus.Auth,
+      }
+    })
     );
-    mockHistory.push(`/films/${makeFakeStore().FILM.film?.id}/details`);
+    mockHistory.push(`/films/${makeFakeStore().FILM.film!.id}/details`);
 
     render(withStoreComponent);
 
@@ -136,7 +136,7 @@ describe('Application Routing', () => {
     expect(screen.getByText(/Details/)).toBeInTheDocument();
     expect(screen.getByText(/Reviews/)).toBeInTheDocument();
   });
-  
+
   it('should render "NotFoundPage" when user navigate to non-existent route', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore());

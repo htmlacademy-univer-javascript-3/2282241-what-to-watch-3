@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import {Spinner} from "./spinner.tsx";
+import {Spinner} from './spinner.tsx';
 
 
 describe('Component: Loading page', () => {
