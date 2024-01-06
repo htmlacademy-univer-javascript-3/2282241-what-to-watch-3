@@ -1,9 +1,9 @@
-import RatingStars from '../../components/rating-starts/rating-stars.tsx';
+import {RatingStars} from '../../components/rating-starts/rating-stars.tsx';
 import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {ChangeEventHandler, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
-import {Link, useParams} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';
@@ -12,8 +12,7 @@ import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts
 import {getFilm} from '../../store/film-process/film-selectors.ts';
 
 
-function AddReviewPage() {
-  const {id} = useParams<string>();
+export function AddReviewPage() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const film = useAppSelector(getFilm);
   const [rating, setRating] = useState(0);
@@ -29,12 +28,12 @@ function AddReviewPage() {
   };
 
   const handleSubmit = () => {
-    if (film!.id) {
+    if (film?.id) {
       dispatch(addReviewAction({comment, rating, id: toString()}));
     }
   };
 
-  if (!film || !id) {
+  if (!film) {
     return <NotFoundPage/>;
   }
   return (
@@ -87,7 +86,7 @@ function AddReviewPage() {
             </div>
           </div>
           <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text"
+            <textarea className="add-review__textarea" name="review-text" id="review-text" data-testid="comment"
               placeholder="Review text" minLength={50} maxLength={400} onChange={handleCommentChange}
             >
             </textarea>
@@ -100,5 +99,3 @@ function AddReviewPage() {
     </section>
   );
 }
-
-export default AddReviewPage;

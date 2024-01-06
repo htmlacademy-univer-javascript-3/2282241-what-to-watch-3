@@ -6,7 +6,7 @@ type NumberRatingProps = {
   setRating: ChangeEventHandler<HTMLInputElement>;
 }
 
-function RatingStars({numberRating, setRating}: NumberRatingProps) {
+export function RatingStars({numberRating, setRating}: NumberRatingProps) {
   return (
     <>
       <input className="rating__input" id={`star-${numberRating}`} type="radio"
@@ -19,5 +19,3 @@ function RatingStars({numberRating, setRating}: NumberRatingProps) {
     </>
   );
 }
-
-export default RatingStars;

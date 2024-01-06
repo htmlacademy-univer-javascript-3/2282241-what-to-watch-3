@@ -1,8 +1,8 @@
 import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
-import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
-import Tab from '../../components/tabs/tab.tsx';
-import Review from '../../components/review/review.tsx';
+import {FilmCardWrap} from '../../components/film-card/film-card-wrap.tsx';
+import {Tab} from '../../components/tabs/tab.tsx';
+import {Review} from '../../components/review/review.tsx';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
 import {MoreLikeThis} from '../../components/show-more/more-like-this.tsx';
@@ -16,7 +16,7 @@ import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts
 import {getComments, getFilm} from '../../store/film-process/film-selectors.ts';
 
 
-function MovieReviewsPage() {
+export function MovieReviewsPage() {
   const {id} = useParams<string>();
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -26,13 +26,13 @@ function MovieReviewsPage() {
     if (id) {
       dispatch(fetchCommentsMovie(id));
     }
-  }, [id]);
-  if (!film || !id) {
+  }, [id, dispatch]);
+  if (!film) {
     return <NotFoundPage/>;
   }
   return (
     <>
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" data-testid="movie-reviews-page">
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img src={film?.backgroundImage} alt={film?.name}/>
@@ -90,5 +90,3 @@ function MovieReviewsPage() {
     </>
   );
 }
-
-export default MovieReviewsPage;

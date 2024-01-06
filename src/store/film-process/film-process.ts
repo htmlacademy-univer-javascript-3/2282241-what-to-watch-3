@@ -14,7 +14,7 @@ import {
 
 
 export const InitialNumberFilms = 8;
-type InitialStateProps = {
+type InitialState = {
     genre: Genre;
     listFilms: MoviesProps[];
     promoFilm: InfoFilm | null;
@@ -30,7 +30,7 @@ type InitialStateProps = {
     comments: CommentsProps[];
     favoriteFilms: MoviesProps[];
 }
-export const initialState: InitialStateProps = {
+export const initialState: InitialState = {
   genre: 'All genres',
   listFilms: [],
   promoFilm: null,

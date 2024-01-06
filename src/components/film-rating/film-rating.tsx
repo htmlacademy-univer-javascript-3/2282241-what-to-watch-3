@@ -1,19 +1,19 @@
+import {FilmRatingLevel} from '../../const/const.ts';
+
 type FilmRatingProps = {
   rating: number;
   level: number;
   count: number;
 }
 
-function FilmRating({rating, count, level}: FilmRatingProps) {
+export function FilmRating({rating, count, level}: FilmRatingProps) {
   return (
     <div className="film-rating" data-testid="film-rating">
       <div className="film-rating__score">{rating}</div>
       <p className="film-rating__meta">
-        <span className="film-rating__level">{level}</span>
+        <span className="film-rating__level">{FilmRatingLevel(level)}</span>
         <span className="film-rating__count">{count}</span>
       </p>
     </div>
   );
 }
-
-export default FilmRating;

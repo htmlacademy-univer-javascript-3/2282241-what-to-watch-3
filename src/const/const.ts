@@ -1,8 +1,3 @@
-import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
-import {useNavigate} from 'react-router-dom';
-import {useAppDispatch} from '../hooks/hooks-index.ts';
-import {postFavoriteFilms} from '../store/api-actions.ts';
-
 export enum APIRoute {
     Films = '/films',
 }
@@ -20,15 +15,40 @@ export enum NameSpace {
     User = 'USER',
 }
 
+export const SignInError = {
+  InvalidEmail: 'Please enter a valid email address.',
+  InvalidPassword: 'Please use at least one number and one letter in your password',
+} as const;
 
-export const functionalityButtonList = (authorizationStatus: AuthorizationStatus,
-  setInList: (b: boolean) => void,
-  isInList: boolean, filmId: string | undefined) => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    dispatch(postFavoriteFilms({filmId, status: !isInList ? 0 : 1}));
-    return () => setInList ? setInList(!isInList) : undefined;
-  }
-  return () => navigate('/login');
+export const ValidationPattern = {
+  Email: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+  Password: /([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])/,
+} as const;
+
+const RATINGVALUE = {
+  BAD: 3,
+  NORMAL: 5,
+  GOOD: 8,
+  VERY_GOOD: 10,
 };
+export function FilmRatingLevel(rating: number | undefined): string {
+  if (rating === undefined) {
+    return 'No rating';
+  }
+  if (rating < RATINGVALUE.BAD) {
+    return 'Bad';
+  }
+  if (RATINGVALUE.BAD <= rating && rating < RATINGVALUE.NORMAL) {
+    return 'Normal';
+  }
+  if (RATINGVALUE.NORMAL <= rating && rating < RATINGVALUE.GOOD) {
+    return 'Good';
+  }
+  if (RATINGVALUE.GOOD <= rating && rating < RATINGVALUE.VERY_GOOD) {
+    return 'Very good';
+  }
+  if (rating >= RATINGVALUE.VERY_GOOD) {
+    return 'Awsome';
+  }
+  return 'No rating';
+}

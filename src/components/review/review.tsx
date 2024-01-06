@@ -5,7 +5,7 @@ export type ReviewProps = {
   date: string;
 }
 
-function Review({text, author, date, rating}:ReviewProps) {
+export function Review({text, author, date, rating}:ReviewProps) {
   return (
     <div className="review" data-testid="review">
       <blockquote className="review__quote">
@@ -21,5 +21,3 @@ function Review({text, author, date, rating}:ReviewProps) {
     </div>
   );
 }
-
-export default Review;

@@ -1,10 +1,10 @@
 import Copyright from '../../components/copyright/copyright.tsx';
 import Logo from '../../components/logo/logo.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
-import FilmRating from '../../components/film-rating/film-rating.tsx';
-import FilmCardText from '../../components/film-card/film-card-text.tsx';
-import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
-import Tab from '../../components/tabs/tab.tsx';
+import {FilmRating} from '../../components/film-rating/film-rating.tsx';
+import {FilmCardText} from '../../components/film-card/film-card-text.tsx';
+import {FilmCardWrap} from '../../components/film-card/film-card-wrap.tsx';
+import {Tab} from '../../components/tabs/tab.tsx';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
 import {useParams} from 'react-router-dom';
 import {useEffect} from 'react';
@@ -17,7 +17,7 @@ import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts
 import {filmsDataLoading, getFilm} from '../../store/film-process/film-selectors.ts';
 import {Spinner} from '../loading-page/spinner.tsx';
 
-function MoviePage() {
+export function MoviePage() {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const film = useAppSelector(getFilm);
   const isChoosedFilmLoading = useAppSelector(filmsDataLoading);
@@ -36,12 +36,12 @@ function MoviePage() {
       <Spinner />
     );
   }
-  if (!film || !id) {
+  if (!film) {
     return <NotFoundPage/>;
   }
   return (
     <>
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" data-testid="movie-page">
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img src={film.backgroundImage} alt={film.name}/>
@@ -96,5 +96,3 @@ function MoviePage() {
     </>
   );
 }
-
-export default MoviePage;

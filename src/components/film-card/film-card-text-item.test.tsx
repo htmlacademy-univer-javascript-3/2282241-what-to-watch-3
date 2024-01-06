@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import {withHistory} from '../../../utils/mock-component.tsx';
-import FilmCardTextItem from './film-card-text-item.tsx';
+import {withHistory} from '../../utils/mock-component.tsx';
+import {FilmCardTextItem} from './film-card-text-item.tsx';
 import {name} from 'faker';
 
 describe('Component: FilmCardTextItem', () => {

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import {withHistory} from '../../../utils/mock-component.tsx';
+import {withHistory} from '../../utils/mock-component.tsx';
 import {UnauthorizedUser} from './unauthorized-user.tsx';
 import {expect} from 'vitest';
 

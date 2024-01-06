@@ -3,7 +3,7 @@ type FilmCardTextItemProps = {
     value: string | number;
 }
 
-function FilmCardTextItem({name, value}: FilmCardTextItemProps) {
+export function FilmCardTextItem({name, value}: FilmCardTextItemProps) {
   return (
     <p className="film-card__details-item" data-testid='film-card__details-item'>
       <strong className="film-card__details-name">{name}</strong>
@@ -11,5 +11,3 @@ function FilmCardTextItem({name, value}: FilmCardTextItemProps) {
     </p>
   );
 }
-
-export default FilmCardTextItem;

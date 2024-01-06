@@ -1,8 +1,8 @@
 import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
-import FilmCardWrap from '../../components/film-card/film-card-wrap.tsx';
-import FilmCardTextItem from '../../components/film-card/film-card-text-item.tsx';
-import Tab from '../../components/tabs/tab.tsx';
+import {FilmCardWrap} from '../../components/film-card/film-card-wrap.tsx';
+import {FilmCardTextItem} from '../../components/film-card/film-card-text-item.tsx';
+import {Tab} from '../../components/tabs/tab.tsx';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
 import {MoreLikeThis} from '../../components/show-more/more-like-this.tsx';
@@ -14,16 +14,16 @@ import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts
 import {getFilm} from '../../store/film-process/film-selectors.ts';
 
 
-function MovieDetailsPage() {
+export function MovieDetailsPage() {
   const {id} = useParams();
   const film = useAppSelector(getFilm);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  if (!film || !id) {
+  if (!film) {
     return <NotFoundPage/>;
   }
   return (
     <>
-      <section className="film-card film-card--full">
+      <section className="film-card film-card--full" data-testid="movie-details-page">
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img src={film?.backgroundImage} alt={film?.name}/>
@@ -93,5 +93,3 @@ function MovieDetailsPage() {
     </>
   );
 }
-
-export default MovieDetailsPage;

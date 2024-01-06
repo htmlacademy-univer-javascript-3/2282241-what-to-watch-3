@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.ts';
-import {AxiosInstance} from 'axios';
+import axios, {AxiosInstance} from 'axios';
 import {FilmsProps, MoviesProps} from '../types/films.ts';
 import {APIRoute} from '../const/const.ts';
 import {AuthData} from '../types/auth-data.js';
@@ -9,6 +9,7 @@ import {dropToken, saveToken} from '../services/token.ts';
 import {InfoFilm} from '../types/info-film.ts';
 import {CommentsProps} from '../types/comments.ts';
 import {NewReview} from '../types/new-review.ts';
+import { toast } from 'react-toastify';
 
 export const fetchFilmsAction = createAsyncThunk<MoviesProps[], undefined, {
     dispatch: AppDispatch;
@@ -21,7 +22,9 @@ export const fetchFilmsAction = createAsyncThunk<MoviesProps[], undefined, {
       const {data} = await api.get<MoviesProps[]>(APIRoute.Films);
       return data;
     } catch (error) {
-      // не совсем понимаю, как сделать нормальную обработку ошибок
+      if (axios.isAxiosError(error)) {
+        toast.error(error.message);
+      }
       throw error;
     }
   },
@@ -67,12 +70,8 @@ export const fetchFilmAction = createAsyncThunk<InfoFilm, string, {
 }>(
   'data/fetchFilm',
   async (id, {extra: api}) => {
-    try {
-      const {data} = await api.get<InfoFilm>(`/films/${id}`);
-      return data;
-    } catch (error) {
-      throw error;
-    }
+    const {data} = await api.get<InfoFilm>(`/films/${id}`);
+    return data;
   }
 );
 
@@ -84,6 +83,9 @@ export const fetchRelatedMovies = createAsyncThunk<MoviesProps[], string, {
     const {data} = await api.get<MoviesProps[]>(`/films/${id}/similar`);
     return data;
   } catch (error) {
+    if (axios.isAxiosError(error)) {
+      toast.error(error.message);
+    }
     throw error;
   }
 });
@@ -96,6 +98,9 @@ export const fetchCommentsMovie = createAsyncThunk<CommentsProps[], string, {
     const {data} = await api.get<CommentsProps[]>(`comments/${id}`);
     return data;
   } catch (error) {
+    if (axios.isAxiosError(error)) {
+      toast.error(error.message);
+    }
     throw error;
   }
 });
@@ -106,12 +111,8 @@ export const fetchPromoFilmAction = createAsyncThunk<InfoFilm, undefined, {
 }>(
   'films/fetchPromoFilm',
   async (_arg, {extra: api}) => {
-    try {
-      const {data} = await api.get<InfoFilm>('promo');
-      return data;
-    } catch (error) {
-      throw error;
-    }
+    const {data} = await api.get<InfoFilm>('promo');
+    return data;
   }
 );
 
@@ -122,13 +123,9 @@ export const addReviewAction = createAsyncThunk<CommentsProps[], NewReview, {
 }>(
   'films/review',
   async ({comment, rating, id}, {extra: api}) => {
-    try {
-      const {data} = await api.post<CommentsProps[]>(`comments/${id}`, {comment, rating});
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  },
+    const {data} = await api.post<CommentsProps[]>(`comments/${id}`, {comment, rating});
+    return data;
+  }
 );
 export const fetchFavoriteFilms = createAsyncThunk<FilmsProps[], undefined, {
     dispatch: AppDispatch;
@@ -140,12 +137,15 @@ export const fetchFavoriteFilms = createAsyncThunk<FilmsProps[], undefined, {
       const {data} = await api.get<FilmsProps[]>('favorite');
       return data;
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.message);
+      }
       throw error;
     }
   },
 );
 export const postFavoriteFilms = createAsyncThunk<FilmsProps, {
-    filmId: string | undefined;
+    filmId: string;
     status: number;
 }, {
     dispatch: AppDispatch;
@@ -153,11 +153,7 @@ export const postFavoriteFilms = createAsyncThunk<FilmsProps, {
 }>(
   'data/postFavoriteFilms',
   async ({filmId, status}, {extra: api}) => {
-    try {
-      const {data} = await api.post<FilmsProps>(`favorite/${filmId}/${status}`);
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  },
+    const {data} = await api.post<FilmsProps>(`favorite/${filmId}/${status}`);
+    return data;
+  }
 );

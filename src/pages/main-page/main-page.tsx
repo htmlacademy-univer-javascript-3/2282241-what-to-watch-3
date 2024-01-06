@@ -1,4 +1,4 @@
-import FilmCard from '../../components/film-card/film-card.tsx';
+import {FilmCard} from '../../components/film-card/film-card.tsx';
 import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import {useEffect, useState} from 'react';
@@ -13,9 +13,9 @@ import {getFavoriteFilms, getFilms, getPromoFilm, getShowFilms} from '../../stor
 import {getGenre} from '../../store/genre-process/genre-selectors.ts';
 import {hideMovies, showMoreFilms} from '../../store/film-process/film-process.ts';
 import cn from 'classnames';
-import {functionalityButtonList} from '../../const/const.ts';
-import { ButtonAddMyList } from '../../components/film-card/film-card-button-add.tsx';
-import {ButtonPlay} from '../../components/film-card/film-card-button-play.tsx';
+import { FilmCardButtonAdd } from '../../components/film-card/film-card-button/film-card-button-add.tsx';
+import {FilmCardButtonPlay} from '../../components/film-card/film-card-button/film-card-button-play.tsx';
+import {useFunctionalityButtonList} from '../../hooks/use-functionality-button-list.ts';
 
 function MainPage() {
   const promoFilm = useAppSelector(getPromoFilm);
@@ -31,7 +31,7 @@ function MainPage() {
   }, [dispatch]);
   return (
     <>
-      <section className="film-card">
+      <section className="film-card" data-testid="main-page">
         <div className="film-card__bg">
           <img src="/public/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
         </div>
@@ -58,18 +58,18 @@ function MainPage() {
               </p>
 
               <div className="film-card__buttons">
-                <ButtonPlay height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
+                <FilmCardButtonPlay height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
                   className={'btn btn--play film-card__button'}
-                  path={`/player/${promoFilm?.id}`}
+                  path={`/player/${promoFilm?.id ?? ''}`}
                 />
 
-                <ButtonAddMyList height={'20'} width={'19'} xlinkHref={cn({'#add': !isInList},
+                <FilmCardButtonAdd height={'20'} width={'19'} xlinkHref={cn({'#add': !isInList},
                   {'#in-list': isInList})} nameButton={'My list'}
-                onClick={functionalityButtonList(authorizationStatus, setInList, isInList, promoFilm?.id)}
+                onClick={useFunctionalityButtonList(authorizationStatus, setInList, isInList, promoFilm?.id ?? '')}
                 className={'btn btn--list film-card__button'}
                 >
                   <span className="film-card__count">{favoriteFilms.length}</span>
-                </ButtonAddMyList>
+                </FilmCardButtonAdd>
               </div>
             </div>
           </div>
