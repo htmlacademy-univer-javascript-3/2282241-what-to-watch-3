@@ -51,7 +51,7 @@ export const FilmProcess = createSlice({
   initialState,
   reducers: {
     showMoreFilms(state) {
-      state.countFilms = state.countFilms + 4;
+      state.countFilms = state.countFilms + 8;
     },
     hideMovies(state) {
       state.countFilms = InitialNumberFilms;
