@@ -52,3 +52,7 @@ export function getFilmRatingLevel(rating: number | undefined): string {
   }
   return 'No rating';
 }
+
+export const DATE_FORMAT = 'MMMM D, YYYY';
+
+
