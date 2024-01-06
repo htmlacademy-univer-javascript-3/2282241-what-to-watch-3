@@ -25,30 +25,30 @@ export const ValidationPattern = {
   Password: /([0-9].*[a-zA-Z])|([a-zA-Z].*[0-9])/,
 } as const;
 
-const RATINGVALUE = {
+const RATING_VALUE = {
   BAD: 3,
   NORMAL: 5,
   GOOD: 8,
   VERY_GOOD: 10,
 };
-export function FilmRatingLevel(rating: number | undefined): string {
+export function getFilmRatingLevel(rating: number | undefined): string {
   if (rating === undefined) {
     return 'No rating';
   }
-  if (rating < RATINGVALUE.BAD) {
+  if (rating < RATING_VALUE.BAD) {
     return 'Bad';
   }
-  if (RATINGVALUE.BAD <= rating && rating < RATINGVALUE.NORMAL) {
+  if (RATING_VALUE.BAD <= rating && rating < RATING_VALUE.NORMAL) {
     return 'Normal';
   }
-  if (RATINGVALUE.NORMAL <= rating && rating < RATINGVALUE.GOOD) {
+  if (RATING_VALUE.NORMAL <= rating && rating < RATING_VALUE.GOOD) {
     return 'Good';
   }
-  if (RATINGVALUE.GOOD <= rating && rating < RATINGVALUE.VERY_GOOD) {
+  if (RATING_VALUE.GOOD <= rating && rating < RATING_VALUE.VERY_GOOD) {
     return 'Very good';
   }
-  if (rating >= RATINGVALUE.VERY_GOOD) {
-    return 'Awsome';
+  if (rating >= RATING_VALUE.VERY_GOOD) {
+    return 'Awesome';
   }
   return 'No rating';
 }
