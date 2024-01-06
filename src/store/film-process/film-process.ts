@@ -45,7 +45,7 @@ export const initialState: InitialState = {
   relatedMovies: [],
   comments: [],
   favoriteFilms: [],
-}
+};
 export const FilmProcess = createSlice({
   name: NameSpace.Film,
   initialState,
