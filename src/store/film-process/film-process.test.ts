@@ -15,7 +15,7 @@ describe('FilmProcess Slice', () => {
   });
 
   it('should show more films action', () => {
-    const countFilms = 12;
+    const countFilms = 16;
     const result = FilmProcess.reducer(initialState, showMoreFilms);
     expect(result.countFilms).toEqual(countFilms);
   });
