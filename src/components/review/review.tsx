@@ -9,6 +9,7 @@ export type ReviewProps = {
 
 export function Review({text, author, date, rating}:ReviewProps) {
   const formattedDate = formatReviewDate(date);
+
   return (
     <div className="review" data-testid="review">
       <blockquote className="review__quote">
