@@ -4,10 +4,10 @@ import {useAppSelector} from '../../hooks/hooks-index.ts';
 import {getAuthorizationStatus} from '../../store/user-process/user-selectors.ts';
 import {useState} from 'react';
 import cn from 'classnames';
-import {functionalityButtonList} from '../../const/const.ts';
 import {getFavoriteFilms} from '../../store/film-process/film-selectors.ts';
-import { ButtonAddMyList } from './film-card-button-add.tsx';
-import {ButtonPlay} from './film-card-button-play.tsx';
+import { FilmCardButtonAdd } from './film-card-button/film-card-button-add.tsx';
+import {FilmCardButtonPlay} from './film-card-button/film-card-button-play.tsx';
+import {useFunctionalityButtonList} from '../../hooks/use-functionality-button-list.ts';
 
 type FilmCardWrapProps = {
     nameMovie: string | null;
@@ -16,7 +16,7 @@ type FilmCardWrapProps = {
     id: string;
 }
 
-function FilmCardWrap({nameMovie, date, genre, id}: FilmCardWrapProps) {
+export function FilmCardWrap({nameMovie, date, genre, id}: FilmCardWrapProps) {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const [isInList, setInList] = useState(false);
   const favoriteFilms = useAppSelector(getFavoriteFilms);
@@ -30,17 +30,17 @@ function FilmCardWrap({nameMovie, date, genre, id}: FilmCardWrapProps) {
         </p>
 
         <div className="film-card__buttons">
-          <ButtonPlay height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
+          <FilmCardButtonPlay height={'19'} width={'19'} xlinkHref={'#play-s'} nameButton={'Play'}
             className={'btn btn--play film-card__button'}
             path={`/player/${id}`}
           />
-          <ButtonAddMyList height={'20'} width={'19'} xlinkHref={cn({'#add': !isInList},
+          <FilmCardButtonAdd height={'20'} width={'19'} xlinkHref={cn({'#add': !isInList},
             {'#in-list': isInList})} nameButton={'My list'}
-          onClick={functionalityButtonList(authorizationStatus, setInList, isInList, id)}
+          onClick={useFunctionalityButtonList(authorizationStatus, setInList, isInList, id)}
           className={'btn btn--list film-card__button'}
           >
             <span className="film-card__count">{favoriteFilms.length}</span>
-          </ButtonAddMyList>
+          </FilmCardButtonAdd>
           {authorizationStatus === AuthorizationStatus.Auth ?
             <Link to={'/films/:id/addreview'} className="btn film-card__button">Add review</Link> : null}
         </div>
@@ -48,5 +48,3 @@ function FilmCardWrap({nameMovie, date, genre, id}: FilmCardWrapProps) {
     </div>
   );
 }
-
-export default FilmCardWrap;

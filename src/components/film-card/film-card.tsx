@@ -1,17 +1,17 @@
 import {useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
 
-type CardFilmProps = {
-    nameFilm: string;
-    imgPath: string;
-    id: string;
-    videoPath: string;
+type FilmCardProps = {
+  nameFilm: string;
+  imgPath: string;
+  id: string;
+  videoPath: string;
 }
 
-function FilmCard({ nameFilm, id, imgPath, videoPath}: CardFilmProps) {
+export function FilmCard({nameFilm, id, imgPath, videoPath}: FilmCardProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const delay = 1000;
+  const DELAY = 1000;
   useEffect(() => {
     const playerElement = videoRef.current;
 
@@ -20,7 +20,10 @@ function FilmCard({ nameFilm, id, imgPath, videoPath}: CardFilmProps) {
     }
 
     if (isPlaying) {
-      setTimeout(() => playerElement.play(), delay);
+      const fn = () => {
+        playerElement.play();
+      };
+      setTimeout(fn, DELAY);
       return;
     }
 
@@ -45,5 +48,3 @@ function FilmCard({ nameFilm, id, imgPath, videoPath}: CardFilmProps) {
     </article>
   );
 }
-
-export default FilmCard;

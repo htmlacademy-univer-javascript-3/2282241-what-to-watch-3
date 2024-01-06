@@ -6,10 +6,10 @@ import {getGenre} from '../../store/genre-process/genre-selectors.ts';
 import {changeGenre} from '../../store/genre-process/genre-process.ts';
 
 type CatalogGenresProps = {
-    nameGenres: Genre;
+  nameGenres: Genre;
 }
 
-function GenresItem({ nameGenres}: CatalogGenresProps) {
+export function GenresItem({nameGenres}: CatalogGenresProps) {
   const dispatch = useAppDispatch();
   const activeGenre = useAppSelector(getGenre);
   const changeGenreHandler = () => {
@@ -25,4 +25,3 @@ function GenresItem({ nameGenres}: CatalogGenresProps) {
   );
 }
 
-export default GenresItem;

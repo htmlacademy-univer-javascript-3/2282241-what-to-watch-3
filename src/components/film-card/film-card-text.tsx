@@ -4,7 +4,7 @@ type FilmCardTextProps = {
   starring: string[];
 }
 
-function FilmCardText({description, director, starring}: FilmCardTextProps) {
+export function FilmCardText({description, director, starring}: FilmCardTextProps) {
   return (
     <div className="film-card__text" data-testid='film-card__text'>
       {description}
@@ -13,5 +13,3 @@ function FilmCardText({description, director, starring}: FilmCardTextProps) {
     </div>
   );
 }
-
-export default FilmCardText;

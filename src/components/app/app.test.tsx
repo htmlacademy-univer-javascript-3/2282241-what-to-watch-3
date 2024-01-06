@@ -1,8 +1,8 @@
 import { MemoryHistory, createMemoryHistory } from 'history';
-import {withHistory, withStore} from '../../../utils/mock-component.tsx';
+import {withHistory, withStore} from '../../utils/mock-component.tsx';
 import App from './app.tsx';
 import {render, screen} from '@testing-library/react';
-import { makeFakeStore} from '../../../utils/mock.ts';
+import { makeFakeStore} from '../../utils/mock.ts';
 import {AuthorizationStatus} from '../private-route/private-route.tsx';
 import {NameSpace} from '../../const/const.ts';
 
@@ -58,7 +58,7 @@ describe('Application Routing', () => {
       }
     })
     );
-    mockHistory.push(`/films/${makeFakeStore().FILM.film!.id}`);
+    mockHistory.push(`/films/${makeFakeStore().FILM.film?.id ?? ''}`);
 
     render(withStoreComponent);
 
@@ -77,7 +77,7 @@ describe('Application Routing', () => {
       }
     })
     );
-    mockHistory.push(`/films/${makeFakeStore().FILM.film!.id}/review`);
+    mockHistory.push(`/films/${makeFakeStore().FILM.film?.id ?? ''}/review`);
 
     render(withStoreComponent);
 
@@ -96,7 +96,7 @@ describe('Application Routing', () => {
       }
     })
     );
-    mockHistory.push(`/films/${makeFakeStore().FILM.film!.id}/addreview`);
+    mockHistory.push(`/films/${makeFakeStore().FILM.film?.id ?? ''}/addreview`);
 
     render(withStoreComponent);
 
@@ -112,7 +112,7 @@ describe('Application Routing', () => {
       }
     })
     );
-    mockHistory.push(`/player/${makeFakeStore().FILM.film!.id}`);
+    mockHistory.push(`/player/${makeFakeStore().FILM.film?.id ?? ''}`);
 
     render(withStoreComponent);
 
@@ -128,7 +128,7 @@ describe('Application Routing', () => {
       }
     })
     );
-    mockHistory.push(`/films/${makeFakeStore().FILM.film!.id}/details`);
+    mockHistory.push(`/films/${makeFakeStore().FILM.film?.id ?? ''}/details`);
 
     render(withStoreComponent);
 

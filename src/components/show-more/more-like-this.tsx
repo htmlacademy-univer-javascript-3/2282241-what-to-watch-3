@@ -1,4 +1,4 @@
-import FilmCard from '../film-card/film-card.tsx';
+import {FilmCard} from '../film-card/film-card.tsx';
 import {COUNT_SIMILAR_MOVIES} from '../../const/const.ts';
 import {useAppSelector} from '../../hooks/hooks-index.ts';
 import {getRelatedMovies} from '../../store/film-process/film-selectors.ts';

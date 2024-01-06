@@ -10,7 +10,7 @@ import {
   getRelatedMovies,
   getShowFilms
 } from './film-selectors.ts';
-import {makeFakeFilms} from '../../../utils/mock.ts';
+import {makeFakeFilms} from '../../utils/mock.ts';
 import {Genre} from '../../types/genre.ts';
 
 describe('Film selectors', () => {

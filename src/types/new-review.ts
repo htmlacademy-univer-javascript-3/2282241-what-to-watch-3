@@ -1,5 +1,5 @@
 export type NewReview = {
     comment: string;
     rating: number;
-    id: string | null;
+    id: string;
 }

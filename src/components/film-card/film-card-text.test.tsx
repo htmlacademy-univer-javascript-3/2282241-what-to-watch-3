@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import {lorem, name} from 'faker';
-import {withHistory} from '../../../utils/mock-component.tsx';
-import FilmCardText from './film-card-text.tsx';
+import {withHistory} from '../../utils/mock-component.tsx';
+import {FilmCardText} from './film-card-text.tsx';
 
 describe('Component: FilmCardText', () => {
   it('should render correctly', () => {
