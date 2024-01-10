@@ -28,7 +28,7 @@ function App() {
       <Route path={'/login'} element={<SignInPage/>}/>
       <Route path={'/mylist'} element={<PrivateRoute authorizationStatus={authorizationStatus}><MyListPage/></PrivateRoute>}/>
       <Route path={'/films/:id'} element={<MoviePage/>}/>
-      <Route path={'/films/:id/review'} element={<PrivateRoute authorizationStatus={authorizationStatus}><MovieReviewsPage/></PrivateRoute>}/>
+      <Route path={'/films/:id/review'} element={<MovieReviewsPage/>}/>
       <Route path={'/films/:id/addreview'} element={<PrivateRoute authorizationStatus={authorizationStatus}><AddReviewPage/></PrivateRoute>}/>
       <Route path={'/player/:id'} element={<PlayerPage/>}/>
       <Route path={'/films/:id/details'} element={<MovieDetailsPage/>}></Route>

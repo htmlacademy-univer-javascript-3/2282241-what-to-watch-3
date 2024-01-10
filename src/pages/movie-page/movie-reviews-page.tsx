@@ -1,11 +1,11 @@
 import Logo from '../../components/logo/logo.tsx';
 import Copyright from '../../components/copyright/copyright.tsx';
 import {FilmCardWrap} from '../../components/film-card/film-card-wrap.tsx';
-import {Tab} from '../../components/tabs/tab.tsx';
+import {Tab} from '../../components/tab/tab.tsx';
 import {Review} from '../../components/review/review.tsx';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
-import {MoreLikeThis} from '../../components/show-more/more-like-this.tsx';
+import {MoreLikeThis} from '../../components/more-like-this/more-like-this.tsx';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
 import UserBlock from '../../components/user-block/user-block.tsx';
 import {UnauthorizedUser} from '../../components/unauthorized-user/unauthorized-user.tsx';

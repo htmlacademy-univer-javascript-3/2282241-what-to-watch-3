@@ -17,7 +17,7 @@ function UserBlock() {
         </div>
       </li>
       <li className="user-block__item">
-        <Link to='/login' className="user-block__link" onClick={onClick}>Sign out</Link>
+        <Link to='/' className="user-block__link" onClick={onClick}>Sign out</Link>
       </li>
     </ul>
   );

@@ -7,6 +7,8 @@ describe('User selectors', () => {
   const state = {
     [NameSpace.User]: {
       authorizationStatus: AuthorizationStatus.Unknown,
+      userData: null,
+
     }
   };
 
