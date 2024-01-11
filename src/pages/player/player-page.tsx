@@ -2,18 +2,26 @@ import {FilmCardButton} from '../../components/film-card/film-card-button/film-c
 import '../../../style/player-style/player-style.css';
 import {ChangeEvent, useEffect, useRef, useState} from 'react';
 import cn from 'classnames';
-import {useAppSelector} from '../../hooks/hooks-index.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks-index.ts';
 import {getFilm} from '../../store/film-process/film-selectors.ts';
-import NotFoundPage from '../not-found-page/not-found-page.tsx';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
+import {fetchFilmAction} from '../../store/api-actions.ts';
+import {Spinner} from '../loading-page/spinner.tsx';
 
 export function PlayerPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const film = useAppSelector(getFilm);
+  const { id } = useParams();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilmAction(id));
+    }
+  }, [dispatch, id]);
 
   useEffect(() => {
     const playerElement = videoRef.current;
@@ -30,7 +38,7 @@ export function PlayerPage() {
     playerElement.pause();
   }, [isPlaying]);
   if (!film) {
-    return <NotFoundPage/>;
+    return <Spinner/>;
   }
   const handleDurationChange = (evt: ChangeEvent<HTMLVideoElement>) => {
     const currentDuration = Math.round(evt.currentTarget.duration);
