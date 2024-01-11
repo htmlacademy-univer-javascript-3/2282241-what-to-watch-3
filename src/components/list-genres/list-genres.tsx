@@ -1,5 +1,5 @@
-import {GenresItem} from './genres-item.tsx';
-import {ARRAY_GENRES} from './const.ts';
+import {GenresItem} from '../genres-item/genres-item.tsx';
+import {ARRAY_GENRES} from './list-genres.const.ts';
 
 export function ListGenres() {
   return (

@@ -1,10 +1,7 @@
 export enum APIRoute {
-    Films = '/films',
-}
-
-export enum APIRoute {
     Login = '/login',
     Logout = '/logout',
+    Films = '/films',
 }
 
 export const COUNT_SIMILAR_MOVIES = 4;

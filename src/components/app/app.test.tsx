@@ -2,7 +2,7 @@ import { MemoryHistory, createMemoryHistory } from 'history';
 import {withHistory, withStore} from '../../utils/mock-component.tsx';
 import App from './app.tsx';
 import {render, screen} from '@testing-library/react';
-import { makeFakeStore} from '../../utils/mock.ts';
+import {makeFakeStore, makeFakeUser} from '../../utils/mock.ts';
 import {AuthorizationStatus} from '../private-route/private-route.tsx';
 import {NameSpace} from '../../const/const.ts';
 
@@ -40,6 +40,7 @@ describe('Application Routing', () => {
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.Auth,
+        userData: makeFakeUser(),
       }
     })
     );
@@ -55,6 +56,7 @@ describe('Application Routing', () => {
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.Auth,
+        userData: makeFakeUser(),
       }
     })
     );
@@ -74,6 +76,7 @@ describe('Application Routing', () => {
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.Auth,
+        userData: makeFakeUser(),
       }
     })
     );
@@ -93,6 +96,7 @@ describe('Application Routing', () => {
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.Auth,
+        userData: makeFakeUser(),
       }
     })
     );
@@ -109,6 +113,7 @@ describe('Application Routing', () => {
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.Auth,
+        userData: makeFakeUser(),
       }
     })
     );
@@ -125,6 +130,7 @@ describe('Application Routing', () => {
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
       [NameSpace.User]: {
         authorizationStatus: AuthorizationStatus.Auth,
+        userData: makeFakeUser(),
       }
     })
     );

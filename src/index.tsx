@@ -8,9 +8,10 @@ import {checkAuthAction, fetchFilmsAction, fetchPromoFilmAction} from './store/a
 import {HistoryRouter} from './components/history-router/history-router.tsx';
 import browserHistory from './browser-history.ts';
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchFilmsAction());
 store.dispatch(fetchPromoFilmAction());
-store.dispatch(checkAuthAction());
+
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );

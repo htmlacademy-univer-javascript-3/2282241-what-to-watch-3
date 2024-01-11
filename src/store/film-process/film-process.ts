@@ -11,24 +11,25 @@ import {
   fetchPromoFilmAction,
   fetchRelatedMovies, postFavoriteFilms
 } from '../api-actions.ts';
+import {PromoFilmType} from '../../types/promo-film.ts';
 
 
 export const InitialNumberFilms = 8;
 type InitialState = {
-    genre: Genre;
-    listFilms: MoviesProps[];
-    promoFilm: InfoFilm | null;
-    countFilms: number;
-    isFilmsDataLoading: boolean;
-    isSimilarFilmsLoading: boolean;
-    isChoosedFilmLoading: boolean;
-    isPromoFilmLoading: boolean;
-    isFilmCommentsLoading: boolean;
-    isFavoriteFilm: boolean;
-    film: InfoFilm | null;
-    relatedMovies: MoviesProps[];
-    comments: CommentsProps[];
-    favoriteFilms: MoviesProps[];
+  genre: Genre;
+  listFilms: MoviesProps[];
+  promoFilm: PromoFilmType | null;
+  countFilms: number;
+  isFilmsDataLoading: boolean;
+  isSimilarFilmsLoading: boolean;
+  isChoosedFilmLoading: boolean;
+  isPromoFilmLoading: boolean;
+  isFilmCommentsLoading: boolean;
+  isFavoriteFilm: boolean;
+  film: InfoFilm | null;
+  relatedMovies: MoviesProps[];
+  comments: CommentsProps[];
+  favoriteFilms: MoviesProps[];
 }
 export const initialState: InitialState = {
   genre: 'All genres',
@@ -103,9 +104,9 @@ export const FilmProcess = createSlice({
       })
       .addCase(postFavoriteFilms.fulfilled, (state, action) => {
         const film = action.payload;
-        if (film.isFavorite){
+        if (film.isFavorite) {
           state.favoriteFilms = state.favoriteFilms.concat(film);
-        } else{
+        } else {
           state.favoriteFilms = state.favoriteFilms.filter((item) => item.id !== film.id);
         }
       });

@@ -7,6 +7,7 @@ import {createAPI} from '../services/api.ts';
 import {State} from '../types/state.ts';
 import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
 import {InitialNumberFilms} from '../store/film-process/film-process.ts';
+import {UserData} from '../types/user-data.ts';
 
 
 export const makeFakeFilm = (): FilmsProps => ({
@@ -39,10 +40,17 @@ export const makeFakeFilms = (): MoviesProps[] => new Array(8).fill(null).map(
       genre: music.genre(),
     } as MoviesProps)
 );
+export const makeFakeUser = (): UserData => ({
+  avatarUrl: internet.avatar(),
+  email: internet.email(makeFakeUser.name),
+  id: datatype.number({min: 1, max: 50}),
+  name: internet.userName(),
+  token: datatype.string(),
+} as UserData);
 export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createAPI>, Action>;
 export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({type}) => type);
 export const makeFakeStore = (initialState?: Partial<State>): State => ({
-  USER: {authorizationStatus: AuthorizationStatus.NoAuth},
+  USER: {authorizationStatus: AuthorizationStatus.NoAuth, userData: makeFakeUser()},
   FILM: {
     genre: 'All genres' as Genre,
     listFilms: makeFakeFilms(),

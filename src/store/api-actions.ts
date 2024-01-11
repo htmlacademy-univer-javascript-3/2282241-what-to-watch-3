@@ -10,6 +10,7 @@ import {InfoFilm} from '../types/info-film.ts';
 import {CommentsProps} from '../types/comments.ts';
 import {NewReview} from '../types/new-review.ts';
 import { toast } from 'react-toastify';
+import {PromoFilmType} from '../types/promo-film.ts';
 
 export const fetchFilmsAction = createAsyncThunk<MoviesProps[], undefined, {
     dispatch: AppDispatch;
@@ -29,18 +30,19 @@ export const fetchFilmsAction = createAsyncThunk<MoviesProps[], undefined, {
     }
   },
 );
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
 }>(
   'user/checkAuth',
   async (_arg, {extra: api}) => {
-    await api.get(APIRoute.Login);
+    const {data} = await api.get<UserData>(APIRoute.Login);
+    return data;
   }
 );
 
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const loginAction = createAsyncThunk<UserData | void, AuthData, {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
@@ -105,13 +107,13 @@ export const fetchCommentsMovie = createAsyncThunk<CommentsProps[], string, {
   }
 });
 
-export const fetchPromoFilmAction = createAsyncThunk<InfoFilm, undefined, {
+export const fetchPromoFilmAction = createAsyncThunk<PromoFilmType, undefined, {
     dispatch: AppDispatch;
     extra: AxiosInstance;
 }>(
   'films/fetchPromoFilm',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<InfoFilm>('promo');
+    const {data} = await api.get<PromoFilmType>('promo');
     return data;
   }
 );

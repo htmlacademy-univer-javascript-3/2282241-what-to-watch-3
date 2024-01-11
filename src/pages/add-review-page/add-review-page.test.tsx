@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import {NameSpace} from '../../const/const.ts';
 import {AuthorizationStatus} from '../../components/private-route/private-route.tsx';
-import {makeFakeFilm, makeFakeFilms, makeFakeStore} from '../../utils/mock.ts';
+import {makeFakeFilm, makeFakeFilms, makeFakeStore, makeFakeUser} from '../../utils/mock.ts';
 import {withHistory, withStore} from '../../utils/mock-component.tsx';
 import {expect} from 'vitest';
 import {InitialNumberFilms} from '../../store/film-process/film-process.ts';
@@ -15,6 +15,7 @@ describe('Component: AddReviewPage', () => {
       makeFakeStore({
         [NameSpace.User]:{
           authorizationStatus: AuthorizationStatus.Auth,
+          userData: makeFakeUser(),
         },
         [NameSpace.Film]:{
           film: makeFakeFilm(),
